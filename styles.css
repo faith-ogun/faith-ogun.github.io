@@ -297,8 +297,20 @@ body {
 }
 
 .news-title {
-    text-align: center;
-    color: #ffffff;
+    text-align: center !important;
+    color: #ffffff !important;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+    letter-spacing: 3px;
+    width: 100%;
+    display: block;
+}
+
+.news h1,
+.news h2 {
+    text-align: center !important;
+    color: #ffffff !important;
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 60px;
