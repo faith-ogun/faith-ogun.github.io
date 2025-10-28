@@ -14,7 +14,7 @@ body {
 .hero {
     height: 100vh;
     position: relative;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Placeholder gradient */
+    background-image: url('assets/hero-image.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -22,9 +22,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
-/* Once you have your hero image, replace the gradient with: */
-/* background-image: url('path-to-your-image.jpg'); */
 
 .hero-overlay {
     position: absolute;
@@ -84,7 +81,7 @@ body {
 /* Scroll Arrow */
 .scroll-arrow {
     position: absolute;
-    bottom: 40px;
+    bottom: 80px;
     left: 50%;
     transform: translateX(-50%);
     color: white;
