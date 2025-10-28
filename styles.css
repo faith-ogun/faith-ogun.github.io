@@ -35,13 +35,13 @@ body {
 .nav-logo {
     font-size: 1.3rem;
     font-weight: 700;
-    color: #000;
+    color: #000 !important;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .nav-logo:hover {
-    color: #14b8a6;
+    color: #14b8a6 !important;
 }
 
 .nav-menu {
