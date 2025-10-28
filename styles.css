@@ -14,7 +14,7 @@ body {
 .hero {
     height: 100vh;
     position: relative;
-    background-image: url('assets/hero-image.png');
+    background-image: url('../assets/hero-image.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -81,7 +81,7 @@ body {
 /* Scroll Arrow */
 .scroll-arrow {
     position: absolute;
-    bottom: 80px;
+    bottom: 120px;
     left: 50%;
     transform: translateX(-50%);
     color: white;
@@ -170,6 +170,20 @@ body {
     gap: 1rem;
     flex-wrap: wrap;
     margin-top: 2.5rem;
+    align-items: center;
+}
+
+.social-icon {
+    color: #667eea;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icon:hover {
+    color: #5568d3;
+    transform: translateY(-2px);
 }
 
 .btn {
