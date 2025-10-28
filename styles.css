@@ -718,3 +718,133 @@ body {
         font-size: 1rem;
     }
 }
+
+/* Contact Section */
+.contact {
+    padding: 100px 20px;
+    background-color: #ffffff;
+}
+
+.contact .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+    letter-spacing: 2px;
+}
+
+.contact-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.contact-details {
+    padding: 20px;
+}
+
+.contact-heading {
+    font-size: 1.5rem;
+    color: #14b8a6;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.contact-person {
+    margin-bottom: 30px;
+}
+
+.contact-person h4 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.contact-title {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.contact-person p {
+    color: #555;
+    margin-bottom: 6px;
+    line-height: 1.6;
+}
+
+.contact-person a {
+    color: #14b8a6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-person a:hover {
+    color: #0d9488;
+    text-decoration: underline;
+}
+
+.contact-divider {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 25px 0;
+}
+
+.contact-location {
+    margin-top: 25px;
+    padding-top: 15px;
+}
+
+.contact-location p {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 4px;
+}
+
+.contact-map {
+    width: 100%;
+}
+
+.contact-map iframe {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design for Contact Section */
+@media (max-width: 768px) {
+    .contact {
+        padding: 60px 20px;
+    }
+    
+    .contact .section-title {
+        font-size: 2rem;
+    }
+    
+    .contact-intro {
+        font-size: 1rem;
+        margin-bottom: 40px;
+    }
+    
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .contact-heading {
+        font-size: 1.3rem;
+    }
+}
