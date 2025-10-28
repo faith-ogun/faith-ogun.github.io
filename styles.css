@@ -598,4 +598,10 @@ body {
     .research-title {
         font-size: 1.2rem;
     }
+
+    .research-awards {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 6px;
+    }
 }
