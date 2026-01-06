@@ -6,24 +6,21 @@
     <title>Faith Ogundimu | Decoding the Non-Coding</title>
     <meta name="description" content="PhD Researcher in Cancer Genomics & Bioinformatics. Machine Learning, Epigenomics, Precision Oncology.">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-primary: #f8fafc;
+            --bg-primary: #f0f4f8;
             --bg-secondary: #ffffff;
-            --bg-tertiary: #f1f5f9;
+            --bg-tertiary: #e8eef4;
             --bg-dark: #0f172a;
             --bg-dark-secondary: #1e293b;
             --blue-primary: #3B4CCA;
             --blue-light: #6B7CFF;
             --blue-dark: #2A3A99;
-            --teal: #14b8a6;
-            --teal-light: #5eead4;
-            --teal-dark: #0d9488;
+            --blue-pale: #e8ebfa;
             --text-primary: #0f172a;
             --text-secondary: #475569;
             --text-muted: #94a3b8;
@@ -40,48 +37,50 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-        ::selection { background: var(--teal); color: white; }
+        ::selection { background: var(--blue-primary); color: white; }
         a { color: inherit; text-decoration: none; }
         img { max-width: 100%; height: auto; display: block; }
 
         /* Navigation */
         .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 2rem; transition: all 0.4s var(--ease-out-expo); }
-        .nav.scrolled { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05); }
+        .nav.scrolled { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05); }
         .nav-container { max-width: var(--container-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { display: flex; align-items: center; gap: 0.75rem; transition: transform 0.3s ease; }
+        
+        /* Logo - Barrett Lab style */
+        .nav-logo { display: flex; align-items: center; gap: 1rem; transition: transform 0.3s ease; }
         .nav-logo:hover { transform: scale(1.02); }
-        .nav-logo img { height: 40px; width: auto; }
-        .nav-logo-text { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--text-primary); }
+        .nav-logo img { height: 55px; width: auto; }
+        .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+        .nav-logo-text span { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; letter-spacing: 0.05em; color: var(--blue-dark); text-transform: uppercase; }
+        
         .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-link { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); position: relative; transition: color 0.3s ease; }
-        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--teal); transition: width 0.3s var(--ease-out-expo); }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--blue-primary); transition: width 0.3s var(--ease-out-expo); }
         .nav-link:hover { color: var(--blue-primary); }
         .nav-link:hover::after { width: 100%; }
         .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 5px; }
         .nav-toggle span { width: 24px; height: 2px; background: var(--text-primary); transition: all 0.3s ease; }
 
-        /* Hero */
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: linear-gradient(135deg, var(--bg-primary) 0%, #e0f2fe 50%, var(--bg-tertiary) 100%); }
-        .hero-bg-shapes { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
-        .hero-shape { position: absolute; border-radius: 50%; opacity: 0.1; }
-        .hero-shape-1 { width: 600px; height: 600px; background: var(--blue-primary); top: -200px; right: -100px; }
-        .hero-shape-2 { width: 400px; height: 400px; background: var(--teal); bottom: -100px; left: -100px; }
-        .hero-shape-3 { width: 200px; height: 200px; background: var(--blue-light); top: 40%; left: 10%; }
-        #particle-canvas { position: absolute; inset: 0; z-index: 1; }
-        .hero-content { position: relative; z-index: 2; text-align: center; padding: 2rem; max-width: 900px; }
-        .hero-eyebrow { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 1.5rem; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s var(--ease-out-expo) 0.2s forwards; }
-        .hero-name { font-family: var(--font-display); font-size: clamp(3rem, 10vw, 6rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 1.5rem; color: var(--text-primary); opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s var(--ease-out-expo) 0.4s forwards; }
-        .hero-name .highlight { color: var(--blue-primary); }
-        .hero-tagline { font-family: var(--font-accent); font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 500; font-style: italic; color: var(--text-secondary); margin-bottom: 2rem; opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s var(--ease-out-expo) 0.6s forwards; }
-        .hero-description { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7; opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s var(--ease-out-expo) 0.8s forwards; }
-        .hero-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s var(--ease-out-expo) 1s forwards; }
-        .hero-tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.05em; padding: 0.5rem 1rem; border: 1px solid var(--blue-primary); border-radius: 100px; color: var(--blue-primary); background: rgba(59, 76, 202, 0.05); transition: all 0.3s ease; }
-        .hero-tag:hover { background: var(--blue-primary); color: white; }
-        .scroll-indicator { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); z-index: 2; opacity: 0; animation: fadeUp 0.8s var(--ease-out-expo) 1.2s forwards; }
+        /* Hero - Split layout with helix */
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; background: var(--bg-primary); }
+        .hero-container { max-width: var(--container-width); margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; width: 100%; }
+        .hero-content { position: relative; z-index: 2; text-align: left; }
+        .hero-eyebrow { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--blue-primary); margin-bottom: 1.5rem; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s var(--ease-out-expo) 0.2s forwards; }
+        .hero-name { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 1.5rem; color: var(--text-primary); opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s var(--ease-out-expo) 0.4s forwards; }
+        .hero-tagline { font-family: var(--font-accent); font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 500; font-style: italic; color: var(--text-secondary); margin-bottom: 1.5rem; opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s var(--ease-out-expo) 0.6s forwards; }
+        .hero-description { font-size: 1.05rem; color: var(--text-secondary); max-width: 500px; line-height: 1.7; margin-bottom: 2rem; opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s var(--ease-out-expo) 0.8s forwards; }
+        .hero-cta { opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s var(--ease-out-expo) 1s forwards; }
+        
+        /* DNA Helix Animation Container */
+        .hero-visual { position: relative; height: 500px; display: flex; align-items: center; justify-content: center; }
+        #helix-canvas { width: 100%; height: 100%; }
+        
+        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 2; opacity: 0; animation: fadeUp 0.8s var(--ease-out-expo) 1.2s forwards; }
         .scroll-indicator a { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--text-muted); transition: color 0.3s ease; }
         .scroll-indicator a:hover { color: var(--blue-primary); }
         .scroll-indicator span { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; }
         .scroll-indicator svg { animation: bounce 2s infinite; }
+        
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
 
@@ -89,9 +88,11 @@
         section { padding: var(--section-padding) 2rem; position: relative; }
         .container { max-width: var(--container-width); margin: 0 auto; }
         .section-header { margin-bottom: 4rem; }
-        .section-label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
-        .section-label::before { content: ''; width: 40px; height: 2px; background: var(--teal); }
-        .section-title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; color: var(--text-primary); }
+        .section-header.centered { text-align: center; }
+        .section-label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--blue-primary); margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
+        .section-header.centered .section-label { justify-content: center; }
+        .section-label::before { content: ''; width: 40px; height: 2px; background: var(--blue-primary); }
+        .section-title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; color: var(--text-primary); }
         .section-title .accent { font-family: var(--font-accent); font-style: italic; font-weight: 500; color: var(--blue-primary); }
         .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s var(--ease-out-expo); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -103,9 +104,9 @@
         .about-image { position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1); }
         .about-image img { width: 100%; aspect-ratio: 4/5; object-fit: cover; transition: transform 0.5s ease; }
         .about-image:hover img { transform: scale(1.02); }
-        .about-image-decoration { position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; border: 2px solid var(--teal); border-radius: 50%; z-index: -1; opacity: 0.3; }
+        .about-image-decoration { position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; border: 2px solid var(--blue-primary); border-radius: 50%; z-index: -1; opacity: 0.2; }
         .about-content { padding-top: 1rem; }
-        .about-text { font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .about-text { font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem; }
         .about-text strong { color: var(--text-primary); font-weight: 600; }
         .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 3rem 0; padding: 2rem 0; border-top: 1px solid var(--bg-tertiary); border-bottom: 1px solid var(--bg-tertiary); }
         .stat { text-align: center; }
@@ -119,20 +120,30 @@
         .btn-secondary:hover { background: var(--blue-primary); color: white; transform: translateY(-2px); }
         .social-links { display: flex; gap: 0.75rem; margin-left: auto; }
         .social-link { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--bg-tertiary); border-radius: 50%; color: var(--text-secondary); transition: all 0.3s ease; }
-        .social-link:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+        .social-link:hover { border-color: var(--blue-primary); color: var(--blue-primary); transform: translateY(-2px); }
+
+        /* Research Themes Section */
+        .research-themes { background: var(--bg-tertiary); }
+        .themes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .theme-card { background: var(--bg-secondary); border-radius: 16px; padding: 2rem; text-align: center; transition: all 0.4s var(--ease-out-expo); border: 1px solid transparent; }
+        .theme-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); border-color: rgba(59, 76, 202, 0.2); }
+        .theme-icon { width: 80px; height: 80px; margin: 0 auto 1.5rem; border-radius: 12px; overflow: hidden; background: var(--blue-pale); display: flex; align-items: center; justify-content: center; }
+        .theme-icon svg { width: 40px; height: 40px; color: var(--blue-primary); }
+        .theme-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; }
+        .theme-description { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
 
         /* News */
         .news { background: var(--bg-dark); overflow: hidden; }
-        .news .section-label { color: var(--teal-light); }
-        .news .section-label::before { background: var(--teal-light); }
+        .news .section-label { color: var(--blue-light); }
+        .news .section-label::before { background: var(--blue-light); }
         .news .section-title { color: var(--text-light); }
         .news-wrapper { position: relative; }
         .news-track { display: flex; gap: 2rem; animation: scroll 35s linear infinite; }
         .news-track:hover { animation-play-state: paused; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .news-item { flex-shrink: 0; width: 400px; padding: 2rem; background: var(--bg-dark-secondary); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; transition: all 0.3s ease; }
-        .news-item:hover { border-color: rgba(20, 184, 166, 0.3); transform: translateY(-4px); }
-        .news-date { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 1rem; }
+        .news-item:hover { border-color: rgba(59, 76, 202, 0.4); transform: translateY(-4px); }
+        .news-date { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--blue-light); margin-bottom: 1rem; }
         .news-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; line-height: 1.4; color: var(--text-light); margin-bottom: 0.75rem; }
         .news-venue { font-size: 0.9rem; color: var(--text-muted); }
 
@@ -145,13 +156,13 @@
         .research-image img { width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: transform 0.5s var(--ease-out-expo); }
         .research-item:hover .research-image img { transform: scale(1.05); }
         .research-content { padding: 0.5rem 0; }
-        .research-year { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em; color: var(--teal-dark); margin-bottom: 0.75rem; }
+        .research-year { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em; color: var(--blue-primary); margin-bottom: 0.75rem; }
         .research-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; line-height: 1.3; color: var(--text-primary); margin-bottom: 1rem; transition: color 0.3s ease; }
         .research-item:hover .research-title { color: var(--blue-primary); }
         .research-authors { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
         .research-venue { font-family: var(--font-accent); font-size: 0.9rem; font-style: italic; color: var(--text-muted); margin-bottom: 1rem; }
         .research-awards { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-        .award-badge { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.05em; padding: 0.4rem 0.8rem; background: rgba(20, 184, 166, 0.1); border: 1px solid rgba(20, 184, 166, 0.3); border-radius: 100px; color: var(--teal-dark); }
+        .award-badge { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.05em; padding: 0.4rem 0.8rem; background: var(--blue-pale); border: 1px solid rgba(59, 76, 202, 0.2); border-radius: 100px; color: var(--blue-primary); }
         .research-links { display: flex; gap: 1.5rem; }
         .research-link { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.05em; color: var(--blue-primary); display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; }
         .research-link:hover { color: var(--blue-dark); }
@@ -159,26 +170,40 @@
 
         /* Featured Project */
         .featured-project { background: var(--bg-secondary); position: relative; overflow: hidden; }
-        .featured-project::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--teal), transparent); }
+        .featured-project::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--blue-primary), transparent); }
         .project-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center; }
         .project-visual { position: relative; }
         .project-image { border-radius: 16px; overflow: hidden; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15); }
         .project-image img { width: 100%; }
-        .project-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background: radial-gradient(ellipse, rgba(59, 76, 202, 0.2) 0%, transparent 70%); filter: blur(60px); z-index: -1; }
+        .project-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%; height: 80%; background: radial-gradient(ellipse, rgba(59, 76, 202, 0.15) 0%, transparent 70%); filter: blur(60px); z-index: -1; }
         .project-content { padding: 1rem 0; }
-        .project-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 1rem; }
+        .project-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-primary); margin-bottom: 1rem; }
         .project-name { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1; margin-bottom: 0.5rem; color: var(--blue-primary); }
         .project-tagline { font-family: var(--font-accent); font-size: 1.2rem; font-style: italic; color: var(--text-secondary); margin-bottom: 2rem; }
         .project-description { font-size: 1.05rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem; }
         .project-tech { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem; }
-        .tech-tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.05em; padding: 0.5rem 1rem; background: rgba(20, 184, 166, 0.1); border: 1px solid rgba(20, 184, 166, 0.2); border-radius: 6px; color: var(--teal-dark); }
+        .tech-tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.05em; padding: 0.5rem 1rem; background: var(--blue-pale); border: 1px solid rgba(59, 76, 202, 0.15); border-radius: 6px; color: var(--blue-primary); }
+        .project-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        /* Project Archive */
+        .project-archive { background: var(--bg-tertiary); }
+        .archive-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .archive-item { background: var(--bg-secondary); border-radius: 12px; padding: 1.5rem; display: grid; grid-template-columns: 120px 1fr; gap: 1.5rem; align-items: center; transition: all 0.3s ease; border: 1px solid transparent; }
+        .archive-item:hover { border-color: rgba(59, 76, 202, 0.2); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); }
+        .archive-image { border-radius: 8px; overflow: hidden; }
+        .archive-image img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+        .archive-content h4 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .archive-content p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.75rem; line-height: 1.5; }
+        .archive-links { display: flex; gap: 1rem; }
+        .archive-link { font-family: var(--font-mono); font-size: 0.7rem; color: var(--blue-primary); display: flex; align-items: center; gap: 0.3rem; }
+        .archive-link:hover { text-decoration: underline; }
 
         /* Contact */
-        .contact { background: var(--bg-tertiary); }
+        .contact { background: var(--bg-secondary); }
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
         .contact-info h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: var(--text-primary); }
         .contact-item { margin-bottom: 1.5rem; }
-        .contact-item-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 0.5rem; }
+        .contact-item-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-primary); margin-bottom: 0.5rem; }
         .contact-item-value { font-size: 1rem; color: var(--text-secondary); }
         .contact-item-value a { color: var(--text-primary); transition: color 0.3s ease; }
         .contact-item-value a:hover { color: var(--blue-primary); }
@@ -186,14 +211,19 @@
         .contact-map iframe { width: 100%; height: 100%; border: none; }
 
         /* Footer */
-        .footer { padding: 2rem; background: var(--bg-secondary); border-top: 1px solid var(--bg-tertiary); text-align: center; }
+        .footer { padding: 2rem; background: var(--bg-tertiary); border-top: 1px solid rgba(0,0,0,0.05); text-align: center; }
         .footer p { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--text-muted); }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .about-grid, .project-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .research-item { grid-template-columns: 1fr; }
-            .about-image { max-width: 400px; }
+            .hero-container, .about-grid, .project-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-container { padding-top: 100px; }
+            .hero-visual { height: 350px; order: -1; }
+            .hero-content { text-align: center; }
+            .hero-description { margin: 0 auto 2rem; }
+            .research-item, .archive-grid { grid-template-columns: 1fr; }
+            .themes-grid { grid-template-columns: 1fr; }
+            .about-image { max-width: 400px; margin: 0 auto; }
             .project-visual { order: -1; }
         }
         @media (max-width: 768px) {
@@ -204,9 +234,8 @@
             .about-links { flex-direction: column; }
             .social-links { margin-left: 0; justify-content: center; }
             .news-item { width: 300px; }
-            .hero-shape-1 { width: 300px; height: 300px; }
-            .hero-shape-2 { width: 200px; height: 200px; }
-            .hero-shape-3 { display: none; }
+            .archive-item { grid-template-columns: 1fr; }
+            .archive-image { max-width: 200px; }
         }
     </style>
 </head>
@@ -215,13 +244,17 @@
         <div class="nav-container">
             <a href="#" class="nav-logo">
                 <img src="assets/faith_logo.png" alt="Faith Ogundimu Logo">
-                <span class="nav-logo-text">Faith Ogundimu</span>
+                <div class="nav-logo-text">
+                    <span>Faith</span>
+                    <span>Ogundimu</span>
+                </div>
             </a>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#themes" class="nav-link">Research</a></li>
                 <li><a href="#news" class="nav-link">News</a></li>
-                <li><a href="#research" class="nav-link">Research</a></li>
-                <li><a href="#project" class="nav-link">Projects</a></li>
+                <li><a href="#publications" class="nav-link">Publications</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
@@ -230,23 +263,23 @@
         </div>
     </nav>
 
+    <!-- Hero Section - Split Layout -->
     <section class="hero" id="home">
-        <div class="hero-bg-shapes">
-            <div class="hero-shape hero-shape-1"></div>
-            <div class="hero-shape hero-shape-2"></div>
-            <div class="hero-shape hero-shape-3"></div>
-        </div>
-        <canvas id="particle-canvas"></canvas>
-        <div class="hero-content">
-            <p class="hero-eyebrow">PhD Researcher • RCSI Dublin</p>
-            <h1 class="hero-name">Faith <span class="highlight">Ogundimu</span></h1>
-            <p class="hero-tagline">Decoding the non-coding.</p>
-            <p class="hero-description">Investigating non-coding driver mutations in breast cancer through machine learning, epigenomics, and large-scale genomic analysis.</p>
-            <div class="hero-tags">
-                <span class="hero-tag">Machine Learning</span>
-                <span class="hero-tag">Epigenomics</span>
-                <span class="hero-tag">Precision Oncology</span>
-                <span class="hero-tag">Computational Biology</span>
+        <div class="hero-container">
+            <div class="hero-content">
+                <p class="hero-eyebrow">PhD Researcher • RCSI Dublin</p>
+                <h1 class="hero-name">Decoding the<br><span style="color: var(--blue-primary);">non-coding.</span></h1>
+                <p class="hero-tagline">Cancer genomics meets machine learning.</p>
+                <p class="hero-description">Investigating non-coding driver mutations in breast cancer through deep learning, epigenomics, and large-scale multi-omics integration.</p>
+                <div class="hero-cta">
+                    <a href="#about" class="btn btn-primary">
+                        Explore My Work
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <canvas id="helix-canvas"></canvas>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -257,12 +290,13 @@
         </div>
     </section>
 
+    <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
             <div class="about-grid">
                 <div class="about-image-wrapper reveal">
                     <div class="about-image">
-                        <img src="assets/faith-about.jpg" alt="Faith Ogundimu">
+                        <img src="assets/hero-image.png" alt="Faith Ogundimu">
                     </div>
                     <div class="about-image-decoration"></div>
                 </div>
@@ -272,12 +306,12 @@
                         <h2 class="section-title">Building the bridge between <span class="accent">code</span> and <span class="accent">cure</span>.</h2>
                     </div>
                     <p class="about-text">I'm a first-year PhD student at the <strong>Royal College of Surgeons Ireland</strong>, investigating non-coding driver mutations in breast cancer using large-scale genomic datasets including TCGA, ICGC, and ENCODE.</p>
-                    <p class="about-text">My research applies <strong>machine learning</strong> and integrative computational approaches to identify functional variants in regulatory elements, aiming to uncover novel therapeutic vulnerabilities in breast cancer subtypes.</p>
+                    <p class="about-text">My research applies <strong>deep learning</strong> and integrative computational approaches—including CNNs, multilayer perceptrons, and Hidden Markov Models—to identify functional variants in regulatory elements and uncover novel therapeutic vulnerabilities.</p>
                     <p class="about-text">I completed my B.Sc. in Genetics and Cell Biology at Dublin City University with <strong>First Class Honours</strong>, ranking 2nd in my cohort and earning a place on the Dean's Honours List.</p>
                     <div class="about-stats">
                         <div class="stat"><div class="stat-value">2nd</div><div class="stat-label">In Cohort</div></div>
-                        <div class="stat"><div class="stat-value">18%</div><div class="stat-label">GOI Success Rate</div></div>
-                        <div class="stat"><div class="stat-value">2nd</div><div class="stat-label">Google Hackathon</div></div>
+                        <div class="stat"><div class="stat-value">€146k</div><div class="stat-label">Research Funding</div></div>
+                        <div class="stat"><div class="stat-value">26+</div><div class="stat-label">AI Agents Built</div></div>
                     </div>
                     <div class="about-links">
                         <a href="mailto:faithogundimu@rcsi.ie" class="btn btn-primary">
@@ -299,6 +333,40 @@
         </div>
     </section>
 
+    <!-- Research Themes Section -->
+    <section class="research-themes" id="themes">
+        <div class="container">
+            <div class="section-header centered reveal">
+                <p class="section-label">Research Focus</p>
+                <h2 class="section-title">My Research <span class="accent">Themes</span></h2>
+            </div>
+            <div class="themes-grid">
+                <div class="theme-card reveal" style="transition-delay: 0.1s;">
+                    <div class="theme-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4m-3.5-6.5l-2.8 2.8m-5.4 5.4l-2.8 2.8m0-11.3l2.8 2.8m5.4 5.4l2.8 2.8"/></svg>
+                    </div>
+                    <h3 class="theme-title">Non-Coding Driver Mutations</h3>
+                    <p class="theme-description">Investigating the 98% non-coding genome to identify regulatory mutations that drive breast cancer progression, using >5,000 whole genomes from TCGA and ICGC.</p>
+                </div>
+                <div class="theme-card reveal" style="transition-delay: 0.2s;">
+                    <div class="theme-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3 class="theme-title">Deep Learning for Genomics</h3>
+                    <p class="theme-description">Developing CNNs, MLPs, and Hidden Markov Models to predict chromatin accessibility and prioritize candidate driver mutations from multi-omics data.</p>
+                </div>
+                <div class="theme-card reveal" style="transition-delay: 0.3s;">
+                    <div class="theme-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
+                    </div>
+                    <h3 class="theme-title">3D Regulatory Mapping</h3>
+                    <p class="theme-description">Creating breast tissue-specific regulatory maps by integrating single-cell ATAC-seq, spatial transcriptomics, and ENCODE regulatory elements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
     <section class="news" id="news">
         <div class="container">
             <div class="section-header reveal">
@@ -308,21 +376,27 @@
         </div>
         <div class="news-wrapper reveal" style="transition-delay: 0.2s;">
             <div class="news-track">
-                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Dean's Honours List recognition for academic excellence</h3><p class="news-venue">Dublin City University • Ranked 2nd in cohort</p></div>
+                <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Built Oncydra - Voice-First AI Oncology Platform</h3><p class="news-venue">AI Partner Catalyst with Google & ElevenLabs</p></div>
+                <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Engineered C.O.R.E. - 9-Agent Cancer MDT System</h3><p class="news-venue">Google AI Agents Intensive Hackathon</p></div>
+                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Dean's Honours List - Ranked 2nd in Cohort</h3><p class="news-venue">Dublin City University</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">2nd Place at Google Ireland Hackathon</h3><p class="news-venue">BGN • TestBuddy AI Platform</p></div>
-                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Commended at Conway Institute Research Festival</h3><p class="news-venue">Perfect scores for BioSLATE poster presentation</p></div>
-                <div class="news-item"><p class="news-date">August 2025</p><h3 class="news-title">Best Lay Presentation Award</h3><p class="news-venue">Breakthrough Cancer Research • BioSLATE Project</p></div>
-                <div class="news-item"><p class="news-date">June 2025</p><h3 class="news-title">Government of Ireland Postgraduate Scholarship</h3><p class="news-venue">Nationally competitive • 18% success rate</p></div>
-                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Dean's Honours List recognition for academic excellence</h3><p class="news-venue">Dublin City University • Ranked 2nd in cohort</p></div>
+                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Perfect 30/30 at Conway Institute Festival</h3><p class="news-venue">BioSLATE Poster Commendation</p></div>
+                <div class="news-item"><p class="news-date">August 2025</p><h3 class="news-title">Best Lay Presentation Award</h3><p class="news-venue">Breakthrough Cancer Research</p></div>
+                <div class="news-item"><p class="news-date">June 2025</p><h3 class="news-title">Government of Ireland Postgraduate Scholarship</h3><p class="news-venue">€136,000 • 18% success rate</p></div>
+                <!-- Duplicate for seamless loop -->
+                <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Built Oncydra - Voice-First AI Oncology Platform</h3><p class="news-venue">AI Partner Catalyst with Google & ElevenLabs</p></div>
+                <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Engineered C.O.R.E. - 9-Agent Cancer MDT System</h3><p class="news-venue">Google AI Agents Intensive Hackathon</p></div>
+                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Dean's Honours List - Ranked 2nd in Cohort</h3><p class="news-venue">Dublin City University</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">2nd Place at Google Ireland Hackathon</h3><p class="news-venue">BGN • TestBuddy AI Platform</p></div>
-                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Commended at Conway Institute Research Festival</h3><p class="news-venue">Perfect scores for BioSLATE poster presentation</p></div>
-                <div class="news-item"><p class="news-date">August 2025</p><h3 class="news-title">Best Lay Presentation Award</h3><p class="news-venue">Breakthrough Cancer Research • BioSLATE Project</p></div>
-                <div class="news-item"><p class="news-date">June 2025</p><h3 class="news-title">Government of Ireland Postgraduate Scholarship</h3><p class="news-venue">Nationally competitive • 18% success rate</p></div>
+                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Perfect 30/30 at Conway Institute Festival</h3><p class="news-venue">BioSLATE Poster Commendation</p></div>
+                <div class="news-item"><p class="news-date">August 2025</p><h3 class="news-title">Best Lay Presentation Award</h3><p class="news-venue">Breakthrough Cancer Research</p></div>
+                <div class="news-item"><p class="news-date">June 2025</p><h3 class="news-title">Government of Ireland Postgraduate Scholarship</h3><p class="news-venue">€136,000 • 18% success rate</p></div>
             </div>
         </div>
     </section>
 
-    <section class="research" id="research">
+    <!-- Publications Section -->
+    <section class="research" id="publications">
         <div class="container">
             <div class="section-header reveal">
                 <p class="section-label">Publications</p>
@@ -338,12 +412,12 @@
                         <p class="research-venue">Breakthrough Cancer Research Summer Student Scholarship</p>
                         <div class="research-awards">
                             <span class="award-badge">🏅 Best Lay Presentation</span>
-                            <span class="award-badge">🏅 Commended Poster</span>
+                            <span class="award-badge">🏅 30/30 Poster Score</span>
                         </div>
                         <div class="research-links">
                             <a href="assets/bioslate.pdf" target="_blank" class="research-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>Paper</a>
                             <a href="https://github.com/faith-ogun/bioslate-hgsoc-core" target="_blank" class="research-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>Code</a>
-                            <a href="https://bioslate.streamlit.app/" target="_blank" class="research-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Website</a>
+                            <a href="https://bioslate.streamlit.app/" target="_blank" class="research-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>Website</a>
                         </div>
                     </div>
                 </div>
@@ -354,6 +428,9 @@
                         <h3 class="research-title">Using Neural Networks and Foundation Models to Understand Gene Regulation in the MCF-7 Breast Cancer Cell Line</h3>
                         <p class="research-authors">Faith Ogundimu, Simon J. Furney</p>
                         <p class="research-venue">Final Year Dissertation, Dublin City University</p>
+                        <div class="research-awards">
+                            <span class="award-badge">🎓 98% Model Accuracy</span>
+                        </div>
                         <div class="research-links">
                             <a href="assets/final-year.pdf" target="_blank" class="research-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>Paper</a>
                             <a href="https://github.com/faith-ogun/BIO1018-Chromatin-Accessibility-ML" target="_blank" class="research-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>Code</a>
@@ -364,35 +441,82 @@
         </div>
     </section>
 
-    <section class="featured-project" id="project">
+    <!-- Featured Project Section - Oncydra -->
+    <section class="featured-project" id="projects">
         <div class="container">
             <div class="project-grid">
                 <div class="project-visual reveal">
                     <div class="project-glow"></div>
-                    <div class="project-image"><img src="assets/oncosynth-image.png" alt="OncoSynth Project"></div>
+                    <div class="project-image"><img src="assets/oncydra-image.png" alt="Oncydra Project"></div>
                 </div>
                 <div class="project-content reveal" style="transition-delay: 0.2s;">
                     <p class="project-label">Featured Project</p>
-                    <h2 class="project-name">OncoSynth</h2>
-                    <p class="project-tagline">Multi-Agent System for Synthetic Lethality Research</p>
-                    <p class="project-description">OncoSynth is an intelligent multi-agent framework that automates synthetic lethality research for cancer therapeutics. Built with CrewAI and powered by ChatGPT models, the system orchestrates specialized AI agents to perform literature mining, druggability assessment, and clinical trial analysis.</p>
-                    <p class="project-description">The framework processes biomarker-target gene pairs through a coordinated pipeline, generating comprehensive research reports with statistical scoring and therapeutic recommendations.</p>
+                    <h2 class="project-name">Oncydra</h2>
+                    <p class="project-tagline">Voice-First AI Oncology Care Platform</p>
+                    <p class="project-description">A comprehensive voice-first AI oncology platform built with 7 Cloud Run microservices and 26+ Google ADK agents. Features real-time symptom tracking, AI-powered phone calling for appointment booking, treatment timeline management, and clinician dashboards with SOAP note generation.</p>
+                    <p class="project-description">Implements multiple orchestration patterns including Sequential, Parallel, Loop, Review, HITL, Fan-Out/Gather, and Critique for robust clinical workflows.</p>
                     <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">CrewAI</span>
-                        <span class="tech-tag">ChatGPT API</span>
+                        <span class="tech-tag">Google ADK</span>
+                        <span class="tech-tag">Cloud Run</span>
+                        <span class="tech-tag">ElevenLabs</span>
+                        <span class="tech-tag">Twilio</span>
                         <span class="tech-tag">Multi-Agent Systems</span>
-                        <span class="tech-tag">Bioinformatics</span>
                     </div>
-                    <a href="https://github.com/faith-ogun/oncosynth" target="_blank" class="btn btn-primary">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        View on GitHub
-                    </a>
+                    <div class="project-links">
+                        <a href="https://github.com/faith-ogun/oncydra" target="_blank" class="btn btn-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            View on GitHub
+                        </a>
+                        <a href="#" target="_blank" class="btn btn-secondary">Live Demo</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Project Archive Section -->
+    <section class="project-archive">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">Previous Work</p>
+                <h2 class="section-title">Project <span class="accent">Archive</span></h2>
+            </div>
+            <div class="archive-grid">
+                <div class="archive-item reveal" style="transition-delay: 0.1s;">
+                    <div class="archive-image"><img src="assets/oncosynth-image.png" alt="OncoSynth"></div>
+                    <div class="archive-content">
+                        <h4>OncoSynth</h4>
+                        <p>Multi-agent system using CrewAI to automate synthetic lethality research—literature mining, druggability scoring, and clinical trial linkage.</p>
+                        <div class="archive-links">
+                            <a href="https://github.com/faith-ogun/oncosynth" target="_blank" class="archive-link">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="archive-item reveal" style="transition-delay: 0.2s;">
+                    <div class="archive-image"><img src="assets/hero-image.png" alt="C.O.R.E."></div>
+                    <div class="archive-content">
+                        <h4>C.O.R.E.</h4>
+                        <p>Coordinated Oncology Readiness Engine—9-agent system automating cancer MDT case preparation with 95% reduction in genomic analysis time.</p>
+                        <div class="archive-links">
+                            <a href="https://github.com/faith-ogun/core" target="_blank" class="archive-link">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                GitHub
+                            </a>
+                            <a href="#" target="_blank" class="archive-link">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
             <div class="section-header reveal">
@@ -408,7 +532,7 @@
                     <div class="contact-item"><p class="contact-item-label">Location</p><p class="contact-item-value">Royal College of Surgeons Ireland<br>York Street, Dublin 2, Ireland</p></div>
                 </div>
                 <div class="contact-map reveal" style="transition-delay: 0.2s;">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2382.2391066947757!2d-6.265732823160387!3d53.33897587527479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e9e8a1f7ee9%3A0x3cf1366e3996a301!2sRCSI%20York%20St!5e0!3m2!1sen!2sie!4v1767696811911!5m2!1sen!2sie" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2382.2436481358377!2d-6.2657770232600605!3d53.33889457528098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e9e8a1f7ee9%3A0x3cf13cf447de32a2!2sRoyal%20College%20of%20Surgeons%20in%20Ireland!5e0!3m2!1sen!2sie!4v1699999999999!5m2!1sen!2sie" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="RCSI Location"></iframe>
                 </div>
             </div>
         </div>
@@ -419,105 +543,115 @@
     </footer>
 
     <script>
+        // Navigation
         const nav = document.getElementById('nav');
         const navToggle = document.getElementById('nav-toggle');
         const navLinks = document.getElementById('nav-links');
-
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 100);
-        });
-
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 100));
         navToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => navLinks.classList.remove('active'));
-        });
+        document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('active')));
 
-        // Particle animation
-        const canvas = document.getElementById('particle-canvas');
+        // DNA Helix Animation
+        const canvas = document.getElementById('helix-canvas');
         const ctx = canvas.getContext('2d');
-        let particles = [];
-        let mouse = { x: null, y: null, radius: 150 };
+        let time = 0;
 
         function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            const container = canvas.parentElement;
+            canvas.width = container.offsetWidth;
+            canvas.height = container.offsetHeight;
         }
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.4;
-                this.speedY = (Math.random() - 0.5) * 0.4;
-                this.opacity = Math.random() * 0.3 + 0.1;
-                this.color = Math.random() > 0.5 ? '59, 76, 202' : '20, 184, 166';
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (mouse.x !== null) {
-                    const dx = mouse.x - this.x;
-                    const dy = mouse.y - this.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < mouse.radius) {
-                        const force = (mouse.radius - distance) / mouse.radius;
-                        this.x -= dx * force * 0.02;
-                        this.y -= dy * force * 0.02;
-                    }
+        function drawHelix() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const helixHeight = canvas.height * 0.8;
+            const amplitude = 60;
+            const numPoints = 40;
+            const spacing = helixHeight / numPoints;
+            
+            // Draw connecting rungs first (behind strands)
+            ctx.strokeStyle = 'rgba(59, 76, 202, 0.15)';
+            ctx.lineWidth = 2;
+            
+            for (let i = 0; i < numPoints; i++) {
+                const y = centerY - helixHeight/2 + i * spacing;
+                const phase = (i / numPoints) * Math.PI * 4 + time;
+                const x1 = centerX + Math.sin(phase) * amplitude;
+                const x2 = centerX + Math.sin(phase + Math.PI) * amplitude;
+                
+                // Only draw rungs at certain intervals
+                if (i % 3 === 0) {
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y);
+                    ctx.lineTo(x2, y);
+                    ctx.stroke();
                 }
-                if (this.x < 0) this.x = canvas.width;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.y < 0) this.y = canvas.height;
-                if (this.y > canvas.height) this.y = 0;
             }
-            draw() {
+            
+            // Draw strand 1
+            ctx.beginPath();
+            ctx.strokeStyle = '#3B4CCA';
+            ctx.lineWidth = 3;
+            for (let i = 0; i < numPoints; i++) {
+                const y = centerY - helixHeight/2 + i * spacing;
+                const phase = (i / numPoints) * Math.PI * 4 + time;
+                const x = centerX + Math.sin(phase) * amplitude;
+                const depth = Math.cos(phase);
+                
+                ctx.globalAlpha = 0.4 + depth * 0.3;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+            
+            // Draw strand 2
+            ctx.beginPath();
+            ctx.strokeStyle = '#6B7CFF';
+            for (let i = 0; i < numPoints; i++) {
+                const y = centerY - helixHeight/2 + i * spacing;
+                const phase = (i / numPoints) * Math.PI * 4 + time + Math.PI;
+                const x = centerX + Math.sin(phase) * amplitude;
+                const depth = Math.cos(phase);
+                
+                ctx.globalAlpha = 0.4 + depth * 0.3;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+            
+            // Draw nucleotide pairs (dots)
+            ctx.globalAlpha = 1;
+            for (let i = 0; i < numPoints; i++) {
+                const y = centerY - helixHeight/2 + i * spacing;
+                const phase = (i / numPoints) * Math.PI * 4 + time;
+                const depth1 = Math.cos(phase);
+                const depth2 = Math.cos(phase + Math.PI);
+                
+                // Strand 1 dots
+                const x1 = centerX + Math.sin(phase) * amplitude;
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+                ctx.fillStyle = depth1 > 0 ? '#3B4CCA' : '#2A3A99';
+                ctx.arc(x1, y, 4 + depth1 * 2, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Strand 2 dots
+                const x2 = centerX + Math.sin(phase + Math.PI) * amplitude;
+                ctx.beginPath();
+                ctx.fillStyle = depth2 > 0 ? '#6B7CFF' : '#3B4CCA';
+                ctx.arc(x2, y, 4 + depth2 * 2, 0, Math.PI * 2);
                 ctx.fill();
             }
+            
+            time += 0.015;
+            requestAnimationFrame(drawHelix);
         }
 
-        function initParticles() {
-            particles = [];
-            const numParticles = Math.min(80, Math.floor((canvas.width * canvas.height) / 18000));
-            for (let i = 0; i < numParticles; i++) particles.push(new Particle());
-        }
-
-        function connectParticles() {
-            const maxDistance = 120;
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < maxDistance) {
-                        const opacity = (1 - distance / maxDistance) * 0.1;
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(59, 76, 202, ${opacity})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            connectParticles();
-            requestAnimationFrame(animateParticles);
-        }
-
-        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
-        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
         resizeCanvas();
-        initParticles();
-        animateParticles();
-        window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
+        drawHelix();
+        window.addEventListener('resize', resizeCanvas);
 
         // Scroll reveal
         const revealElements = document.querySelectorAll('.reveal');
