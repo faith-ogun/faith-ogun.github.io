@@ -1,40 +1,1109 @@
 <!DOCTYPE html>
-<html lang="en" style="scroll-behavior: smooth;">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faith Ogundimu | Cancer Genomics Researcher</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Faith Ogundimu | Decoding the Non-Coding</title>
+    <meta name="description" content="PhD Researcher in Cancer Genomics & Bioinformatics. Machine Learning, Epigenomics, Precision Oncology.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           CSS CUSTOM PROPERTIES
+           ============================================ */
+        :root {
+            /* Core palette - genomics inspired */
+            --bg-deep: #050a12;
+            --bg-primary: #0a1628;
+            --bg-secondary: #0f1d32;
+            --bg-elevated: #162340;
+            
+            /* Accent colors - nucleotide inspired */
+            --cyan: #22d3ee;
+            --cyan-glow: rgba(34, 211, 238, 0.4);
+            --teal: #14b8a6;
+            --blue: #3b82f6;
+            --magenta: #e879f9;
+            --coral: #fb7185;
+            
+            /* Text */
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            /* Fonts */
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            
+            /* Spacing */
+            --section-padding: clamp(80px, 12vh, 140px);
+            --container-width: 1200px;
+            
+            /* Transitions */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--cyan) var(--bg-primary);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--cyan);
+            color: var(--bg-deep);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 2rem;
+            transition: all 0.4s var(--ease-out-expo);
+        }
+
+        .nav.scrolled {
+            background: rgba(10, 22, 40, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(34, 211, 238, 0.1);
+        }
+
+        .nav-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            color: var(--cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--cyan);
+            transition: width 0.3s var(--ease-out-expo);
+        }
+
+        .nav-link:hover {
+            color: var(--cyan);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile nav toggle */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(5, 10, 18, 0.3) 0%,
+                rgba(5, 10, 18, 0.6) 50%,
+                rgba(5, 10, 18, 1) 100%
+            );
+        }
+
+        #particle-canvas {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s var(--ease-out-expo) 0.2s forwards;
+        }
+
+        .hero-name {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s var(--ease-out-expo) 0.4s forwards;
+        }
+
+        .hero-name .highlight {
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--magenta) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 500;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s var(--ease-out-expo) 0.6s forwards;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s var(--ease-out-expo) 0.8s forwards;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s var(--ease-out-expo) 1s forwards;
+        }
+
+        .hero-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            border-radius: 100px;
+            color: var(--cyan);
+            background: rgba(34, 211, 238, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .hero-tag:hover {
+            background: rgba(34, 211, 238, 0.15);
+            border-color: var(--cyan);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            opacity: 0;
+            animation: fadeUp 0.8s var(--ease-out-expo) 1.2s forwards;
+        }
+
+        .scroll-indicator a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .scroll-indicator a:hover {
+            color: var(--cyan);
+        }
+
+        .scroll-indicator span {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .scroll-indicator svg {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* ============================================
+           SECTION STYLING
+           ============================================ */
+        section {
+            padding: var(--section-padding) 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--cyan);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .section-title .accent {
+            color: var(--cyan);
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s var(--ease-out-expo);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about {
+            background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-primary) 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 8px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .about-image img {
+            width: 100%;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: filter 0.5s ease;
+        }
+
+        .about-image:hover img {
+            filter: grayscale(0%);
+        }
+
+        .about-image-decoration {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 120px;
+            height: 120px;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .about-image-decoration::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            border: 1px dashed rgba(232, 121, 249, 0.3);
+            border-radius: 50%;
+        }
+
+        .about-content {
+            padding-top: 1rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--cyan);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .about-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            transition: all 0.3s var(--ease-out-expo);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-primary {
+            background: var(--cyan);
+            color: var(--bg-deep);
+        }
+
+        .btn-primary:hover {
+            background: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--cyan);
+            border: 1px solid var(--cyan);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(34, 211, 238, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-left: auto;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           NEWS SECTION
+           ============================================ */
+        .news {
+            background: var(--bg-primary);
+            overflow: hidden;
+        }
+
+        .news-wrapper {
+            position: relative;
+        }
+
+        .news-track {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 30s linear infinite;
+        }
+
+        .news-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .news-item {
+            flex-shrink: 0;
+            width: 400px;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .news-item:hover {
+            border-color: rgba(34, 211, 238, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .news-date {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+        }
+
+        .news-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 0.75rem;
+        }
+
+        .news-venue {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           RESEARCH SECTION
+           ============================================ */
+        .research {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .research-grid {
+            display: grid;
+            gap: 4rem;
+        }
+
+        .research-item {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 3rem;
+            align-items: start;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: all 0.4s var(--ease-out-expo);
+        }
+
+        .research-item:hover {
+            border-color: rgba(34, 211, 238, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateX(8px);
+        }
+
+        .research-image {
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .research-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .research-image img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            transition: transform 0.5s var(--ease-out-expo);
+        }
+
+        .research-item:hover .research-image img {
+            transform: scale(1.05);
+        }
+
+        .research-content {
+            padding: 0.5rem 0;
+        }
+
+        .research-year {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--magenta);
+            margin-bottom: 0.75rem;
+        }
+
+        .research-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .research-item:hover .research-title {
+            color: var(--cyan);
+        }
+
+        .research-authors {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .research-venue {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .research-awards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .award-badge {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.05em;
+            padding: 0.4rem 0.8rem;
+            background: rgba(232, 121, 249, 0.1);
+            border: 1px solid rgba(232, 121, 249, 0.3);
+            border-radius: 100px;
+            color: var(--magenta);
+        }
+
+        .research-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .research-link {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: var(--cyan);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .research-link:hover {
+            color: var(--text-primary);
+        }
+
+        .research-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ============================================
+           FEATURED PROJECT SECTION
+           ============================================ */
+        .featured-project {
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-project::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .project-visual {
+            position: relative;
+        }
+
+        .project-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-image img {
+            width: 100%;
+        }
+
+        .project-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(ellipse, var(--cyan-glow) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .project-content {
+            padding: 1rem 0;
+        }
+
+        .project-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--magenta);
+            margin-bottom: 1rem;
+        }
+
+        .project-name {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-tagline {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .project-description {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .tech-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 1rem;
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 4px;
+            color: var(--cyan);
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact {
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-deep) 100%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item-value {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-item-value a {
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .contact-item-value a:hover {
+            color: var(--cyan);
+        }
+
+        .contact-map {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 100%;
+            min-height: 350px;
+        }
+
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(100%) invert(92%) contrast(90%);
+            opacity: 0.8;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .footer p {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .about-grid,
+            .project-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .research-item {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(10, 22, 40, 0.98);
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid rgba(34, 211, 238, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .about-links {
+                flex-direction: column;
+            }
+
+            .social-links {
+                margin-left: 0;
+                justify-content: center;
+            }
+
+            .news-item {
+                width: 300px;
+            }
+
+            .research-image {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
         <div class="nav-container">
-            <a href="#home" class="nav-logo">Faith Ogundimu</a>
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#home" class="nav-link">HOME</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">ABOUT</a></li>
-                <li class="nav-item"><a href="#news" class="nav-link">NEWS</a></li>
-                <li class="nav-item"><a href="#research" class="nav-link">RESEARCH & PUBLICATIONS</a></li>
-                <li class="nav-item"><a href="#project" class="nav-link">HIGHLIGHTED PROJECT</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">CONTACT</a></li>
+            <a href="#" class="nav-logo">Faith Ogundimu</a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#news" class="nav-link">News</a></li>
+                <li><a href="#research" class="nav-link">Research</a></li>
+                <li><a href="#project" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-overlay">
-            <div class="hero-content">
-                <h1 class="hero-name">Faith Ogundimu</h1>
-                <p class="hero-title">PhD Researcher in Cancer Genomics & Bioinformatics</p>
-                <p class="hero-keywords">Machine Learning • Epigenomics • Precision Oncology • Computational Biology</p>
-                <p class="hero-specialization">Specialized in non-coding driver mutations and regulatory mechanisms in breast cancer</p>
+        <div class="hero-bg">
+            <img src="assets/hero-image.png" alt="">
+        </div>
+        <canvas id="particle-canvas"></canvas>
+        
+        <div class="hero-content">
+            <p class="hero-eyebrow">PhD Researcher • RCSI Dublin</p>
+            <h1 class="hero-name">Faith <span class="highlight">Ogundimu</span></h1>
+            <p class="hero-tagline">Decoding the non-coding.</p>
+            <p class="hero-description">
+                Investigating non-coding driver mutations in breast cancer through machine learning, 
+                epigenomics, and large-scale genomic analysis.
+            </p>
+            <div class="hero-tags">
+                <span class="hero-tag">Machine Learning</span>
+                <span class="hero-tag">Epigenomics</span>
+                <span class="hero-tag">Precision Oncology</span>
+                <span class="hero-tag">Computational Biology</span>
             </div>
-            
-            <!-- Scroll Arrow -->
-            <a href="#about" class="scroll-arrow">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        </div>
+
+        <div class="scroll-indicator">
+            <a href="#about">
+                <span>Scroll</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 5v14M19 12l-7 7-7-7"/>
                 </svg>
             </a>
@@ -42,279 +1111,507 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
-        <div class="about-container">
-            <div class="about-image">
-                <img src="assets/faith-about.jpg" alt="Faith Ogundimu">
-            </div>
-            <div class="about-content">
-                <h2 class="section-title">ABOUT ME</h2>
-                <p class="about-text">
-                    I am a first-year Ph.D. student at the Royal College of Surgeons Ireland, investigating non-coding driver mutations in breast cancer using large-scale genomic datasets including TCGA, ICGC, and ENCODE. My research applies machine learning and integrative computational approaches to identify functional variants in regulatory elements, aiming to uncover novel therapeutic vulnerabilities in breast cancer subtypes. I completed my B.Sc. in Genetics and Cell Biology at Dublin City University with First Class Honours, ranking 2nd in my cohort and earning a place on the Dean's Honours List.
-                </p>
-                <p class="about-text">
-                    I have expertise in Python, R, and bioinformatics tools, with hands-on experience in neural networks (PyTorch, scikit-learn, XGBoost) and cloud-based AI systems (Google Cloud Platform, Vertex AI). My work has been funded by the Government of Ireland Postgraduate Scholarship Programme, a nationally competitive award with an 18% success rate. I was awarded 2nd place at the 2025 Google Ireland Hackathon and received the Best Lay Presentation award at Breakthrough Cancer Research.
-                </p>
-                <p class="about-text">
-                    I am passionate about applying computational methods and machine learning to solve real-world problems in precision oncology, developing scalable bioinformatics pipelines, and building AI-driven tools for biomarker discovery.
-                </p>
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image-wrapper reveal">
+                    <div class="about-image">
+                        <img src="assets/hero-image.png" alt="Faith Ogundimu">
+                    </div>
+                    <div class="about-image-decoration"></div>
+                </div>
                 
-                <div class="about-buttons">
-                    <a href="https://github.com/faith-ogun" target="_blank" class="social-icon" aria-label="GitHub">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </a>
-                    <a href="https://linkedin.com/in/faith-ogundimu" target="_blank" class="social-icon" aria-label="LinkedIn">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </a>
-                    <a href="mailto:faithogundimu25@rcsi.com" class="btn btn-primary">Get In Touch</a>
-                    <a href="assets/Faith_Ogundimu_CV.pdf" target="_blank" class="btn btn-secondary">Download CV</a>
+                <div class="about-content reveal" style="transition-delay: 0.2s;">
+                    <div class="section-header">
+                        <p class="section-label">About Me</p>
+                        <h2 class="section-title">Building the bridge between <span class="accent">code</span> and <span class="accent">cure</span>.</h2>
+                    </div>
+                    
+                    <p class="about-text">
+                        I'm a first-year PhD student at the <strong>Royal College of Surgeons Ireland</strong>, 
+                        investigating non-coding driver mutations in breast cancer using large-scale genomic 
+                        datasets including TCGA, ICGC, and ENCODE.
+                    </p>
+                    <p class="about-text">
+                        My research applies <strong>machine learning</strong> and integrative computational approaches 
+                        to identify functional variants in regulatory elements, aiming to uncover novel therapeutic 
+                        vulnerabilities in breast cancer subtypes.
+                    </p>
+                    <p class="about-text">
+                        I completed my B.Sc. in Genetics and Cell Biology at Dublin City University with 
+                        <strong>First Class Honours</strong>, ranking 2nd in my cohort and earning a place on the Dean's Honours List.
+                    </p>
+
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-value">2nd</div>
+                            <div class="stat-label">In Cohort</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">18%</div>
+                            <div class="stat-label">GOI Success Rate</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">2nd</div>
+                            <div class="stat-label">Google Hackathon</div>
+                        </div>
+                    </div>
+
+                    <div class="about-links">
+                        <a href="mailto:faithogundimu@rcsi.ie" class="btn btn-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <path d="M22 6l-10 7L2 6"/>
+                            </svg>
+                            Get In Touch
+                        </a>
+                        <a href="assets/Faith_Ogundimu_CV.pdf" target="_blank" class="btn btn-secondary">
+                            Download CV
+                        </a>
+                        <div class="social-links">
+                            <a href="https://github.com/faith-ogun" target="_blank" class="social-link" aria-label="GitHub">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </a>
+                            <a href="https://linkedin.com/in/faith-ogundimu" target="_blank" class="social-link" aria-label="LinkedIn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- News Section -->
-    <section id="news" class="news">
-        <h1 class="news-title">NEWS</h1>
-        <div class="news-carousel">
-            <div class="news-slide active">
-                <div class="news-content">
-                    <p class="news-text">Awarded Dean's Honours List recognition for academic excellence, ranking 2nd overall in my cohort at Dublin City University</p>
-                    <div class="news-details">
-                        <span class="news-event">DEAN'S HONOURS LIST</span>
-                        <span class="news-date">October 23rd, 2025</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="news-slide">
-                <div class="news-content">
-                    <p class="news-text">Awarded 2nd place at the 2025 Google Ireland Hackathon by BGN for developing TestBuddy, an AI-powered driving education platform</p>
-                    <div class="news-details">
-                        <span class="news-event">GOOGLE IRELAND HACKATHON BY BGN</span>
-                        <span class="news-date">October 20th, 2025</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="news-slide">
-                <div class="news-content">
-                    <p class="news-text">Commended with perfect scores at Conway Institute Research Festival for poster on BioSLATE: Biomarker Selection and Synthetic Lethality Analysis</p>
-                    <div class="news-details">
-                        <span class="news-event">CONWAY INSTITUTE RESEARCH FESTIVAL</span>
-                        <span class="news-date">October 1st, 2025</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="news-slide">
-                <div class="news-content">
-                    <p class="news-text">Awarded Best Lay Presentation at Breakthrough Cancer Research for BioSLATE project on synthetic lethality in ovarian cancer</p>
-                    <div class="news-details">
-                        <span class="news-event">BREAKTHROUGH CANCER RESEARCH</span>
-                        <span class="news-date">August 28th, 2025</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="news-slide">
-                <div class="news-content">
-                    <p class="news-text">Awarded Government of Ireland Postgraduate Scholarship to pursue PhD research in Cancer Genomics and Epigenomics at RCSI</p>
-                    <div class="news-details">
-                        <span class="news-event">GOVERNMENT OF IRELAND POSTGRADUATE SCHOLARSHIP</span>
-                        <span class="news-date">May 1st, 2025</span>
-                    </div>
-                </div>
+    <section class="news" id="news">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">Latest Updates</p>
+                <h2 class="section-title">News & <span class="accent">Achievements</span></h2>
             </div>
         </div>
         
-        <!-- Carousel Indicators -->
-        <div class="carousel-indicators">
-            <button class="indicator active" data-slide="0"></button>
-            <button class="indicator" data-slide="1"></button>
-            <button class="indicator" data-slide="2"></button>
-            <button class="indicator" data-slide="3"></button>
-            <button class="indicator" data-slide="4"></button>
+        <div class="news-wrapper reveal" style="transition-delay: 0.2s;">
+            <div class="news-track">
+                <!-- First set -->
+                <div class="news-item">
+                    <p class="news-date">October 2025</p>
+                    <h3 class="news-title">Dean's Honours List recognition for academic excellence</h3>
+                    <p class="news-venue">Dublin City University • Ranked 2nd in cohort</p>
+                </div>
+                <div class="news-item">
+                    <p class="news-date">October 2025</p>
+                    <h3 class="news-title">2nd Place at Google Ireland Hackathon</h3>
+                    <p class="news-venue">BGN • TestBuddy AI Platform</p>
+                </div>
+                <div class="news-item">
+                    <p class="news-date">October 2025</p>
+                    <h3 class="news-title">Commended at Conway Institute Research Festival</h3>
+                    <p class="news-venue">Perfect scores for BioSLATE poster presentation</p>
+                </div>
+                <div class="news-item">
+                    <p class="news-date">August 2025</p>
+                    <h3 class="news-title">Best Lay Presentation Award</h3>
+                    <p class="news-venue">Breakthrough Cancer Research • BioSLATE Project</p>
+                </div>
+                <div class="news-item">
+                    <p class="news-date">June 2025</p>
+                    <h3 class="news-title">Government of Ireland Postgraduate Scholarship</h3>
+                    <p class="news-venue">Nationally competitive • 18% success rate</p>
+                </div>
+                <!-- Duplicate set for seamless loop -->
+                <div class="news-item">
+                    <p class="news-date">October 2025</p>
+                    <h3 class="news-title">Dean's Honours List recognition for academic excellence</h3>
+                    <p class="news-venue">Dublin City University • Ranked 2nd in cohort</p>
+                </div>
+                <div class="news-item">
+                    <p class="news-date">October 2025</p>
+                    <h3 class="news-title">2nd Place at Google Ireland Hackathon</h3>
+                    <p class="news-venue">BGN • TestBuddy AI Platform</p>
+                </div>
+                <div class="news-item">
+                    <p class="news-date">October 2025</p>
+                    <h3 class="news-title">Commended at Conway Institute Research Festival</h3>
+                    <p class="news-venue">Perfect scores for BioSLATE poster presentation</p>
+                </div>
+                <div class="news-item">
+                    <p class="news-date">August 2025</p>
+                    <h3 class="news-title">Best Lay Presentation Award</h3>
+                    <p class="news-venue">Breakthrough Cancer Research • BioSLATE Project</p>
+                </div>
+                <div class="news-item">
+                    <p class="news-date">June 2025</p>
+                    <h3 class="news-title">Government of Ireland Postgraduate Scholarship</h3>
+                    <p class="news-venue">Nationally competitive • 18% success rate</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Carousel functionality
-            let currentSlide = 0;
-            const slides = document.querySelectorAll('.news-slide');
-            const indicators = document.querySelectorAll('.indicator');
-            const totalSlides = slides.length;
-            let autoRotate;
+    <!-- Research Section -->
+    <section class="research" id="research">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">Publications</p>
+                <h2 class="section-title">Research & <span class="accent">Publications</span></h2>
+            </div>
 
-            function showSlide(index) {
-                // Remove active class from all slides and indicators
-                slides.forEach(slide => slide.classList.remove('active'));
-                indicators.forEach(indicator => indicator.classList.remove('active'));
+            <div class="research-grid">
+                <div class="research-item reveal" style="transition-delay: 0.1s;">
+                    <div class="research-image">
+                        <img src="assets/bioslate-image.png" alt="BioSLATE Project">
+                    </div>
+                    <div class="research-content">
+                        <p class="research-year">2025</p>
+                        <h3 class="research-title">BioSLATE: Biomarker Selection and Synthetic Lethality Analysis for Therapeutic Exploration in HGSOC</h3>
+                        <p class="research-authors">Faith Ogundimu, Metin Yazar, Colm J. Ryan</p>
+                        <p class="research-venue">Breakthrough Cancer Research Summer Student Scholarship</p>
+                        <div class="research-awards">
+                            <span class="award-badge">🏅 Best Lay Presentation</span>
+                            <span class="award-badge">🏅 Commended Poster</span>
+                        </div>
+                        <div class="research-links">
+                            <a href="assets/bioslate.pdf" target="_blank" class="research-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                                </svg>
+                                Paper
+                            </a>
+                            <a href="https://github.com/faith-ogun/bioslate-hgsoc-core" target="_blank" class="research-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+                                </svg>
+                                Code
+                            </a>
+                            <a href="https://bioslate.streamlit.app/" target="_blank" class="research-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                                </svg>
+                                Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research-item reveal" style="transition-delay: 0.2s;">
+                    <div class="research-image">
+                        <img src="assets/final-year-image.png" alt="Neural Network Research">
+                    </div>
+                    <div class="research-content">
+                        <p class="research-year">2025</p>
+                        <h3 class="research-title">Using Neural Networks and Foundation Models to Understand Gene Regulation in the MCF-7 Breast Cancer Cell Line</h3>
+                        <p class="research-authors">Faith Ogundimu, Simon J. Furney</p>
+                        <p class="research-venue">Final Year Dissertation, Dublin City University</p>
+                        <div class="research-links">
+                            <a href="assets/final-year.pdf" target="_blank" class="research-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                                </svg>
+                                Paper
+                            </a>
+                            <a href="https://github.com/faith-ogun/BIO1018-Chromatin-Accessibility-ML" target="_blank" class="research-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+                                </svg>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Project Section -->
+    <section class="featured-project" id="project">
+        <div class="container">
+            <div class="project-grid">
+                <div class="project-visual reveal">
+                    <div class="project-glow"></div>
+                    <div class="project-image">
+                        <img src="assets/oncosynth-image.png" alt="OncoSynth Project">
+                    </div>
+                </div>
                 
-                // Add active class to current slide and indicator
-                slides[index].classList.add('active');
-                indicators[index].classList.add('active');
-                currentSlide = index;
-            }
+                <div class="project-content reveal" style="transition-delay: 0.2s;">
+                    <p class="project-label">Featured Project</p>
+                    <h2 class="project-name">OncoSynth</h2>
+                    <p class="project-tagline">Multi-Agent System for Synthetic Lethality Research</p>
+                    
+                    <p class="project-description">
+                        OncoSynth is an intelligent multi-agent framework that automates synthetic lethality 
+                        research for cancer therapeutics. Built with CrewAI and powered by ChatGPT models, 
+                        the system orchestrates specialized AI agents to perform literature mining, 
+                        druggability assessment, and clinical trial analysis.
+                    </p>
+                    <p class="project-description">
+                        The framework processes biomarker-target gene pairs through a coordinated pipeline, 
+                        generating comprehensive research reports with statistical scoring and therapeutic recommendations.
+                    </p>
 
-            function nextSlide() {
-                let next = (currentSlide + 1) % totalSlides;
-                showSlide(next);
-            }
-
-            function startAutoRotate() {
-                autoRotate = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-            }
-
-            function stopAutoRotate() {
-                clearInterval(autoRotate);
-            }
-
-            // Click handlers for indicators
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    stopAutoRotate();
-                    showSlide(index);
-                    startAutoRotate();
-                });
-            });
-
-            // Start auto-rotation
-            startAutoRotate();
-
-            // Pause on hover
-            const newsCarousel = document.querySelector('.news-carousel');
-            if (newsCarousel) {
-                newsCarousel.addEventListener('mouseenter', stopAutoRotate);
-                newsCarousel.addEventListener('mouseleave', startAutoRotate);
-            }
-        });
-    </script>
-
-    <!-- Research & Publications Section -->
-    <section id="research" class="research">
-        <h2 class="section-title">RESEARCH & PUBLICATIONS</h2>
-        
-        <div class="research-container">
-            <!-- 2025 -->
-            <h3 class="research-year">2025</h3>
-            
-            <div class="research-item">
-                <div class="research-image">
-                    <img src="assets/bioslate-image.png" alt="BioSLATE Project">
-                </div>
-                <div class="research-content">
-                    <h4 class="research-title">BioSLATE: Biomarker Selection and Synthetic Lethality Analysis for Therapeutic Exploration in HGSOC</h4>
-                    <p class="research-authors">Faith Ogundimu, Metin Yazar, Colm J. Ryan</p>
-                    <p class="research-venue">Breakthrough Cancer Research Summer Student Scholarship</p>
-                    <p class="research-awards">🏅 Best Lay Presentation</p>
-                    <p class="research-awards">🏅 Commended Poster at Conway Institute Research Festival</p>
-                    <div class="research-links">
-                        <a href="assets/bioslate.pdf" target="_blank" class="research-link">paper</a>
-                        <span class="link-divider">|</span>
-                        <a href="https://github.com/faith-ogun/bioslate-hgsoc-core" target="_blank" class="research-link">code</a>
-                        <span class="link-divider">|</span>
-                        <a href="https://bioslate.streamlit.app/" target="_blank" class="research-link">website</a>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">CrewAI</span>
+                        <span class="tech-tag">ChatGPT API</span>
+                        <span class="tech-tag">Multi-Agent Systems</span>
+                        <span class="tech-tag">Bioinformatics</span>
                     </div>
-                </div>
-            </div>
-            
-            <div class="research-item">
-                <div class="research-image">
-                    <img src="assets/final-year-image.png" alt="Final Year Thesis">
-                </div>
-                <div class="research-content">
-                    <h4 class="research-title">Using Neural Networks and Foundation Models to Understand Gene Regulation in the MCF-7 Breast Cancer Cell Line</h4>
-                    <p class="research-authors">Faith Ogundimu, Simon J. Furney</p>
-                    <p class="research-venue">Final Year Dissertation, Dublin City University</p>
-                    <div class="research-links">
-                        <a href="assets/final-year.pdf" target="_blank" class="research-link">paper</a>
-                        <span class="link-divider">|</span>
-                        <a href="https://github.com/faith-ogun/BIO1018-Chromatin-Accessibility-ML" target="_blank" class="research-link">code</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Highlighted Project Section -->
-    <section id="project" class="highlighted-project">
-        <h2 class="section-title">HIGHLIGHTED PROJECT</h2>
-        
-        <div class="project-container">
-            <div class="project-image">
-                <img src="assets/oncosynth-image.png" alt="OncoSynth Project">
-            </div>
-            <div class="project-content">
-                <h3 class="project-title">OncoSynth</h3>
-                <p class="project-subtitle">Multi-Agent System for Synthetic Lethality Research</p>
-                <p class="project-description">
-                    OncoSynth is an intelligent multi-agent framework that automates synthetic lethality research for cancer therapeutics. Built with CrewAI and powered by ChatGPT models, the system orchestrates specialized AI agents to perform literature mining, druggability assessment, and clinical trial analysis. The framework processes biomarker-target gene pairs through a coordinated pipeline, generating comprehensive research reports with statistical scoring and therapeutic recommendations.
-                </p>
-                <p class="project-description">
-                    The system features both interactive CLI and batch processing modes, enabling high-throughput analysis of gene pairs from DepMap CRISPR screens and TCGA data. OncoSynth demonstrates advanced prompt engineering, agent orchestration, and scalable workflow automation—key skills for developing production-ready AI systems in biotech and pharmaceutical research.
-                </p>
-                <div class="project-tech">
-                    <span class="tech-badge">Python</span>
-                    <span class="tech-badge">CrewAI</span>
-                    <span class="tech-badge">ChatGPT API</span>
-                    <span class="tech-badge">Multi-Agent Systems</span>
-                    <span class="tech-badge">Bioinformatics</span>
+                    <a href="https://github.com/faith-ogun/oncosynth" target="_blank" class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
                 </div>
-                <a href="https://github.com/faith-ogun/oncosynth" target="_blank" class="btn btn-primary project-btn">View on GitHub</a>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2 class="section-title">CONTACT</h2>
-        <p class="contact-intro">If you have any questions, suggestions, or feedback, feel free to reach out using the details below.</p>
-        
-        <div class="contact-container">
-            <div class="contact-details">
-                <h3 class="contact-heading">📍 Genomics Oncology Research Group</h3>
-                
-                <div class="contact-person">
-                    <h4>Faith Ogundimu</h4>
-                    <p class="contact-title">Government of Ireland Postgraduate Scholar</p>
-                    <p>✉️ <a href="mailto:faithogundimu25@rcsi.com">faithogundimu25@rcsi.com</a></p>
-                    <p>✉️ <a href="mailto:faithogun12@gmail.com">faithogun12@gmail.com</a></p>
-                    <p>🔗 <a href="https://linkedin.com/in/faith-ogundimu" target="_blank">LinkedIn</a></p>
-                    <p>💻 <a href="https://github.com/faith-ogun" target="_blank">GitHub</a></p>
-                </div>
-                
-                <hr class="contact-divider">
-                
-                <div class="contact-person">
-                    <h4>Dr. Simon Furney</h4>
-                    <p class="contact-title">Senior Lecturer, RCSI</p>
-                    <p class="contact-title">PhD Supervisor</p>
-                </div>
-                
-                <div class="contact-location">
-                    <p><strong>Royal College of Surgeons Ireland</strong></p>
-                    <p>York Street, Dublin 2, Ireland</p>
-                </div>
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <p class="section-label">Get In Touch</p>
+                <h2 class="section-title">Let's <span class="accent">Connect</span></h2>
             </div>
-            
-            <div class="contact-map">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2382.2436481358377!2d-6.2657770232600605!3d53.33889457528098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e9e8a1f7ee9%3A0x3cf1366e3996a301!2sRCSI%20York%20St!5e0!3m2!1sen!2sie!4v1761646308035!5m2!1sen!2sie" 
-                    width="100%" 
-                    height="450" 
-                    style="border:0; border-radius: 8px;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal" style="transition-delay: 0.1s;">
+                    <h3>Genomics Oncology Research Group</h3>
+                    
+                    <div class="contact-item">
+                        <p class="contact-item-label">Role</p>
+                        <p class="contact-item-value">Government of Ireland Postgraduate Scholar</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <p class="contact-item-label">Email</p>
+                        <p class="contact-item-value">
+                            <a href="mailto:faithogundimu@rcsi.ie">faithogundimu@rcsi.ie</a>
+                        </p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <p class="contact-item-label">Supervisor</p>
+                        <p class="contact-item-value">Dr. Simon Furney, Senior Lecturer, RCSI</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <p class="contact-item-label">Location</p>
+                        <p class="contact-item-value">
+                            Royal College of Surgeons Ireland<br>
+                            York Street, Dublin 2, Ireland
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="contact-map reveal" style="transition-delay: 0.2s;">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2382.2436481358377!2d-6.2657770232600605!3d53.33889457528098!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e9e8a1f7ee9%3A0x3cf13cf447de32a2!2sRoyal%20College%20of%20Surgeons%20in%20Ireland!5e0!3m2!1sen!2sie!4v1699999999999!5m2!1sen!2sie"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="RCSI Location">
+                    </iframe>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Faith Ogundimu. Built with curiosity and code.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ============================================
+        // NAVIGATION
+        // ============================================
+        const nav = document.getElementById('nav');
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        // Scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile toggle
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile nav on link click
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // ============================================
+        // PARTICLE NETWORK ANIMATION
+        // ============================================
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Mouse interaction
+                if (mouse.x !== null) {
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < mouse.radius) {
+                        const force = (mouse.radius - distance) / mouse.radius;
+                        this.x -= dx * force * 0.02;
+                        this.y -= dy * force * 0.02;
+                    }
+                }
+
+                // Wrap around
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(34, 211, 238, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const numParticles = Math.min(100, Math.floor((canvas.width * canvas.height) / 15000));
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function connectParticles() {
+            const maxDistance = 120;
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance) {
+                        const opacity = (1 - distance / maxDistance) * 0.15;
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(34, 211, 238, ${opacity})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            connectParticles();
+            requestAnimationFrame(animateParticles);
+        }
+
+        // Mouse events
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        // Initialize
+        resizeCanvas();
+        initParticles();
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+
+        // ============================================
+        // SCROLL REVEAL ANIMATIONS
+        // ============================================
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ============================================
+        // SMOOTH SCROLL FOR ANCHOR LINKS
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
