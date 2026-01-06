@@ -186,6 +186,20 @@
         .tech-tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.05em; padding: 0.5rem 1rem; background: var(--blue-pale); border: 1px solid rgba(59, 76, 202, 0.15); border-radius: 6px; color: var(--blue-primary); }
         .project-links { display: flex; gap: 1rem; flex-wrap: wrap; }
 
+        /* Divider Section - with overlap */
+        .divider-section {
+            position: relative;
+            padding: 0;
+            margin: -60px 0;
+            z-index: 10;
+            overflow: hidden;
+        }
+        .divider-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         /* Project Archive */
         .project-archive { background: var(--bg-tertiary); }
         .archive-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
@@ -474,6 +488,11 @@
             </div>
         </div>
     </section>
+
+    <!-- Divider Image -->
+    <div class="divider-section">
+        <img src="assets/divider-image.png" alt="Decoding Cancer's Dark Matter">
+    </div>
 
     <!-- Project Archive Section -->
     <section class="project-archive">
