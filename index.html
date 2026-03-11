@@ -144,16 +144,17 @@
         .news-item { flex: 0 0 min(420px, calc(100vw - 6rem)); padding: 2rem; background: var(--bg-dark-secondary); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; transition: all 0.4s ease; opacity: 0.45; transform: scale(0.94); }
         .news-item.is-active { opacity: 1; transform: scale(1); border-color: rgba(59, 76, 202, 0.4); }
         .news-item:hover { border-color: rgba(59, 76, 202, 0.55); transform: scale(1.01); opacity: 1; }
-        .news-item.conference-item { background: linear-gradient(135deg, rgba(22, 58, 48, 0.92), rgba(12, 29, 43, 0.92)); border-color: rgba(121, 231, 184, 0.35); }
-        .news-item.conference-item:hover { border-color: rgba(121, 231, 184, 0.65); }
+        .news-item.conference-item { background: linear-gradient(135deg, rgba(28, 42, 84, 0.95), rgba(17, 28, 58, 0.95)); border-color: rgba(138, 170, 255, 0.4); }
+        .news-item.conference-item:hover { border-color: rgba(138, 170, 255, 0.72); }
         .news-date { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--blue-light); margin-bottom: 1rem; }
         .news-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; line-height: 1.4; color: var(--text-light); margin-bottom: 0.75rem; }
         .news-venue { font-size: 0.9rem; color: var(--text-muted); }
-        .conference-item .news-date, .conference-item .news-link { color: #9df3cd; }
-        .conference-item .news-title { color: #ecfff5; }
-        .conference-item .news-venue { color: #c8ebda; }
+        .conference-item .news-date, .conference-item .news-link { color: #9fb8ff; }
+        .conference-item .news-title { color: #eff3ff; }
+        .conference-item .news-venue { color: #c8d4f0; }
         .news-link { color: var(--blue-light); text-decoration: underline; text-underline-offset: 2px; }
         .news-link:hover { color: white; }
+        .news-spacer { flex: 0 0 0; }
         .news-dots { max-width: var(--container-width); margin: 1.5rem auto 0; display: flex; justify-content: center; gap: 0.65rem; padding: 0 3rem; }
         .news-dot { width: 10px; height: 10px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.35); background: transparent; transition: all 0.25s ease; }
         .news-dot:hover { border-color: var(--blue-light); transform: scale(1.15); }
@@ -412,6 +413,7 @@
         </div>
         <div class="news-wrapper reveal" style="transition-delay: 0.2s;">
             <div class="news-track">
+                <div class="news-spacer" aria-hidden="true"></div>
                 <div class="news-item conference-item"><p class="news-date">June 25, 2026 (Upcoming)</p><h3 class="news-title">Attending UK Functional Genomics Initiative Scientific Symposium</h3><p class="news-venue">Observer/Attendee • University of Manchester • <a href="https://www.ukfunctionalgenomics.com/events/uk-functional-genomics-initiative-scientific-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
                 <div class="news-item conference-item"><p class="news-date">May 27, 2026 (Upcoming)</p><h3 class="news-title">Presenting at AICC Annual Symposium</h3><p class="news-venue">Using Neural Networks and Foundation Models to Understand Gene Regulation in the MCF-7 Breast Cancer Cell Line • <a href="https://allirelandchromatinconsortium.ie/annual-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
                 <div class="news-item"><p class="news-date">February 2026</p><h3 class="news-title">Top 10 Finalist (1,500 Participants) - HealthCallPilot</h3><p class="news-venue">Hack-Nation 4th Edition • ElevenLabs Track</p></div>
@@ -420,6 +422,7 @@
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Perfect 30/30 at Conway Institute Festival</h3><p class="news-venue">BioSLATE Poster Commendation</p></div>
                 <div class="news-item"><p class="news-date">August 2025</p><h3 class="news-title">Best Lay Presentation Award</h3><p class="news-venue">Breakthrough Cancer Research</p></div>
                 <div class="news-item"><p class="news-date">June 2025</p><h3 class="news-title">Research Ireland Postgraduate Grant (€136,000)</h3><p class="news-venue">Nationally Competitive Award • 18% Success Rate</p></div>
+                <div class="news-spacer" aria-hidden="true"></div>
             </div>
         </div>
         <div class="news-dots reveal" id="news-dots" style="transition-delay: 0.3s;" aria-label="News carousel navigation"></div>
@@ -544,7 +547,7 @@
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 GitHub
                             </a>
-                            <a href="https://gen-lang-client-0564840114.web.app/" target="_blank" class="archive-link">
+                            <a href="https://gen-lang-client-0765479704.web.app/" target="_blank" class="archive-link">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
                                 Live Demo
                             </a>
@@ -560,6 +563,10 @@
                             <a href="https://github.com/faith-ogun/AlphaMimic" target="_blank" class="archive-link">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 GitHub
+                            </a>
+                            <a href="https://gen-lang-client-0564840114.web.app/" target="_blank" class="archive-link">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
+                                Live Demo
                             </a>
                         </div>
                     </div>
@@ -741,10 +748,13 @@
         const newsDots = document.getElementById('news-dots');
         const newsItems = newsTrack ? Array.from(newsTrack.querySelectorAll('.news-item')) : [];
         if (newsWrapper && newsTrack && newsDots && newsItems.length) {
+            const newsSpacers = Array.from(newsTrack.querySelectorAll('.news-spacer'));
             let currentIndex = 0;
             let intervalId = null;
             const intervalMs = 6000;
             let dotButtons = [];
+            let userClicked = false;
+            let resumeTimeoutId = null;
 
             const setActiveClasses = () => {
                 newsItems.forEach((item, idx) => item.classList.toggle('is-active', idx === currentIndex));
@@ -776,6 +786,14 @@
                 }
             };
 
+            const setSpacerWidths = () => {
+                const firstItem = newsItems[0];
+                const spacerSize = Math.max(0, (newsWrapper.clientWidth - firstItem.offsetWidth) / 2);
+                newsSpacers.forEach(spacer => {
+                    spacer.style.flexBasis = `${spacerSize}px`;
+                });
+            };
+
             const stopRotation = () => {
                 if (intervalId) {
                     clearInterval(intervalId);
@@ -794,19 +812,33 @@
                 dot.className = 'news-dot';
                 dot.setAttribute('aria-label', `Go to news item ${idx + 1}`);
                 dot.addEventListener('click', () => {
+                    userClicked = true;
+                    stopRotation();
                     centerItem(idx);
-                    startRotation();
+                    if (resumeTimeoutId) clearTimeout(resumeTimeoutId);
+                    resumeTimeoutId = window.setTimeout(() => {
+                        userClicked = false;
+                        if (!newsWrapper.matches(':hover')) startRotation();
+                    }, intervalMs);
                 });
                 newsDots.appendChild(dot);
                 return dot;
             });
 
             newsWrapper.addEventListener('mouseenter', stopRotation);
-            newsWrapper.addEventListener('mouseleave', startRotation);
+            newsWrapper.addEventListener('mouseleave', () => {
+                if (!userClicked) startRotation();
+            });
             newsWrapper.addEventListener('focusin', stopRotation);
-            newsWrapper.addEventListener('focusout', startRotation);
-            window.addEventListener('resize', () => centerItem(currentIndex, false));
+            newsWrapper.addEventListener('focusout', () => {
+                if (!userClicked) startRotation();
+            });
+            window.addEventListener('resize', () => {
+                setSpacerWidths();
+                centerItem(currentIndex, false);
+            });
 
+            setSpacerWidths();
             centerItem(0, false);
             startRotation();
         }
