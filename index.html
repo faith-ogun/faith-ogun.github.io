@@ -806,6 +806,14 @@
                 intervalId = window.setInterval(() => centerItem(currentIndex + 1), intervalMs);
             };
 
+            const queueRotationResume = () => {
+                if (resumeTimeoutId) clearTimeout(resumeTimeoutId);
+                resumeTimeoutId = window.setTimeout(() => {
+                    userClicked = false;
+                    if (!newsWrapper.matches(':hover')) startRotation();
+                }, intervalMs);
+            };
+
             dotButtons = newsItems.map((_, idx) => {
                 const dot = document.createElement('button');
                 dot.type = 'button';
@@ -815,14 +823,25 @@
                     userClicked = true;
                     stopRotation();
                     centerItem(idx);
-                    if (resumeTimeoutId) clearTimeout(resumeTimeoutId);
-                    resumeTimeoutId = window.setTimeout(() => {
-                        userClicked = false;
-                        if (!newsWrapper.matches(':hover')) startRotation();
-                    }, intervalMs);
+                    queueRotationResume();
                 });
                 newsDots.appendChild(dot);
                 return dot;
+            });
+
+            newsTrack.addEventListener('click', (event) => {
+                if (event.target.closest('a')) return;
+                const clickedItem = event.target.closest('.news-item');
+                if (!clickedItem) return;
+
+                const clickedIndex = newsItems.indexOf(clickedItem);
+                if (clickedIndex === -1) return;
+
+                userClicked = true;
+                stopRotation();
+                if (clickedIndex === currentIndex) centerItem(currentIndex + 1);
+                else centerItem(clickedIndex);
+                queueRotationResume();
             });
 
             newsWrapper.addEventListener('mouseenter', stopRotation);
