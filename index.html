@@ -145,11 +145,20 @@
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .news-item { flex-shrink: 0; width: 400px; padding: 2rem; background: var(--bg-dark-secondary); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; transition: all 0.3s ease; }
         .news-item:hover { border-color: rgba(59, 76, 202, 0.4); transform: translateY(-4px); }
+        .news-item.conference-item { background: linear-gradient(135deg, rgba(22, 58, 48, 0.92), rgba(12, 29, 43, 0.92)); border-color: rgba(121, 231, 184, 0.35); }
+        .news-item.conference-item:hover { border-color: rgba(121, 231, 184, 0.65); }
         .news-date { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--blue-light); margin-bottom: 1rem; }
         .news-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; line-height: 1.4; color: var(--text-light); margin-bottom: 0.75rem; }
         .news-venue { font-size: 0.9rem; color: var(--text-muted); }
+        .conference-item .news-date, .conference-item .news-link { color: #9df3cd; }
+        .conference-item .news-title { color: #ecfff5; }
+        .conference-item .news-venue { color: #c8ebda; }
         .news-link { color: var(--blue-light); text-decoration: underline; text-underline-offset: 2px; }
         .news-link:hover { color: white; }
+        .news-controls { max-width: var(--container-width); margin: 1.5rem auto 0; padding: 0 3rem; display: grid; grid-template-columns: auto 1fr auto 200px; gap: 1rem; align-items: center; }
+        .news-control-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-light); }
+        .news-control-range { width: 100%; accent-color: var(--blue-light); }
+        .news-control-value { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em; color: var(--text-muted); text-transform: uppercase; text-align: right; }
 
         /* Research */
         .research { background: var(--bg-tertiary); }
@@ -252,6 +261,8 @@
             .about-links { flex-direction: column; }
             .social-links { margin-left: 0; justify-content: center; }
             .news-item { width: 300px; }
+            .news-controls { grid-template-columns: 1fr; gap: 0.5rem; }
+            .news-control-value { text-align: left; margin-top: 0.25rem; }
             .archive-item { grid-template-columns: 1fr; }
             .archive-image { max-width: 200px; }
         }
@@ -371,7 +382,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                     </div>
                     <h3 class="theme-title">Deep Learning for Genomics</h3>
-                    <p class="theme-description">Developing CNNs, MLPs, and Hidden Markov Models to predict chromatin accessibility and prioritize candidate driver mutations from multi-omics data.</p>
+                    <p class="theme-description">Developing CNNs, GNNs, MLPs, and Hidden Markov Models to predict chromatin accessibility and prioritize candidate driver mutations from multi-omics data.</p>
                 </div>
                 <div class="theme-card reveal" style="transition-delay: 0.3s;">
                     <div class="theme-icon">
@@ -402,27 +413,34 @@
         </div>
         <div class="news-wrapper reveal" style="transition-delay: 0.2s;">
             <div class="news-track">
-                <div class="news-item"><p class="news-date">June 25, 2026 (Upcoming)</p><h3 class="news-title">Attending UK Functional Genomics Initiative Scientific Symposium</h3><p class="news-venue">Observer/Attendee • University of Manchester • <a href="https://www.ukfunctionalgenomics.com/events/uk-functional-genomics-initiative-scientific-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
-                <div class="news-item"><p class="news-date">May 27, 2026 (Upcoming)</p><h3 class="news-title">Presenting Neural Networks Project at AICC Annual Symposium</h3><p class="news-venue">All Ireland Chromatin Consortium • <a href="https://allirelandchromatinconsortium.ie/annual-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
-                <div class="news-item"><p class="news-date">February 2026</p><h3 class="news-title">Built Voxelomics - Offline-First Clinical MDT Copilot</h3><p class="news-venue">Google Research MedGemma Impact Challenge</p></div>
+                <div class="news-item conference-item"><p class="news-date">June 25, 2026 (Upcoming)</p><h3 class="news-title">Attending UK Functional Genomics Initiative Scientific Symposium</h3><p class="news-venue">Observer/Attendee • University of Manchester • <a href="https://www.ukfunctionalgenomics.com/events/uk-functional-genomics-initiative-scientific-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
+                <div class="news-item conference-item"><p class="news-date">May 27, 2026 (Upcoming)</p><h3 class="news-title">Presenting at AICC Annual Symposium</h3><p class="news-venue">Using Neural Networks and Foundation Models to Understand Gene Regulation in the MCF-7 Breast Cancer Cell Line • <a href="https://allirelandchromatinconsortium.ie/annual-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
                 <div class="news-item"><p class="news-date">February 2026</p><h3 class="news-title">Top 10 Finalist (1,500 Participants) - HealthCallPilot</h3><p class="news-venue">Hack-Nation 4th Edition • ElevenLabs Track</p></div>
-                <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Built Oncydra - Voice-First AI Oncology Platform</h3><p class="news-venue">AI Partner Catalyst with Google & ElevenLabs</p></div>
                 <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Engineered C.O.R.E. - 9-Agent Cancer MDT System</h3><p class="news-venue">Google AI Agents Intensive Hackathon</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Dean's Honours List - Ranked 2nd in Cohort (Salutatorian)</h3><p class="news-venue">Dublin City University</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">2nd Place at Google Ireland Hackathon</h3><p class="news-venue">BGN • TestBuddy AI Platform</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Perfect 30/30 at Conway Institute Festival</h3><p class="news-venue">BioSLATE Poster Commendation</p></div>
+                <div class="news-item"><p class="news-date">August 2025</p><h3 class="news-title">Best Lay Presentation Award</h3><p class="news-venue">Breakthrough Cancer Research</p></div>
                 <div class="news-item"><p class="news-date">June 2025</p><h3 class="news-title">Government of Ireland Postgraduate Scholarship</h3><p class="news-venue">€136,000 • 18% success rate</p></div>
                 <!-- Duplicate for seamless loop -->
-                <div class="news-item"><p class="news-date">June 25, 2026 (Upcoming)</p><h3 class="news-title">Attending UK Functional Genomics Initiative Scientific Symposium</h3><p class="news-venue">Observer/Attendee • University of Manchester • <a href="https://www.ukfunctionalgenomics.com/events/uk-functional-genomics-initiative-scientific-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
-                <div class="news-item"><p class="news-date">May 27, 2026 (Upcoming)</p><h3 class="news-title">Presenting Neural Networks Project at AICC Annual Symposium</h3><p class="news-venue">All Ireland Chromatin Consortium • <a href="https://allirelandchromatinconsortium.ie/annual-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
-                <div class="news-item"><p class="news-date">February 2026</p><h3 class="news-title">Built Voxelomics - Offline-First Clinical MDT Copilot</h3><p class="news-venue">Google Research MedGemma Impact Challenge</p></div>
+                <div class="news-item conference-item"><p class="news-date">June 25, 2026 (Upcoming)</p><h3 class="news-title">Attending UK Functional Genomics Initiative Scientific Symposium</h3><p class="news-venue">Observer/Attendee • University of Manchester • <a href="https://www.ukfunctionalgenomics.com/events/uk-functional-genomics-initiative-scientific-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
+                <div class="news-item conference-item"><p class="news-date">May 27, 2026 (Upcoming)</p><h3 class="news-title">Presenting at AICC Annual Symposium</h3><p class="news-venue">Using Neural Networks and Foundation Models to Understand Gene Regulation in the MCF-7 Breast Cancer Cell Line • <a href="https://allirelandchromatinconsortium.ie/annual-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
                 <div class="news-item"><p class="news-date">February 2026</p><h3 class="news-title">Top 10 Finalist (1,500 Participants) - HealthCallPilot</h3><p class="news-venue">Hack-Nation 4th Edition • ElevenLabs Track</p></div>
-                <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Built Oncydra - Voice-First AI Oncology Platform</h3><p class="news-venue">AI Partner Catalyst with Google & ElevenLabs</p></div>
                 <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Engineered C.O.R.E. - 9-Agent Cancer MDT System</h3><p class="news-venue">Google AI Agents Intensive Hackathon</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Dean's Honours List - Ranked 2nd in Cohort (Salutatorian)</h3><p class="news-venue">Dublin City University</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">2nd Place at Google Ireland Hackathon</h3><p class="news-venue">BGN • TestBuddy AI Platform</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Perfect 30/30 at Conway Institute Festival</h3><p class="news-venue">BioSLATE Poster Commendation</p></div>
+                <div class="news-item"><p class="news-date">August 2025</p><h3 class="news-title">Best Lay Presentation Award</h3><p class="news-venue">Breakthrough Cancer Research</p></div>
                 <div class="news-item"><p class="news-date">June 2025</p><h3 class="news-title">Government of Ireland Postgraduate Scholarship</h3><p class="news-venue">€136,000 • 18% success rate</p></div>
+            </div>
+        </div>
+        <div class="news-controls reveal" style="transition-delay: 0.3s;">
+            <label for="news-position" class="news-control-label">Move</label>
+            <input id="news-position" class="news-control-range" type="range" min="0" max="100" value="0" aria-label="Move news timeline left or right">
+            <label for="news-speed" class="news-control-label">Speed</label>
+            <div>
+                <input id="news-speed" class="news-control-range" type="range" min="16" max="60" value="35" aria-label="Set news scroll speed">
+                <p class="news-control-value" id="news-speed-value">35s loop</p>
             </div>
         </div>
     </section>
@@ -479,7 +497,7 @@
             <div class="project-grid">
                 <div class="project-visual reveal">
                     <div class="project-glow"></div>
-                    <div class="project-image"><img src="assets/voxelomics-image.svg" alt="Voxelomics Project"></div>
+                    <div class="project-image"><img src="assets/voxelomics-image.png" alt="Voxelomics Project"></div>
                 </div>
                 <div class="project-content reveal" style="transition-delay: 0.2s;">
                     <p class="project-label">Featured Project</p>
@@ -537,7 +555,7 @@
                     </div>
                 </div>
                 <div class="archive-item reveal" style="transition-delay: 0.2s;">
-                    <div class="archive-image"><img src="assets/healthcallpilot-image.svg" alt="HealthCallPilot"></div>
+                    <div class="archive-image"><img src="assets/healthcallpilot-image.png" alt="HealthCallPilot"></div>
                     <div class="archive-content">
                         <h4>HealthCallPilot</h4>
                         <p>Agentic voice AI appointment orchestration system with Twilio calling, FastAPI tool-calling, Google Calendar integration, and real-time WebSocket dashboards.</p>
@@ -554,6 +572,19 @@
                     </div>
                 </div>
                 <div class="archive-item reveal" style="transition-delay: 0.3s;">
+                    <div class="archive-image"><img src="assets/alphamimic-image.png" alt="AlphaMimic"></div>
+                    <div class="archive-content">
+                        <h4>AlphaMimic</h4>
+                        <p>AI-powered biomimicry research platform with 10 agents and 5 services that converts biological papers into engineering-grade biomimicry packets with full provenance-aware design outputs.</p>
+                        <div class="archive-links">
+                            <a href="https://github.com/faith-ogun/AlphaMimic" target="_blank" class="archive-link">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="archive-item reveal" style="transition-delay: 0.4s;">
                     <div class="archive-image"><img src="assets/oncosynth-image.png" alt="OncoSynth"></div>
                     <div class="archive-content">
                         <h4>OncoSynth</h4>
@@ -566,7 +597,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="archive-item reveal" style="transition-delay: 0.4s;">
+                <div class="archive-item reveal" style="transition-delay: 0.5s;">
                     <div class="archive-image"><img src="assets/core-image.png" alt="C.O.R.E."></div>
                     <div class="archive-content">
                         <h4>C.O.R.E.</h4>
@@ -723,6 +754,43 @@
         resizeCanvas();
         drawHelix();
         window.addEventListener('resize', resizeCanvas);
+
+        // News controls
+        const newsTrack = document.querySelector('.news-track');
+        const newsPosition = document.getElementById('news-position');
+        const newsSpeed = document.getElementById('news-speed');
+        const newsSpeedValue = document.getElementById('news-speed-value');
+        if (newsTrack && newsPosition && newsSpeed && newsSpeedValue) {
+            const applyNewsSpeed = () => {
+                const seconds = Number(newsSpeed.value);
+                newsTrack.style.animationDuration = `${seconds}s`;
+                newsSpeedValue.textContent = `${seconds}s loop`;
+            };
+            const applyNewsPosition = () => {
+                const seconds = Number(newsSpeed.value);
+                const progress = Number(newsPosition.value) / 100;
+                newsTrack.style.animationDelay = `${-(seconds * progress)}s`;
+            };
+
+            applyNewsSpeed();
+            applyNewsPosition();
+
+            let draggingTimeline = false;
+            newsPosition.addEventListener('pointerdown', () => {
+                draggingTimeline = true;
+                newsTrack.style.animationPlayState = 'paused';
+            });
+            window.addEventListener('pointerup', () => {
+                if (!draggingTimeline) return;
+                draggingTimeline = false;
+                newsTrack.style.animationPlayState = '';
+            });
+            newsPosition.addEventListener('input', applyNewsPosition);
+            newsSpeed.addEventListener('input', () => {
+                applyNewsSpeed();
+                applyNewsPosition();
+            });
+        }
 
         // Scroll reveal
         const revealElements = document.querySelectorAll('.reveal');
