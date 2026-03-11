@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900" role="img" aria-labelledby="title desc">
+  <title id="title">HealthCallPilot project visual</title>
+  <desc id="desc">Abstract voice-AI orchestration image for HealthCallPilot.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10213d"/>
+      <stop offset="100%" stop-color="#365ea9"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7ab9ff"/>
+      <stop offset="100%" stop-color="#d3e2ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#bg)"/>
+  <circle cx="450" cy="450" r="240" fill="none" stroke="url(#ring)" stroke-width="14" opacity="0.8"/>
+  <circle cx="450" cy="450" r="170" fill="none" stroke="#93bfff" stroke-width="6" opacity="0.35"/>
+  <path d="M450 305c-48 0-87 39-87 87v77c0 48 39 87 87 87s87-39 87-87v-77c0-48-39-87-87-87z" fill="#d8e8ff"/>
+  <rect x="420" y="556" width="60" height="92" rx="20" fill="#d8e8ff"/>
+  <rect x="350" y="640" width="200" height="40" rx="20" fill="#d8e8ff"/>
+  <path d="M280 450h-70M690 450h-70M307 367l-49-49M593 367l49-49M307 534l-49 49M593 534l49 49" stroke="#95c2ff" stroke-width="14" stroke-linecap="round" opacity="0.8"/>
+  <text x="450" y="792" fill="#e9f2ff" font-family="Space Grotesk, system-ui, sans-serif" font-size="56" font-weight="700" text-anchor="middle">HEALTHCALLPILOT</text>
+</svg>

@@ -125,13 +125,14 @@
 
         /* Research Themes Section */
         .research-themes { background: var(--bg-tertiary); }
-        .themes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .themes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
         .theme-card { background: var(--bg-secondary); border-radius: 16px; padding: 2rem; text-align: center; transition: all 0.4s var(--ease-out-expo); border: 1px solid transparent; }
         .theme-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); border-color: rgba(59, 76, 202, 0.2); }
         .theme-icon { width: 80px; height: 80px; margin: 0 auto 1.5rem; border-radius: 12px; overflow: hidden; background: var(--blue-pale); display: flex; align-items: center; justify-content: center; }
         .theme-icon svg { width: 40px; height: 40px; color: var(--blue-primary); }
         .theme-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; }
         .theme-description { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
+        .theme-status { display: inline-block; margin-top: 1.2rem; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-primary); background: var(--blue-pale); border: 1px solid rgba(59, 76, 202, 0.25); border-radius: 999px; padding: 0.35rem 0.75rem; }
 
         /* News */
         .news { background: var(--bg-dark); overflow: hidden; }
@@ -147,6 +148,8 @@
         .news-date { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--blue-light); margin-bottom: 1rem; }
         .news-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; line-height: 1.4; color: var(--text-light); margin-bottom: 0.75rem; }
         .news-venue { font-size: 0.9rem; color: var(--text-muted); }
+        .news-link { color: var(--blue-light); text-decoration: underline; text-underline-offset: 2px; }
+        .news-link:hover { color: white; }
 
         /* Research */
         .research { background: var(--bg-tertiary); }
@@ -322,18 +325,18 @@
                     </div>
                     <p class="about-text">I'm a first-year PhD student at the <strong>Royal College of Surgeons Ireland</strong>, investigating non-coding driver mutations in breast cancer using large-scale genomic datasets including TCGA, ICGC, and ENCODE.</p>
                     <p class="about-text">My research applies <strong>deep learning</strong> and integrative computational approaches—including CNNs, multilayer perceptrons, and Hidden Markov Models—to identify functional variants in regulatory elements and uncover novel therapeutic vulnerabilities.</p>
-                    <p class="about-text">I completed my B.Sc. in Genetics and Cell Biology at Dublin City University with <strong>First Class Honours</strong>, ranking 2nd in my cohort and earning a place on the Dean's Honours List.</p>
+                    <p class="about-text">I completed my B.Sc. in Genetics and Cell Biology at Dublin City University with <strong>First Class Honours</strong>, ranking 2nd in my cohort (<strong>Salutatorian</strong>) and earning a place on the Dean's Honours List.</p>
                     <div class="about-stats">
-                        <div class="stat"><div class="stat-value">2nd</div><div class="stat-label">In Cohort</div></div>
-                        <div class="stat"><div class="stat-value">€146k</div><div class="stat-label">Research Funding</div></div>
-                        <div class="stat"><div class="stat-value">26+</div><div class="stat-label">AI Agents Built</div></div>
+                        <div class="stat"><div class="stat-value">2nd</div><div class="stat-label">In Cohort (Salutatorian)</div></div>
+                        <div class="stat"><div class="stat-value">€149k</div><div class="stat-label">Research Funding</div></div>
+                        <div class="stat"><div class="stat-value">35+</div><div class="stat-label">AI Agents Built</div></div>
                     </div>
                     <div class="about-links">
                         <a href="mailto:faithogundimu@rcsi.ie" class="btn btn-primary">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
                             Get In Touch
                         </a>
-                        <a href="assets/Faith_Ogundimu_CV.pdf" target="_blank" class="btn btn-secondary">Download CV</a>
+                        <a href="assets/Faith_Ogundimu_CV.pdf" target="_blank" class="btn btn-secondary">View CV</a>
                         <div class="social-links">
                             <a href="https://github.com/faith-ogun" target="_blank" class="social-link" aria-label="GitHub">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
@@ -377,6 +380,14 @@
                     <h3 class="theme-title">3D Regulatory Mapping</h3>
                     <p class="theme-description">Creating breast tissue-specific regulatory maps by integrating single-cell ATAC-seq, spatial transcriptomics, and ENCODE regulatory elements.</p>
                 </div>
+                <div class="theme-card reveal" style="transition-delay: 0.4s;">
+                    <div class="theme-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3h6v4H9z"/><path d="M6 7h12l1 11H5z"/><path d="M9 18h6M8 11h8M8 14h8"/></svg>
+                    </div>
+                    <h3 class="theme-title">Surgical Robotics & Embedded AI</h3>
+                    <p class="theme-description">Currently exploring Arduino and ESP32 prototyping as a practical bridge from machine learning research into surgical robotics and autonomy workflows.</p>
+                    <p class="theme-status">Currently Exploring</p>
+                </div>
             </div>
         </div>
     </section>
@@ -391,20 +402,26 @@
         </div>
         <div class="news-wrapper reveal" style="transition-delay: 0.2s;">
             <div class="news-track">
+                <div class="news-item"><p class="news-date">June 25, 2026 (Upcoming)</p><h3 class="news-title">Attending UK Functional Genomics Initiative Scientific Symposium</h3><p class="news-venue">Observer/Attendee • University of Manchester • <a href="https://www.ukfunctionalgenomics.com/events/uk-functional-genomics-initiative-scientific-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
+                <div class="news-item"><p class="news-date">May 27, 2026 (Upcoming)</p><h3 class="news-title">Presenting Neural Networks Project at AICC Annual Symposium</h3><p class="news-venue">All Ireland Chromatin Consortium • <a href="https://allirelandchromatinconsortium.ie/annual-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
+                <div class="news-item"><p class="news-date">February 2026</p><h3 class="news-title">Built Voxelomics - Offline-First Clinical MDT Copilot</h3><p class="news-venue">Google Research MedGemma Impact Challenge</p></div>
+                <div class="news-item"><p class="news-date">February 2026</p><h3 class="news-title">Top 10 Finalist (1,500 Participants) - HealthCallPilot</h3><p class="news-venue">Hack-Nation 4th Edition • ElevenLabs Track</p></div>
                 <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Built Oncydra - Voice-First AI Oncology Platform</h3><p class="news-venue">AI Partner Catalyst with Google & ElevenLabs</p></div>
                 <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Engineered C.O.R.E. - 9-Agent Cancer MDT System</h3><p class="news-venue">Google AI Agents Intensive Hackathon</p></div>
-                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Dean's Honours List - Ranked 2nd in Cohort</h3><p class="news-venue">Dublin City University</p></div>
+                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Dean's Honours List - Ranked 2nd in Cohort (Salutatorian)</h3><p class="news-venue">Dublin City University</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">2nd Place at Google Ireland Hackathon</h3><p class="news-venue">BGN • TestBuddy AI Platform</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Perfect 30/30 at Conway Institute Festival</h3><p class="news-venue">BioSLATE Poster Commendation</p></div>
-                <div class="news-item"><p class="news-date">August 2025</p><h3 class="news-title">Best Lay Presentation Award</h3><p class="news-venue">Breakthrough Cancer Research</p></div>
                 <div class="news-item"><p class="news-date">June 2025</p><h3 class="news-title">Government of Ireland Postgraduate Scholarship</h3><p class="news-venue">€136,000 • 18% success rate</p></div>
                 <!-- Duplicate for seamless loop -->
+                <div class="news-item"><p class="news-date">June 25, 2026 (Upcoming)</p><h3 class="news-title">Attending UK Functional Genomics Initiative Scientific Symposium</h3><p class="news-venue">Observer/Attendee • University of Manchester • <a href="https://www.ukfunctionalgenomics.com/events/uk-functional-genomics-initiative-scientific-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
+                <div class="news-item"><p class="news-date">May 27, 2026 (Upcoming)</p><h3 class="news-title">Presenting Neural Networks Project at AICC Annual Symposium</h3><p class="news-venue">All Ireland Chromatin Consortium • <a href="https://allirelandchromatinconsortium.ie/annual-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
+                <div class="news-item"><p class="news-date">February 2026</p><h3 class="news-title">Built Voxelomics - Offline-First Clinical MDT Copilot</h3><p class="news-venue">Google Research MedGemma Impact Challenge</p></div>
+                <div class="news-item"><p class="news-date">February 2026</p><h3 class="news-title">Top 10 Finalist (1,500 Participants) - HealthCallPilot</h3><p class="news-venue">Hack-Nation 4th Edition • ElevenLabs Track</p></div>
                 <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Built Oncydra - Voice-First AI Oncology Platform</h3><p class="news-venue">AI Partner Catalyst with Google & ElevenLabs</p></div>
                 <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Engineered C.O.R.E. - 9-Agent Cancer MDT System</h3><p class="news-venue">Google AI Agents Intensive Hackathon</p></div>
-                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Dean's Honours List - Ranked 2nd in Cohort</h3><p class="news-venue">Dublin City University</p></div>
+                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Dean's Honours List - Ranked 2nd in Cohort (Salutatorian)</h3><p class="news-venue">Dublin City University</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">2nd Place at Google Ireland Hackathon</h3><p class="news-venue">BGN • TestBuddy AI Platform</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Perfect 30/30 at Conway Institute Festival</h3><p class="news-venue">BioSLATE Poster Commendation</p></div>
-                <div class="news-item"><p class="news-date">August 2025</p><h3 class="news-title">Best Lay Presentation Award</h3><p class="news-venue">Breakthrough Cancer Research</p></div>
                 <div class="news-item"><p class="news-date">June 2025</p><h3 class="news-title">Government of Ireland Postgraduate Scholarship</h3><p class="news-venue">€136,000 • 18% success rate</p></div>
             </div>
         </div>
@@ -456,33 +473,33 @@
         </div>
     </section>
 
-    <!-- Featured Project Section - Oncydra -->
+    <!-- Featured Project Section - Voxelomics -->
     <section class="featured-project" id="projects">
         <div class="container">
             <div class="project-grid">
                 <div class="project-visual reveal">
                     <div class="project-glow"></div>
-                    <div class="project-image"><img src="assets/oncydra-image.png" alt="Oncydra Project"></div>
+                    <div class="project-image"><img src="assets/voxelomics-image.svg" alt="Voxelomics Project"></div>
                 </div>
                 <div class="project-content reveal" style="transition-delay: 0.2s;">
                     <p class="project-label">Featured Project</p>
-                    <h2 class="project-name">Oncydra</h2>
-                    <p class="project-tagline">Voice-First AI Oncology Care Platform</p>
-                    <p class="project-description">A comprehensive voice-first AI oncology platform built with 7 Cloud Run microservices and 26+ Google ADK agents. Features real-time symptom tracking, AI-powered phone calling for appointment booking, treatment timeline management, and clinician dashboards with SOAP note generation.</p>
-                    <p class="project-description">Implements multiple orchestration patterns including Sequential, Parallel, Loop, Review, HITL, Fan-Out/Gather, and Critique for robust clinical workflows.</p>
+                    <h2 class="project-name">Voxelomics</h2>
+                    <p class="project-tagline">Offline-First Clinical MDT Copilot</p>
+                    <p class="project-description">A multimodal oncology decision-support prototype integrating Path Foundation whole-slide embeddings, MedGemma clinical reasoning, and MedASR transcription into a clinician-facing MDT workflow.</p>
+                    <p class="project-description">Built as a local-first desktop stack (React/Electron + FastAPI + SQLite) to support reproducible case review and patient snapshot replay for low-connectivity clinical environments.</p>
                     <div class="project-tech">
-                        <span class="tech-tag">Google ADK</span>
-                        <span class="tech-tag">Cloud Run</span>
-                        <span class="tech-tag">ElevenLabs</span>
-                        <span class="tech-tag">Twilio</span>
-                        <span class="tech-tag">Multi-Agent Systems</span>
+                        <span class="tech-tag">MedGemma</span>
+                        <span class="tech-tag">MedASR</span>
+                        <span class="tech-tag">Path Foundation</span>
+                        <span class="tech-tag">Electron</span>
+                        <span class="tech-tag">FastAPI</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/faith-ogun/Oncydra" target="_blank" class="btn btn-primary">
+                        <a href="https://github.com/faith-ogun/Voxelomics-offline" target="_blank" class="btn btn-primary">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                             View on GitHub
                         </a>
-                        <a href="https://oncydra.web.app/" target="_blank" class="btn btn-secondary">Live Demo</a>
+                        <a href="https://youtu.be/XvYmUYs7iOk" target="_blank" class="btn btn-secondary">Demo Video</a>
                     </div>
                 </div>
             </div>
@@ -503,6 +520,40 @@
             </div>
             <div class="archive-grid">
                 <div class="archive-item reveal" style="transition-delay: 0.1s;">
+                    <div class="archive-image"><img src="assets/oncydra-image.png" alt="Oncydra"></div>
+                    <div class="archive-content">
+                        <h4>Oncydra</h4>
+                        <p>Voice-first AI oncology platform with 7 Cloud Run microservices and 26+ Google ADK agents for symptom tracking, scheduling, and clinical workflow support.</p>
+                        <div class="archive-links">
+                            <a href="https://github.com/faith-ogun/Oncydra" target="_blank" class="archive-link">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                GitHub
+                            </a>
+                            <a href="https://oncydra.web.app/" target="_blank" class="archive-link">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="archive-item reveal" style="transition-delay: 0.2s;">
+                    <div class="archive-image"><img src="assets/healthcallpilot-image.svg" alt="HealthCallPilot"></div>
+                    <div class="archive-content">
+                        <h4>HealthCallPilot</h4>
+                        <p>Agentic voice AI appointment orchestration system with Twilio calling, FastAPI tool-calling, Google Calendar integration, and real-time WebSocket dashboards.</p>
+                        <div class="archive-links">
+                            <a href="https://github.com/faith-ogun/HealthCallPilot" target="_blank" class="archive-link">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                GitHub
+                            </a>
+                            <a href="https://gen-lang-client-0765479704.web.app/" target="_blank" class="archive-link">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="archive-item reveal" style="transition-delay: 0.3s;">
                     <div class="archive-image"><img src="assets/oncosynth-image.png" alt="OncoSynth"></div>
                     <div class="archive-content">
                         <h4>OncoSynth</h4>
@@ -515,7 +566,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="archive-item reveal" style="transition-delay: 0.2s;">
+                <div class="archive-item reveal" style="transition-delay: 0.4s;">
                     <div class="archive-image"><img src="assets/core-image.png" alt="C.O.R.E."></div>
                     <div class="archive-content">
                         <h4>C.O.R.E.</h4>
