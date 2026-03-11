@@ -139,12 +139,11 @@
         .news .section-label { color: var(--blue-light); }
         .news .section-label::before { background: var(--blue-light); }
         .news .section-title { color: var(--text-light); }
-        .news-wrapper { position: relative; }
-        .news-track { display: flex; gap: 2rem; animation: scroll 35s linear infinite; }
-        .news-track:hover { animation-play-state: paused; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .news-item { flex-shrink: 0; width: 400px; padding: 2rem; background: var(--bg-dark-secondary); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; transition: all 0.3s ease; }
-        .news-item:hover { border-color: rgba(59, 76, 202, 0.4); transform: translateY(-4px); }
+        .news-wrapper { position: relative; max-width: var(--container-width); margin: 0 auto; padding: 0 3rem; overflow: hidden; }
+        .news-track { display: flex; gap: 2rem; transition: transform 0.65s var(--ease-out-expo); will-change: transform; }
+        .news-item { flex: 0 0 min(420px, calc(100vw - 6rem)); padding: 2rem; background: var(--bg-dark-secondary); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; transition: all 0.4s ease; opacity: 0.45; transform: scale(0.94); }
+        .news-item.is-active { opacity: 1; transform: scale(1); border-color: rgba(59, 76, 202, 0.4); }
+        .news-item:hover { border-color: rgba(59, 76, 202, 0.55); transform: scale(1.01); opacity: 1; }
         .news-item.conference-item { background: linear-gradient(135deg, rgba(22, 58, 48, 0.92), rgba(12, 29, 43, 0.92)); border-color: rgba(121, 231, 184, 0.35); }
         .news-item.conference-item:hover { border-color: rgba(121, 231, 184, 0.65); }
         .news-date { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; color: var(--blue-light); margin-bottom: 1rem; }
@@ -155,10 +154,10 @@
         .conference-item .news-venue { color: #c8ebda; }
         .news-link { color: var(--blue-light); text-decoration: underline; text-underline-offset: 2px; }
         .news-link:hover { color: white; }
-        .news-controls { max-width: var(--container-width); margin: 1.5rem auto 0; padding: 0 3rem; display: grid; grid-template-columns: auto 1fr auto 200px; gap: 1rem; align-items: center; }
-        .news-control-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-light); }
-        .news-control-range { width: 100%; accent-color: var(--blue-light); }
-        .news-control-value { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.08em; color: var(--text-muted); text-transform: uppercase; text-align: right; }
+        .news-dots { max-width: var(--container-width); margin: 1.5rem auto 0; display: flex; justify-content: center; gap: 0.65rem; padding: 0 3rem; }
+        .news-dot { width: 10px; height: 10px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.35); background: transparent; transition: all 0.25s ease; }
+        .news-dot:hover { border-color: var(--blue-light); transform: scale(1.15); }
+        .news-dot.is-active { width: 26px; background: var(--blue-light); border-color: var(--blue-light); }
 
         /* Research */
         .research { background: var(--bg-tertiary); }
@@ -260,9 +259,9 @@
             .about-stats { grid-template-columns: 1fr; gap: 1.5rem; }
             .about-links { flex-direction: column; }
             .social-links { margin-left: 0; justify-content: center; }
-            .news-item { width: 300px; }
-            .news-controls { grid-template-columns: 1fr; gap: 0.5rem; }
-            .news-control-value { text-align: left; margin-top: 0.25rem; }
+            .news-wrapper { padding: 0 1rem; }
+            .news-item { flex-basis: min(320px, calc(100vw - 2rem)); }
+            .news-dots { padding: 0 1rem; }
             .archive-item { grid-template-columns: 1fr; }
             .archive-image { max-width: 200px; }
         }
@@ -416,33 +415,14 @@
                 <div class="news-item conference-item"><p class="news-date">June 25, 2026 (Upcoming)</p><h3 class="news-title">Attending UK Functional Genomics Initiative Scientific Symposium</h3><p class="news-venue">Observer/Attendee • University of Manchester • <a href="https://www.ukfunctionalgenomics.com/events/uk-functional-genomics-initiative-scientific-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
                 <div class="news-item conference-item"><p class="news-date">May 27, 2026 (Upcoming)</p><h3 class="news-title">Presenting at AICC Annual Symposium</h3><p class="news-venue">Using Neural Networks and Foundation Models to Understand Gene Regulation in the MCF-7 Breast Cancer Cell Line • <a href="https://allirelandchromatinconsortium.ie/annual-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
                 <div class="news-item"><p class="news-date">February 2026</p><h3 class="news-title">Top 10 Finalist (1,500 Participants) - HealthCallPilot</h3><p class="news-venue">Hack-Nation 4th Edition • ElevenLabs Track</p></div>
-                <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Engineered C.O.R.E. - 9-Agent Cancer MDT System</h3><p class="news-venue">Google AI Agents Intensive Hackathon</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Dean's Honours List - Ranked 2nd in Cohort (Salutatorian)</h3><p class="news-venue">Dublin City University</p></div>
-                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">2nd Place at Google Ireland Hackathon</h3><p class="news-venue">BGN • TestBuddy AI Platform</p></div>
+                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Google Ireland Hackathon by BGN - TestBuddy (2nd Place)</h3><p class="news-venue">Google Ireland • 500+ Applicants</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Perfect 30/30 at Conway Institute Festival</h3><p class="news-venue">BioSLATE Poster Commendation</p></div>
                 <div class="news-item"><p class="news-date">August 2025</p><h3 class="news-title">Best Lay Presentation Award</h3><p class="news-venue">Breakthrough Cancer Research</p></div>
-                <div class="news-item"><p class="news-date">June 2025</p><h3 class="news-title">Government of Ireland Postgraduate Scholarship</h3><p class="news-venue">€136,000 • 18% success rate</p></div>
-                <!-- Duplicate for seamless loop -->
-                <div class="news-item conference-item"><p class="news-date">June 25, 2026 (Upcoming)</p><h3 class="news-title">Attending UK Functional Genomics Initiative Scientific Symposium</h3><p class="news-venue">Observer/Attendee • University of Manchester • <a href="https://www.ukfunctionalgenomics.com/events/uk-functional-genomics-initiative-scientific-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
-                <div class="news-item conference-item"><p class="news-date">May 27, 2026 (Upcoming)</p><h3 class="news-title">Presenting at AICC Annual Symposium</h3><p class="news-venue">Using Neural Networks and Foundation Models to Understand Gene Regulation in the MCF-7 Breast Cancer Cell Line • <a href="https://allirelandchromatinconsortium.ie/annual-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
-                <div class="news-item"><p class="news-date">February 2026</p><h3 class="news-title">Top 10 Finalist (1,500 Participants) - HealthCallPilot</h3><p class="news-venue">Hack-Nation 4th Edition • ElevenLabs Track</p></div>
-                <div class="news-item"><p class="news-date">December 2025</p><h3 class="news-title">Engineered C.O.R.E. - 9-Agent Cancer MDT System</h3><p class="news-venue">Google AI Agents Intensive Hackathon</p></div>
-                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Dean's Honours List - Ranked 2nd in Cohort (Salutatorian)</h3><p class="news-venue">Dublin City University</p></div>
-                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">2nd Place at Google Ireland Hackathon</h3><p class="news-venue">BGN • TestBuddy AI Platform</p></div>
-                <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Perfect 30/30 at Conway Institute Festival</h3><p class="news-venue">BioSLATE Poster Commendation</p></div>
-                <div class="news-item"><p class="news-date">August 2025</p><h3 class="news-title">Best Lay Presentation Award</h3><p class="news-venue">Breakthrough Cancer Research</p></div>
-                <div class="news-item"><p class="news-date">June 2025</p><h3 class="news-title">Government of Ireland Postgraduate Scholarship</h3><p class="news-venue">€136,000 • 18% success rate</p></div>
+                <div class="news-item"><p class="news-date">June 2025</p><h3 class="news-title">Research Ireland Postgraduate Grant (€136,000)</h3><p class="news-venue">Nationally Competitive Award • 18% Success Rate</p></div>
             </div>
         </div>
-        <div class="news-controls reveal" style="transition-delay: 0.3s;">
-            <label for="news-position" class="news-control-label">Move</label>
-            <input id="news-position" class="news-control-range" type="range" min="0" max="100" value="0" aria-label="Move news timeline left or right">
-            <label for="news-speed" class="news-control-label">Speed</label>
-            <div>
-                <input id="news-speed" class="news-control-range" type="range" min="16" max="60" value="35" aria-label="Set news scroll speed">
-                <p class="news-control-value" id="news-speed-value">35s loop</p>
-            </div>
-        </div>
+        <div class="news-dots reveal" id="news-dots" style="transition-delay: 0.3s;" aria-label="News carousel navigation"></div>
     </section>
 
     <!-- Publications Section -->
@@ -564,7 +544,7 @@
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 GitHub
                             </a>
-                            <a href="https://gen-lang-client-0765479704.web.app/" target="_blank" class="archive-link">
+                            <a href="https://gen-lang-client-0564840114.web.app/" target="_blank" class="archive-link">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
                                 Live Demo
                             </a>
@@ -755,41 +735,80 @@
         drawHelix();
         window.addEventListener('resize', resizeCanvas);
 
-        // News controls
+        // News carousel
+        const newsWrapper = document.querySelector('.news-wrapper');
         const newsTrack = document.querySelector('.news-track');
-        const newsPosition = document.getElementById('news-position');
-        const newsSpeed = document.getElementById('news-speed');
-        const newsSpeedValue = document.getElementById('news-speed-value');
-        if (newsTrack && newsPosition && newsSpeed && newsSpeedValue) {
-            const applyNewsSpeed = () => {
-                const seconds = Number(newsSpeed.value);
-                newsTrack.style.animationDuration = `${seconds}s`;
-                newsSpeedValue.textContent = `${seconds}s loop`;
-            };
-            const applyNewsPosition = () => {
-                const seconds = Number(newsSpeed.value);
-                const progress = Number(newsPosition.value) / 100;
-                newsTrack.style.animationDelay = `${-(seconds * progress)}s`;
+        const newsDots = document.getElementById('news-dots');
+        const newsItems = newsTrack ? Array.from(newsTrack.querySelectorAll('.news-item')) : [];
+        if (newsWrapper && newsTrack && newsDots && newsItems.length) {
+            let currentIndex = 0;
+            let intervalId = null;
+            const intervalMs = 6000;
+            let dotButtons = [];
+
+            const setActiveClasses = () => {
+                newsItems.forEach((item, idx) => item.classList.toggle('is-active', idx === currentIndex));
+                dotButtons.forEach((dot, idx) => {
+                    const isActive = idx === currentIndex;
+                    dot.classList.toggle('is-active', isActive);
+                    dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+                });
             };
 
-            applyNewsSpeed();
-            applyNewsPosition();
+            const centerItem = (index, animate = true) => {
+                const total = newsItems.length;
+                currentIndex = (index + total) % total;
+                setActiveClasses();
 
-            let draggingTimeline = false;
-            newsPosition.addEventListener('pointerdown', () => {
-                draggingTimeline = true;
-                newsTrack.style.animationPlayState = 'paused';
+                const previousTransition = newsTrack.style.transition;
+                if (!animate) newsTrack.style.transition = 'none';
+
+                const activeItem = newsItems[currentIndex];
+                const itemCenter = activeItem.offsetLeft + (activeItem.offsetWidth / 2);
+                const wrapperCenter = newsWrapper.clientWidth / 2;
+                const maxOffset = Math.max(0, newsTrack.scrollWidth - newsWrapper.clientWidth);
+                const targetOffset = Math.max(0, Math.min(itemCenter - wrapperCenter, maxOffset));
+                newsTrack.style.transform = `translateX(${-targetOffset}px)`;
+
+                if (!animate) {
+                    newsTrack.getBoundingClientRect();
+                    newsTrack.style.transition = previousTransition;
+                }
+            };
+
+            const stopRotation = () => {
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                }
+            };
+
+            const startRotation = () => {
+                stopRotation();
+                intervalId = window.setInterval(() => centerItem(currentIndex + 1), intervalMs);
+            };
+
+            dotButtons = newsItems.map((_, idx) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'news-dot';
+                dot.setAttribute('aria-label', `Go to news item ${idx + 1}`);
+                dot.addEventListener('click', () => {
+                    centerItem(idx);
+                    startRotation();
+                });
+                newsDots.appendChild(dot);
+                return dot;
             });
-            window.addEventListener('pointerup', () => {
-                if (!draggingTimeline) return;
-                draggingTimeline = false;
-                newsTrack.style.animationPlayState = '';
-            });
-            newsPosition.addEventListener('input', applyNewsPosition);
-            newsSpeed.addEventListener('input', () => {
-                applyNewsSpeed();
-                applyNewsPosition();
-            });
+
+            newsWrapper.addEventListener('mouseenter', stopRotation);
+            newsWrapper.addEventListener('mouseleave', startRotation);
+            newsWrapper.addEventListener('focusin', stopRotation);
+            newsWrapper.addEventListener('focusout', startRotation);
+            window.addEventListener('resize', () => centerItem(currentIndex, false));
+
+            centerItem(0, false);
+            startRotation();
         }
 
         // Scroll reveal
