@@ -224,6 +224,7 @@
         .archive-links { display: flex; gap: 1rem; }
         .archive-link { font-family: var(--font-mono); font-size: 0.7rem; color: var(--blue-primary); display: flex; align-items: center; gap: 0.3rem; }
         .archive-link:hover { text-decoration: underline; }
+        .archive-badge { display: inline-block; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.05em; padding: 0.25rem 0.6rem; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #78350f; border-radius: 100px; font-weight: 600; margin-bottom: 0.5rem; }
 
         /* Contact */
         .contact { background: var(--bg-secondary); }
@@ -416,6 +417,7 @@
                 <div class="news-spacer" aria-hidden="true"></div>
                 <div class="news-item conference-item"><p class="news-date">June 25, 2026 (Upcoming)</p><h3 class="news-title">Attending UK Functional Genomics Initiative Scientific Symposium</h3><p class="news-venue">Observer/Attendee • University of Manchester • <a href="https://www.ukfunctionalgenomics.com/events/uk-functional-genomics-initiative-scientific-symposium/" target="_blank" class="news-link">Event Website</a></p></div>
                 <div class="news-item conference-item"><p class="news-date">May 27, 2026 (Upcoming)</p><h3 class="news-title">Presenting at AICC Annual Symposium</h3><p class="news-venue">Using Neural Networks and Foundation Models to Understand Gene Regulation in the MCF-7 Breast Cancer Cell Line • <a href="https://allirelandchromatinconsortium.ie/annual-meeting/" target="_blank" class="news-link">Event Website</a></p></div>
+                <div class="news-item"><p class="news-date">March 2026</p><h3 class="news-title">Top 50 Winner (4,097 Submissions) - RegulonForge</h3><p class="news-venue">Google DeepMind Vibe Code with Gemini 3 Pro Hackathon • <a href="https://www.kaggle.com/competitions/gemini-3/writeups/regulonforge" target="_blank" class="news-link">Writeup</a></p></div>
                 <div class="news-item"><p class="news-date">February 2026</p><h3 class="news-title">Top 10 Finalist (1,500 Participants) - HealthCallPilot</h3><p class="news-venue">Hack-Nation 4th Edition • ElevenLabs Track</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Dean's Honours List - Ranked 2nd in Cohort (Salutatorian)</h3><p class="news-venue">Dublin City University</p></div>
                 <div class="news-item"><p class="news-date">October 2025</p><h3 class="news-title">Google Ireland Hackathon by BGN - TestBuddy (2nd Place)</h3><p class="news-venue">Google Ireland • 500+ Applicants</p></div>
@@ -521,6 +523,28 @@
             </div>
             <div class="archive-grid">
                 <div class="archive-item reveal" style="transition-delay: 0.1s;">
+                    <div class="archive-image"><img src="assets/regulonforge-image.png" alt="RegulonForge"></div>
+                    <div class="archive-content">
+                        <span class="archive-badge">Top 50 Winner / 4,097 Submissions</span>
+                        <h4>RegulonForge</h4>
+                        <p>AI system that simulates regulatory consequences of non-coding mutations in real time, combining sequence, chromatin, motif logic, and TF networks with step-by-step rationale.</p>
+                        <div class="archive-links">
+                            <a href="https://www.kaggle.com/competitions/gemini-3/writeups/regulonforge" target="_blank" class="archive-link">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+                                Writeup
+                            </a>
+                            <a href="https://youtu.be/3CVm8JKtU0s" target="_blank" class="archive-link">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                Demo
+                            </a>
+                            <a href="https://ai.studio/apps/drive/1QhTfvzqrIJF-bQifbaSLqF6Qx4xmuj-k?fullscreenApplet=true" target="_blank" class="archive-link">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
+                                Try It
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="archive-item reveal" style="transition-delay: 0.2s;">
                     <div class="archive-image"><img src="assets/oncydra-image.png" alt="Oncydra"></div>
                     <div class="archive-content">
                         <h4>Oncydra</h4>
@@ -537,7 +561,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="archive-item reveal" style="transition-delay: 0.2s;">
+                <div class="archive-item reveal" style="transition-delay: 0.3s;">
                     <div class="archive-image"><img src="assets/healthcallpilot-image.png" alt="HealthCallPilot"></div>
                     <div class="archive-content">
                         <h4>HealthCallPilot</h4>
@@ -554,7 +578,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="archive-item reveal" style="transition-delay: 0.3s;">
+                <div class="archive-item reveal" style="transition-delay: 0.4s;">
                     <div class="archive-image"><img src="assets/alphamimic-image.png" alt="AlphaMimic"></div>
                     <div class="archive-content">
                         <h4>AlphaMimic</h4>
@@ -571,7 +595,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="archive-item reveal" style="transition-delay: 0.4s;">
+                <div class="archive-item reveal" style="transition-delay: 0.5s;">
                     <div class="archive-image"><img src="assets/oncosynth-image.png" alt="OncoSynth"></div>
                     <div class="archive-content">
                         <h4>OncoSynth</h4>
@@ -584,7 +608,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="archive-item reveal" style="transition-delay: 0.5s;">
+                <div class="archive-item reveal" style="transition-delay: 0.6s;">
                     <div class="archive-image"><img src="assets/core-image.png" alt="C.O.R.E."></div>
                     <div class="archive-content">
                         <h4>C.O.R.E.</h4>
