@@ -1,0 +1,25 @@
+# --- build output ---
+dist/
+.astro/
+
+# --- dependencies ---
+node_modules/
+
+# --- logs / env ---
+npm-debug.log*
+.env
+.env.production
+
+# --- macOS / iCloud ---
+.DS_Store
+**/.DS_Store
+Icon?
+
+# --- working + private material (kept locally, never committed) ---
+# source decks, CVs, fellowship docs, journal-club PDFs, AI-image staging,
+# reference screenshots, concept art, and the legacy single-file site.
+_local/
+
+# --- remotion ---
+video/node_modules/
+video/out/

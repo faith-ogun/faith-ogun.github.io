@@ -2,20 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ImgSlot from '../components/ImgSlot.astro';
 
-// date is ISO for sorting; display is what shows. img: drop a path later to replace the placeholder.
+// date is ISO for sorting; display is what shows. links: array of { href, label }.
 const news = [
-  { date: '2026-05-27', display: 'May 2026', title: 'Presented at the AICC Annual Symposium', venue: 'Using Neural Networks and Foundation Models to Understand Gene Regulation in the MCF-7 Breast Cancer Cell Line', tag: 'Talk', link: { href: 'https://allirelandchromatinconsortium.ie/annual-meeting/', label: 'Event' }, img: '', featured: true },
-  { date: '2026-04-20', display: 'Apr 2026', title: 'Honourable Mention, 11,885 participants — Relay', venue: 'Google Gemini Live Agent Challenge', tag: 'Award', link: { href: 'https://devpost.com/software/relay-real-time-voice-vision-lab-tutor-for-electronics', label: 'Devpost' }, img: '' },
-  { date: '2026-04-15', display: 'Apr 2026', title: 'Accepted to Imperial Robotics Summer School 2026', venue: 'Imperial College London · 20–24 July 2026', tag: 'Programme', link: { href: 'https://www.imperial.ac.uk/robotics/imperial-robotics-summer-school/programme/', label: 'Programme' }, img: '' },
-  { date: '2026-04-10', display: 'Apr 2026', title: 'France Excellence Research Residency Grant (€1,704)', venue: 'French Embassy in Ireland · 9 laureates nationally · one-month residency at Institut Curie (CUBIC)', tag: 'Grant', link: { href: 'https://ie.diplomatie.gouv.fr/en/results-2026-france-excellence-research-residency-grant', label: 'Results' }, img: '' },
-  { date: '2026-03-20', display: 'Mar 2026', title: 'Selected for the Harvard Health Systems Innovation Lab Hackathon', venue: 'Harvard University · 125 participants selected from 2,000+ applications', tag: 'Selection', link: null, img: '' },
-  { date: '2026-03-10', display: 'Mar 2026', title: 'Top 50 Winner, 4,097 submissions — RegulonForge', venue: 'Google DeepMind Vibe Code with Gemini 3 Pro Hackathon', tag: 'Award', link: { href: 'https://www.kaggle.com/competitions/gemini-3/writeups/regulonforge', label: 'Writeup' }, img: '' },
-  { date: '2026-02-15', display: 'Feb 2026', title: '4th Place Finalist, 1,500 participants — HealthCallPilot', venue: 'Hack-Nation 4th Edition · ElevenLabs Track', tag: 'Award', link: null, img: '' },
-  { date: '2025-10-25', display: 'Oct 2025', title: "Dean's Honours List — ranked 2nd in cohort (Salutatorian)", venue: 'Dublin City University', tag: 'Honour', link: null, img: '' },
-  { date: '2025-10-20', display: 'Oct 2025', title: 'Google Ireland Hackathon by BGN — TestBuddy (2nd Place)', venue: 'Google Ireland · 500+ applicants', tag: 'Award', link: null, img: '' },
-  { date: '2025-10-10', display: 'Oct 2025', title: 'Perfect 30/30 at the Conway Institute Festival', venue: 'BioSLATE poster commendation', tag: 'Award', link: null, img: '' },
-  { date: '2025-08-15', display: 'Aug 2025', title: 'Best Lay Presentation Award', venue: 'Breakthrough Cancer Research', tag: 'Award', link: null, img: '' },
-  { date: '2025-06-15', display: 'Jun 2025', title: 'Research Ireland Postgraduate Grant (€136,000)', venue: 'Nationally competitive award · 18% success rate', tag: 'Grant', link: null, img: '' },
+  { date: '2026-05-27', display: 'May 2026', title: 'Presented at the AICC Annual Symposium', venue: 'Using Neural Networks and Foundation Models to Understand Gene Regulation in the MCF-7 Breast Cancer Cell Line', tag: 'Talk', img: '/assets/news/aicc_poster.jpeg', featured: true, links: [{ href: 'https://allirelandchromatinconsortium.ie/annual-meeting/', label: 'Event' }] },
+  { date: '2026-04-20', display: 'Apr 2026', title: 'Honourable Mention, 11,885 participants — Relay', venue: 'Google Gemini Live Agent Challenge', tag: 'Award', img: '/assets/news/relay-honorable-mention.png', links: [{ href: 'https://devpost.com/software/relay-real-time-voice-vision-lab-tutor-for-electronics', label: 'Devpost' }, { href: 'https://www.linkedin.com/feed/update/urn:li:activity:7468137194097053696/', label: 'LinkedIn' }] },
+  { date: '2026-04-15', display: 'Apr 2026', title: 'Accepted to Imperial Robotics Summer School 2026', venue: 'Imperial College London · 20–24 July 2026', tag: 'Programme', img: '/assets/news/imerial-robotics.png', links: [{ href: 'https://www.imperial.ac.uk/robotics/imperial-robotics-summer-school/programme/', label: 'Programme' }, { href: 'https://www.linkedin.com/feed/update/urn:li:activity:7454423116253913088/', label: 'LinkedIn' }] },
+  { date: '2026-04-10', display: 'Apr 2026', title: 'France Excellence Research Residency Grant (€1,704)', venue: 'French Embassy in Ireland · 9 laureates nationally · one-month residency at Institut Curie (CUBIC)', tag: 'Grant', img: '/assets/news/france-excellence.png', links: [{ href: 'https://ie.diplomatie.gouv.fr/en/results-2026-france-excellence-research-residency-grant', label: 'Results' }, { href: 'https://www.linkedin.com/feed/update/urn:li:activity:7447553955448000512/', label: 'LinkedIn' }] },
+  { date: '2026-03-20', display: 'Mar 2026', title: 'Selected for the Harvard Health Systems Innovation Lab Hackathon', venue: 'Harvard University · 125 participants selected from 2,000+ applications', tag: 'Selection', img: '/assets/news/harvard-health-systems-image.jpeg', links: [{ href: 'https://www.linkedin.com/feed/update/urn:li:activity:7449460695865278464/', label: 'LinkedIn' }] },
+  { date: '2026-03-10', display: 'Mar 2026', title: 'Top 50 Winner, 4,097 submissions — RegulonForge', venue: 'Google DeepMind Vibe Code with Gemini 3 Pro Hackathon', tag: 'Award', img: '/assets/news/regulon-forge.png', links: [{ href: 'https://www.kaggle.com/competitions/gemini-3/writeups/regulonforge', label: 'Writeup' }] },
+  { date: '2026-02-15', display: 'Feb 2026', title: '4th Place Finalist, 1,500 participants — HealthCallPilot', venue: 'Hack-Nation 4th Edition · ElevenLabs Track', tag: 'Award', img: '/assets/news/healthcallpilot-image.png', links: [] },
+  { date: '2025-10-25', display: 'Oct 2025', title: "Dean's Honours List — ranked 2nd in cohort (Salutatorian)", venue: 'Dublin City University', tag: 'Honour', img: '/assets/news/Deans.png', links: [] },
+  { date: '2025-10-20', display: 'Oct 2025', title: 'Google Ireland Hackathon by BGN — TestBuddy (2nd Place)', venue: 'Google Ireland · 500+ applicants', tag: 'Award', img: '/assets/news/google-hackathon.jpeg', links: [{ href: 'https://www.linkedin.com/feed/update/urn:li:activity:7386066213094830080/', label: 'LinkedIn' }] },
+  { date: '2025-10-10', display: 'Oct 2025', title: 'Perfect 30/30 at the Conway Institute Festival', venue: 'BioSLATE poster commendation', tag: 'Award', img: '/assets/news/conway.jpeg', links: [{ href: 'https://www.linkedin.com/posts/faith-ogundimu_thrilled-to-share-that-the-poster-i-presented-activity-7379793537678090240-22VR', label: 'LinkedIn' }] },
+  { date: '2025-08-15', display: 'Aug 2025', title: 'Best Lay Presentation Award', venue: 'Breakthrough Cancer Research', tag: 'Award', img: '/assets/news/best-lay.jpeg', links: [{ href: 'https://www.linkedin.com/posts/faith-ogundimu_syntheticlethality-ovariancancer-precisiononcology-activity-7368648724866158592-ujIM', label: 'LinkedIn' }] },
+  { date: '2025-06-15', display: 'Jun 2025', title: 'Research Ireland Postgraduate Grant (€136,000)', venue: 'Nationally competitive award · 18% success rate', tag: 'Grant', img: '/assets/news/government-of-ireland.png', links: [{ href: 'https://www.rcsi.com/dublin/news-and-events/news/news-article/2026/03/researchers-secure-early-career-funding-boost-in-research-ireland-government-of-ireland-programme', label: 'RCSI News' }] },
 ];
 
 const featured = news.find((n) => n.featured);
@@ -42,8 +42,10 @@ const rest = news.filter((n) => !n.featured);
             <div class="news-card-meta"><span class="news-tag">{featured.tag}</span><span>{featured.display}</span></div>
             <h2 class="news-feature-title display">{featured.title}</h2>
             <p class="news-feature-venue">{featured.venue}</p>
-            {featured.link && <a href={featured.link.href} target="_blank" rel="noopener" class="news-link">{featured.link.label}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>}
+            <div class="news-links">{featured.links.map((l) => (
+              <a href={l.href} target="_blank" rel="noopener" class="news-link">{l.label}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+            ))}</div>
           </div>
         </article>
       )}
@@ -56,8 +58,10 @@ const rest = news.filter((n) => !n.featured);
               <div class="news-card-meta"><span class="news-tag">{n.tag}</span><span>{n.display}</span></div>
               <h3 class="news-card-title">{n.title}</h3>
               <p class="news-card-venue">{n.venue}</p>
-              {n.link && <a href={n.link.href} target="_blank" rel="noopener" class="news-link">{n.link.label}
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>}
+              <div class="news-links">{n.links.map((l) => (
+                <a href={l.href} target="_blank" rel="noopener" class="news-link">{l.label}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+              ))}</div>
             </div>
           </article>
         ))}
@@ -75,7 +79,8 @@ const rest = news.filter((n) => !n.featured);
   .news-page { padding-top: 1.5rem; }
   .news-card-meta { display: flex; align-items: center; gap: 0.7rem; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.7rem; }
   .news-tag { color: var(--accent); border: 1px solid var(--accent-soft); background: var(--accent-soft); padding: 0.2rem 0.55rem; border-radius: 999px; }
-  .news-link { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue-primary); margin-top: 0.9rem; }
+  .news-links { display: flex; flex-wrap: wrap; gap: 1.1rem; margin-top: 0.9rem; }
+  .news-link { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue-primary); }
   .news-link svg { width: 13px; height: 13px; transition: transform 0.3s var(--ease); }
   .news-link:hover { color: var(--accent); }
   .news-link:hover svg { transform: translate(2px, -2px); }
