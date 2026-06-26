@@ -1,0 +1,508 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Engraving from '../components/Engraving.astro';
+import Icon from '../components/Icon.astro';
+import Tear from '../components/Tear.astro';
+
+const stats = [
+  { value: '2nd', label: 'Salutatorian', tone: 'indigo' },
+  { value: '€150k+', label: 'Research funding<br>won', tone: 'coral' },
+  { value: '35+', label: 'AI agents<br>built', tone: 'indigo' },
+  { value: '4×', label: 'Hackathon<br>winner', tone: 'indigo' },
+];
+
+const projects = [
+  { img: 'lit-review-image.png', name: 'Non-coding Cancer Genome', cap: 'Review · npj Genomic Medicine', href: '/research' },
+  { img: 'bioslate-image.png', name: 'BioSLATE', cap: 'Synthetic lethality in HGSOC', href: '/research' },
+  { img: 'final-year-image.png', name: 'Gene Regulation in MCF-7', cap: 'Neural networks · dissertation', href: '/research' },
+];
+
+const collection = [
+  { icon: 'research', n: '01', href: '/research', title: 'Research', blurb: 'Non-coding drivers, deep learning, 3D regulatory maps.' },
+  { icon: 'projects', n: '02', href: '/projects', title: 'Projects', blurb: 'Award-winning AI for medicine, end to end.' },
+  { icon: 'journal', n: '03', href: '/blog', title: 'Journal Club', blurb: 'Deep reads linking landmark papers to my own work.' },
+  { icon: 'startup', n: '04', href: '/startup', title: 'Startup Corner', blurb: 'Building in public, from the bench outward.' },
+];
+
+const themes = [
+  { icon: 'genome', title: 'Non-Coding Driver Mutations', desc: 'Investigating the 98% non-coding genome to find regulatory mutations that drive breast cancer progression, using >5,000 whole genomes from TCGA and ICGC.' },
+  { icon: 'network', title: 'Deep Learning for Genomics', desc: 'Developing CNNs, GNNs, MLPs and Hidden Markov Models to predict chromatin accessibility and prioritise candidate driver mutations from multi-omics data.' },
+  { icon: 'map3d', title: '3D Regulatory Mapping', desc: 'Building breast tissue-specific regulatory maps by integrating single-cell ATAC-seq, spatial transcriptomics and ENCODE regulatory elements.' },
+  { icon: 'robotics', title: 'Surgical Robotics & Embedded AI', desc: 'Exploring Arduino and ESP32 prototyping as a practical bridge from machine learning research into surgical robotics and autonomy workflows.', status: 'Currently exploring' },
+];
+
+const news = [
+  { date: 'May 2026', title: 'Presented at the AICC Annual Symposium', venue: 'Neural networks and foundation models for gene regulation in MCF-7.' },
+  { date: 'Apr 2026', title: 'Honourable Mention, 11,885 participants', venue: 'Google Gemini Live Agent Challenge, project Relay.' },
+  { date: 'Apr 2026', title: 'France Excellence Research Residency', venue: 'Nine laureates nationally, one month at Institut Curie.' },
+];
+---
+<BaseLayout>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <img class="hero-img hero-img-right" src="/assets/illus/hero-right.png" alt="Collage of a cell, robotic micromanipulation and DNA read by machines" />
+    <img class="hero-img hero-img-left" src="/assets/illus/hero-left.png" alt="Collage of a chromosome, a cell and molecular structures" />
+    <div class="container">
+      <div class="hero-copy">
+        <p class="eyebrow">Government of Ireland Postgraduate Scholar · RCSI</p>
+        <h1 class="hero-title display">Decoding the <span class="nc squiggle">non&#8209;coding</span><span class="dot">.</span></h1>
+        <p class="hero-tag">Making the 98% of the genome we usually ignore finally legible.</p>
+        <div class="hero-cta">
+          <a href="#premise" class="btn btn-indigo">
+            Take a look
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <a href="#premise" class="scroll-cue" aria-label="Scroll down">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </a>
+  </section>
+
+  <!-- ===================== PREMISE (continuous white) ===================== -->
+  <section id="premise" class="premise">
+    <img class="premise-img" src="/assets/illus/the-premise-right-v2.jpg" alt="Collage of a chromosome, microscope, robotic arm and lab glassware" />
+    <img class="premise-img-left" src="/assets/illus/the-premise-left.png" alt="Chromatin beads-on-a-string structure trailing in" />
+    <div class="container premise-grid">
+      <div class="premise-copy reveal">
+        <p class="eyebrow">The premise</p>
+        <h2 class="premise-title display">Reading the genome's <span class="nc squiggle">dark matter</span>.</h2>
+        <p class="premise-text">Most of the genome doesn't code for proteins. I'm convinced that's exactly where the most interesting answers in cancer are hiding.</p>
+        <p class="premise-text">So I build the tools to read it: deep learning, epigenomics and large-scale multi-omics, turned on the 98% we usually skip.</p>
+        <a href="/research" class="btn btn-indigo">
+          Explore the research
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="band-spacer" aria-hidden="true"></div>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" class="about bg-paper-2">
+    <div class="container about-grid">
+      <figure class="about-photo reveal-left">
+        <img src="/assets/faith-about-1.jpg" alt="Faith Ogundimu" loading="lazy" />
+      </figure>
+      <div class="about-body reveal">
+        <p class="eyebrow">About me</p>
+        <h2 class="section-title">Building the bridge between <span class="nc squiggle">code</span> and <span class="tcoral">cure</span>.</h2>
+        <p class="about-text">I'm a PhD researcher at the <strong>Royal College of Surgeons in Ireland</strong>, investigating non-coding driver mutations in breast cancer using large-scale genomic datasets including TCGA, ICGC and ENCODE.</p>
+        <p class="about-text">My work applies <strong>deep learning</strong> and integrative computational approaches, from CNNs and multilayer perceptrons to Hidden Markov Models, to find functional variants in regulatory elements and uncover new therapeutic vulnerabilities.</p>
+        <p class="about-text">I completed my B.Sc. in Genetics and Cell Biology at Dublin City University with <strong>First Class Honours</strong>, ranking 2nd in my cohort (Salutatorian) and earning a place on the Dean's Honours List.</p>
+
+        <div class="about-stats">
+          {stats.map((s) => (
+            <div class:list={['about-stat', s.tone]}>
+              <span class="stat-val display">{s.value}</span>
+              <span class="stat-label" set:html={s.label}></span>
+            </div>
+          ))}
+        </div>
+
+        <div class="about-actions">
+          <a href="mailto:faithogundimu25@rcsi.ie" class="btn btn-indigo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            Get in touch
+          </a>
+          <a href="/assets/Faith_Ogundimu_CV.pdf" target="_blank" class="btn btn-ghost">View CV</a>
+          <div class="about-social">
+            <a href="https://github.com/faith-ogun" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/faith-ogundimu" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RESEARCH THEMES ===================== -->
+  <section class="themes">
+    <div class="container">
+      <div class="fn-head reveal" style="text-align:center">
+        <p class="eyebrow" style="justify-content:center">Research focus</p>
+        <h2 class="section-title">My research <span class="squiggle">themes</span>.</h2>
+      </div>
+      <div class="themes-grid">
+        {themes.map((t, i) => (
+          <div class="theme-card spec-card reveal" style={`transition-delay:${i * 0.07}s`}>
+            <span class="theme-icon"><Icon name={t.icon as any} /></span>
+            <h3 class="theme-title">{t.title}</h3>
+            <p class="theme-desc">{t.desc}</p>
+            {t.status && <span class="theme-status">{t.status}</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Tear fill="var(--night)" bg="#ffffff" />
+
+  <!-- ===================== FEATURED + PROJECTS (dark) ===================== -->
+  <section class="showcase bg-night has-illos">
+    <Engraving name="moth" class="illo float" style="--rot:-10deg; top:6%; left:4%; width:110px; opacity:0.16;" />
+
+    <div class="container show-featured">
+      <div class="show-copy reveal-left">
+        <p class="eyebrow light">Featured</p>
+        <h2 class="show-title display">RegulonForge</h2>
+        <p class="show-tag">Top 50 of 4,097 · Google DeepMind Vibe Code Hackathon</p>
+        <p class="show-desc">
+          An AI system that simulates what a non-coding mutation actually <em>does</em>. It folds
+          sequence, chromatin, motif logic and transcription-factor networks into a step-by-step
+          mechanistic hypothesis, in real time. Built on Gemini 3 Pro.
+        </p>
+        <a href="https://www.kaggle.com/competitions/gemini-3/writeups/regulonforge" target="_blank" rel="noopener" class="btn btn-paper">Read the write-up</a>
+      </div>
+      <div class="show-video reveal-scale">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/3CVm8JKtU0s"
+            title="RegulonForge demo"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="container show-projects">
+      <div class="show-projects-head reveal">
+        <h3 class="sp-title display">Research &amp; <span class="tindigo-light">publications</span></h3>
+      </div>
+      <div class="roundel-row">
+        {projects.map((p, i) => (
+          <a href={p.href} class="roundel-card reveal-scale" style={`transition-delay:${i * 0.1}s`}>
+            <div class="roundel"><img src={`/assets/${p.img}`} alt={p.name} loading="lazy" /></div>
+            <span class="roundel-name">{p.name}</span>
+            <span class="roundel-cap">{p.cap}</span>
+          </a>
+        ))}
+      </div>
+      <div class="show-more">
+        <a href="/research" class="btn btn-ghost light">See research</a>
+      </div>
+    </div>
+  </section>
+
+  <Tear fill="var(--night)" flip={true} bg="var(--paper-2)" />
+
+  <!-- ===================== THE COLLECTION (gateway) ===================== -->
+  <section class="collection has-illos bg-paper-2">
+    <Engraving name="flask" class="illo float slow" style="--rot:7deg; top:10%; left:5%; width:82px;" />
+    <Engraving name="chip" class="illo indigo float" style="--rot:-6deg; bottom:12%; right:5%; width:82px;" />
+    <div class="container">
+      <div class="fn-head reveal">
+        <p class="eyebrow">The collection</p>
+        <h2 class="section-title">Where to <span class="squiggle">next</span>.</h2>
+      </div>
+      <div class="coll-grid">
+        {collection.map((c, i) => (
+          <a href={c.href} class="coll-card spec-card reveal" style={`transition-delay:${i * 0.06}s`}>
+            <span class="coll-icon"><Icon name={c.icon as any} /></span>
+            <span class="coll-n">{c.n}</span>
+            <span class="coll-title">{c.title}</span>
+            <span class="coll-blurb">{c.blurb}</span>
+            <span class="coll-go">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RECENT DISPATCHES (flush image left + list right) ===================== -->
+  <section class="dispatch">
+    <img class="dispatch-img" src="/assets/illus/news-left-flush.jpg" alt="Collage of a chromosome, regulatory tracks and a circuit board" />
+    <div class="container dispatch-grid">
+      <div aria-hidden="true"></div>
+      <div class="dispatch-body">
+        <div class="dispatch-head reveal">
+          <p class="eyebrow">Latest</p>
+          <h2 class="section-title">Recent <span class="squiggle">dispatches</span>.</h2>
+        </div>
+        <div class="news-list">
+          {news.map((n, i) => (
+            <div class="news-card spec-card reveal" style={`transition-delay:${i * 0.07}s`}>
+              <span class="news-date">{n.date}</span>
+              <span class="news-title">{n.title}</span>
+              <span class="news-venue">{n.venue}</span>
+            </div>
+          ))}
+        </div>
+        <a href="/news" class="btn btn-ghost news-more">See all news</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CALLOUT (image bg + contact + map) ===================== -->
+  <section class="callout">
+    <img class="callout-bg" src="/assets/illus/bottom-cta-image.jpg" alt="" aria-hidden="true" />
+    <div class="container callout-inner reveal">
+      <p class="eyebrow center on-indigo">Let's talk</p>
+      <h2 class="callout-title display">Let's decode something<span class="tcoral">.</span></h2>
+      <p class="callout-text">Collaborations, questions, or just curious about the non-coding genome? My inbox is open.</p>
+      <div class="callout-buttons">
+        <a href="mailto:faithogundimu25@rcsi.ie" class="btn btn-accent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          Get in touch
+        </a>
+        <a href="/assets/Faith_Ogundimu_CV.pdf" target="_blank" class="btn btn-outline-light">View CV</a>
+      </div>
+
+      <div class="contact-panel">
+        <div class="contact-info">
+          <div class="ci-row"><span class="ci-label">Research group</span><span class="ci-value">Genomic Oncology Research Group</span></div>
+          <div class="ci-row"><span class="ci-label">Supervisor</span><span class="ci-value">Prof. Simon J. Furney</span></div>
+          <div class="ci-row"><span class="ci-label">Institution</span><span class="ci-value">RCSI University of Medicine and Health Sciences, Dublin</span></div>
+          <div class="ci-row"><span class="ci-label">Email</span><span class="ci-value"><a href="mailto:faithogundimu25@rcsi.ie" class="ulink-light">faithogundimu25@rcsi.ie</a></span></div>
+        </div>
+        <div class="contact-map">
+          <iframe
+            title="RCSI location"
+            src="https://www.google.com/maps?q=RCSI%20University%20of%20Medicine%20and%20Health%20Sciences%2C%20123%20St%20Stephen's%20Green%2C%20Dublin&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ---------------- HERO ---------------- */
+  .hero { position: relative; background: #fff; min-height: clamp(680px, 94vh, 940px); display: flex; align-items: center; overflow: visible; }
+  .hero-img-right { overflow: hidden; }
+  .hero-img { position: absolute; z-index: 1; pointer-events: none; height: auto; }
+  /* fade the inner (on-canvas) edges to transparent so the art dissolves into white
+     instead of ending on a hard rectangular cut */
+  /* dominant right image: full height, flush to the right edge, bleeds left into white */
+  .hero-img-right {
+    top: 0; right: 0; height: 100%; width: 66%; object-fit: cover; object-position: right center;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40%);
+    mask-image: linear-gradient(to right, transparent 0, #000 40%);
+  }
+  .hero-img-left {
+    bottom: -15%; left: 0; width: 48%;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22%), linear-gradient(to left, transparent 0, #000 20%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to bottom, transparent 0, #000 22%), linear-gradient(to left, transparent 0, #000 20%);
+    mask-composite: intersect;
+  }
+  .hero-copy { position: absolute; z-index: 2; left: clamp(2rem, 13vw, 12rem); top: 50%; transform: translateY(-50%); max-width: 38rem; text-align: left; }
+  .hero-cta { justify-content: flex-start; }
+  .hero-title { font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 700; color: var(--ink); margin: 1.3rem 0 1.1rem; max-width: 15ch; text-wrap: balance; line-height: 1.02; }
+  .hero-title .nc { color: var(--blue-primary); font-style: italic; }
+  .hero-title .dot { color: var(--accent); }
+  .hero-tag { font-family: var(--font-display); font-style: italic; font-size: clamp(1.15rem, 2.2vw, 1.5rem); color: var(--ink-2); margin: 0 0 1.9rem; max-width: 30ch; }
+  .hero-cta { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+  .hero-copy > * { opacity: 0; transform: translateY(24px); animation: rise 0.8s var(--ease) forwards; }
+  .hero-copy .eyebrow { animation-delay: 0.05s; }
+  .hero-copy .hero-title { animation-delay: 0.18s; }
+  .hero-copy .hero-tag { animation-delay: 0.34s; }
+  .hero-copy .hero-cta { animation-delay: 0.5s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .hero-specimen figcaption em { font-family: var(--font-display); text-transform: none; font-size: 0.92rem; color: var(--ink-2); letter-spacing: 0; }
+
+  .scroll-cue { position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.35rem; color: var(--ink-3); z-index: 2; }
+  .scroll-cue span { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; }
+  .scroll-cue svg { width: 18px; height: 18px; animation: bounce 2s infinite; }
+  .scroll-cue:hover { color: var(--accent); }
+  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+  /* ---------------- PREMISE (white, two-column, continuous) ---------------- */
+  .premise { position: relative; background: #fff; overflow: hidden; display: flex; align-items: flex-start; min-height: 100vh; padding-block: clamp(9rem, 17vh, 15rem) clamp(3rem, 7vh, 6rem); }
+  .band-spacer { height: clamp(5rem, 11vh, 9rem); background: #fff; }
+  .premise-img {
+    position: absolute; right: 0; bottom: 0; width: auto; height: min(84vh, 820px); z-index: 1; pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 36%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 36%);
+  }
+  .premise-img-left {
+    position: absolute; left: 0; bottom: 20%; width: 44%; height: auto; z-index: 1; pointer-events: none;
+    -webkit-mask-image: linear-gradient(to left, transparent 0, #000 22%), linear-gradient(to bottom, transparent 0, #000 20%, #000 80%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to left, transparent 0, #000 22%), linear-gradient(to bottom, transparent 0, #000 20%, #000 80%, transparent 100%);
+    mask-composite: intersect;
+  }
+  .premise-grid { position: relative; z-index: 2; }
+  .premise-copy { max-width: 38rem; margin-inline: auto; margin-top: clamp(2rem, 6vh, 5rem); text-align: center; }
+  .premise-text { margin-inline: auto; }
+  .premise-title { font-size: clamp(2rem, 4.6vw, 3.2rem); color: var(--ink); margin: 1rem 0 1.3rem; text-wrap: balance; line-height: 1.08; }
+  .premise-title .nc { color: var(--blue-primary); font-style: italic; }
+  .premise-text { font-size: 1.05rem; color: var(--ink-2); line-height: 1.75; margin-bottom: 1.1rem; width: 42ch; max-width: 100%; text-wrap: pretty; }
+  .premise-copy .btn { margin-top: 0.8rem; }
+
+  /* ---------------- SECTION HEAD (shared) ---------------- */
+  .fn-head { margin-bottom: 2.6rem; }
+  .fn-head .section-title { margin-top: 0.7rem; }
+
+  /* ---------------- ABOUT ---------------- */
+  .about { position: relative; }
+  .about-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+  .about-photo { margin: 0; border-radius: 14px; overflow: hidden; box-shadow: 0 24px 50px rgba(27,27,42,0.16); aspect-ratio: 4/5; }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+  .about-photo:hover img { transform: scale(1.03); }
+  .about-body .section-title { margin: 0.9rem 0 1.4rem; }
+  .about-text { font-size: 1.02rem; color: var(--ink-2); line-height: 1.78; margin-bottom: 1rem; max-width: 54ch; }
+  .about-text strong { color: var(--ink); font-weight: 600; }
+  .about-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9rem; margin: 2rem 0; }
+  .about-stat { display: flex; flex-direction: column; gap: 0.4rem; padding: 1.1rem 1.2rem; background: var(--paper); border: 1.5px solid var(--hairline-strong); border-radius: 14px; transition: border-color 0.35s var(--ease), transform 0.35s var(--ease), box-shadow 0.35s var(--ease); }
+  .about-stat:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 14px 30px rgba(27,27,42,0.1); }
+  .stat-val { font-size: clamp(1.5rem, 3.2vw, 2.1rem); font-weight: 700; line-height: 1; color: var(--blue-primary); }
+  .about-stat.coral .stat-val { color: var(--accent); }
+  .stat-label { font-family: var(--font-mono); font-size: 0.6rem; line-height: 1.5; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); white-space: nowrap; }
+  .about-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .about-social { display: flex; gap: 0.6rem; }
+  .about-social a { width: 44px; height: 44px; display: grid; place-items: center; border: 1.5px solid var(--hairline-strong); border-radius: 50%; color: var(--ink-2); transition: all 0.3s var(--ease); }
+  .about-social a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  /* ---------------- RESEARCH THEMES ---------------- */
+  .themes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin-top: 2.8rem; }
+  .theme-card { display: flex; flex-direction: column; align-items: flex-start; gap: 0.7rem; }
+  .theme-icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; background: var(--blue-pale); color: var(--blue-primary); }
+  .theme-icon :global(svg) { width: 24px; height: 24px; }
+  .theme-card:hover .theme-icon { background: var(--blue-primary); color: #fff; }
+  .theme-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--ink); line-height: 1.25; }
+  .theme-desc { font-size: 0.92rem; color: var(--ink-2); line-height: 1.6; }
+  .theme-status { margin-top: auto; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 0.35rem 0.75rem; }
+
+  /* ---------------- SHOWCASE (dark) ---------------- */
+  .showcase { padding-block: clamp(4rem, 8vh, 7rem); }
+  .show-featured { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+  .show-title { font-size: clamp(2.4rem, 6vw, 3.8rem); font-weight: 700; color: var(--paper); margin: 0.9rem 0 0.5rem; }
+  .show-tag { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 1.3rem; }
+  .show-desc { color: rgba(245,239,227,0.78); font-size: 1.02rem; line-height: 1.75; margin-bottom: 1.6rem; max-width: 46ch; }
+  .show-desc em { color: var(--blue-light); font-style: italic; }
+  .video-frame { position: relative; aspect-ratio: 16/9; border: 2px solid var(--blue-primary); border-radius: 16px; overflow: hidden; background: #000; box-shadow: 0 24px 50px rgba(0,0,0,0.4); }
+  .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-cap { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,239,227,0.6); margin-top: 0.8rem; }
+  .btn-ghost.light { color: var(--paper); border-color: rgba(245,239,227,0.5); }
+  .btn-ghost.light:hover { background: var(--paper); color: var(--ink); }
+
+  .show-projects { margin-top: clamp(3rem, 7vh, 5.5rem); }
+  .show-projects-head { text-align: center; margin-bottom: 2.6rem; }
+  .sp-title { font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--paper); }
+  .sp-title .tindigo-light { color: var(--blue-light); font-style: italic; }
+  .roundel-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 4vw, 3rem); }
+  .roundel-card { display: flex; flex-direction: column; align-items: center; text-align: center; color: var(--paper); }
+  .roundel-card .roundel { width: 100%; color: rgba(245,239,227,0.4); }
+  .roundel-card:hover .roundel { color: var(--blue-light); }
+  .roundel-name { font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; margin-top: 1.1rem; transition: color 0.3s var(--ease); }
+  .roundel-card:hover .roundel-name { color: var(--blue-light); }
+  .roundel-cap { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(245,239,227,0.55); margin-top: 0.35rem; }
+  .show-more { text-align: center; margin-top: 3rem; }
+
+  /* ---------------- COLLECTION (3 + 2 centered) ---------------- */
+  .coll-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin-top: 2.6rem; }
+  .coll-card { display: flex; flex-direction: column; align-items: flex-start; gap: 0.45rem; position: relative; }
+  .coll-icon { width: 46px; height: 46px; color: var(--ink); margin-bottom: 0.4rem; }
+  .coll-icon :global(svg) { width: 100%; height: 100%; }
+  .coll-card:hover .coll-icon { color: var(--blue-primary); }
+  .coll-n { position: absolute; top: 1.1rem; right: 1.3rem; font-family: var(--font-display); font-size: 1.2rem; color: var(--paper-3); }
+  .coll-title { font-family: var(--font-display); font-size: 1.45rem; font-weight: 600; color: var(--ink); transition: color 0.3s var(--ease); }
+  .coll-card:hover .coll-title { color: var(--blue-primary); }
+  .coll-blurb { font-size: 0.9rem; color: var(--ink-2); line-height: 1.55; }
+  .coll-go { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-primary); display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.3rem; }
+  .coll-go svg { width: 14px; height: 14px; transition: transform 0.3s var(--ease); }
+  .coll-card:hover .coll-go svg { transform: translateX(4px); }
+
+  /* ---------------- DISPATCHES (flush image left + list right) ---------------- */
+  .dispatch { position: relative; background: #fff; overflow: hidden; }
+  .dispatch-grid { display: grid; grid-template-columns: 36% 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+  .dispatch-img {
+    position: absolute; left: 0; bottom: 0; height: auto; width: 42%; z-index: 1; pointer-events: none;
+    -webkit-mask-image: linear-gradient(to right, #000 70%, transparent 100%), linear-gradient(to top, #000 88%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, #000 70%, transparent 100%), linear-gradient(to top, #000 88%, transparent 100%);
+    mask-composite: intersect;
+  }
+  .dispatch-grid > div[aria-hidden] { z-index: 0; }
+  .dispatch-body { position: relative; z-index: 2; }
+
+  /* Specimen cabinet */
+  .cabinet-sub { margin-top: 0.8rem; color: var(--ink-2); }
+  .cabinet-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 4vw, 2.6rem); margin-top: 2.8rem; }
+  .plate-card { text-align: center; margin: 0; }
+  .plate { padding: 12px; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 6px; box-shadow: 0 16px 36px rgba(27,27,42,0.14); transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease); }
+  .plate img { width: 100%; aspect-ratio: 4/5; object-fit: contain; background: var(--paper); display: block; border-radius: 2px; }
+  .plate-card:nth-child(odd) .plate { transform: rotate(-1.4deg); }
+  .plate-card:nth-child(even) .plate { transform: rotate(1.4deg); }
+  .plate-card:hover .plate { transform: translateY(-6px) rotate(0); box-shadow: 0 26px 50px rgba(27,27,42,0.2); }
+  .plate-card figcaption { display: flex; flex-direction: column; margin-top: 1rem; }
+  .plate-name { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--ink); }
+  .plate-latin { font-family: var(--font-display); font-style: italic; font-size: 0.85rem; color: var(--ink-3); }
+  .dispatch-head { margin-bottom: 1.8rem; }
+  .dispatch-head .section-title { margin-top: 0.6rem; }
+  .news-list { display: flex; flex-direction: column; gap: 1rem; }
+  .news-card { display: flex; flex-direction: column; gap: 0.4rem; }
+  .news-date { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  .news-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; color: var(--ink); line-height: 1.3; }
+  .news-venue { font-size: 0.92rem; color: var(--ink-2); line-height: 1.5; }
+  .news-more { margin-top: 1.6rem; }
+
+  /* ---------------- CALLOUT (image bg + contact + map) ---------------- */
+  .callout { position: relative; background: var(--night); color: #fff; text-align: center; overflow: hidden; padding-block: clamp(4.5rem, 9vh, 8rem); }
+  .callout-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0; }
+  /* gentle dark veil so centred text stays legible over the artwork */
+  .callout::after { content: ""; position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse at center, rgba(13,16,46,0.55) 0%, rgba(13,16,46,0.15) 55%, transparent 100%); }
+  .callout-inner { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; position: relative; z-index: 2; }
+  .eyebrow.on-indigo { color: rgba(255,255,255,0.85); }
+  .eyebrow.on-indigo::before { background: rgba(255,255,255,0.85); }
+  .callout-title { font-size: clamp(2.2rem, 5.5vw, 3.4rem); font-weight: 700; color: #fff; }
+  .callout-text { color: rgba(255,255,255,0.85); max-width: 48ch; font-size: 1.05rem; }
+  .callout-buttons { display: flex; gap: 0.9rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+  .btn-outline-light { background: transparent; color: #fff; border-color: rgba(255,255,255,0.6); }
+  .btn-outline-light:hover { background: #fff; color: var(--blue-primary); }
+
+  /* contact panel: details + map, on a translucent dark card over the artwork */
+  .contact-panel {
+    margin-top: 2.6rem; width: 100%; max-width: 920px; display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; border-radius: 16px; overflow: hidden; text-align: left;
+    background: rgba(15, 17, 40, 0.66); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.14); box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  }
+  .contact-info { padding: 1.8rem 2rem; display: flex; flex-direction: column; gap: 1.1rem; }
+  .ci-row { display: flex; flex-direction: column; gap: 0.2rem; }
+  .ci-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-light); }
+  .ci-value { font-size: 0.98rem; color: rgba(255,255,255,0.92); line-height: 1.4; }
+  .ulink-light { color: #fff; border-bottom: 1px solid var(--accent); }
+  .ulink-light:hover { color: var(--accent); }
+  .contact-map { min-height: 260px; }
+  .contact-map iframe { width: 100%; height: 100%; border: 0; display: block; filter: grayscale(0.2) contrast(1.05); }
+
+  @media (max-width: 760px) {
+    .contact-panel { grid-template-columns: 1fr; }
+    .contact-map { min-height: 220px; }
+  }
+
+  /* ---------------- RESPONSIVE ---------------- */
+  @media (max-width: 960px) {
+    .hero { min-height: auto; padding-block: 7rem 3rem; }
+    .hero-copy { position: static; transform: none; left: auto; top: auto; max-width: 100%; }
+    .hero-img-right { width: 90%; opacity: 0.16; }
+    .hero-img-left { display: none; }
+    .premise-img { width: 72%; opacity: 0.12; }
+    .premise-img-left { display: none; }
+    .premise-copy { max-width: 100%; }
+    .show-featured { grid-template-columns: 1fr; }
+    .roundel-row { grid-template-columns: 1fr; max-width: 320px; margin-inline: auto; gap: 2.5rem; }
+    .dispatch-grid { grid-template-columns: 1fr; }
+    .dispatch-img { width: 72%; opacity: 0.14; }
+    .themes-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .coll-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-photo { max-width: 360px; margin-inline: auto; }
+    .about-stats { grid-template-columns: repeat(2, 1fr); }
+    .scroll-cue { display: none; }
+    .illo { display: none; }
+  }
+</style>

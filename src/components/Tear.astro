@@ -1,0 +1,11 @@
+---
+/* Torn / deckle paper edge between sections. `fill` = colour of the torn piece
+   (teeth). `bg` = colour shown in the troughs between teeth (should match the
+   adjacent light section so no stray white shows through). */
+export interface Props { fill?: string; flip?: boolean; bg?: string; }
+const { fill = 'var(--night)', flip = false, bg = 'transparent' } = Astro.props;
+const d = 'M0,28 L0,11 L48,16 L96,5 L150,15 L210,4 L270,13 L330,7 L398,17 L460,6 L520,15 L590,5 L660,16 L726,8 L792,17 L860,5 L928,14 L996,7 L1064,17 L1130,6 L1200,15 L1270,8 L1340,16 L1400,7 L1440,12 L1440,28 Z';
+---
+<span class="tear" style={`background:${bg};${flip ? 'transform: scaleY(-1);' : ''}`} aria-hidden="true">
+  <svg viewBox="0 0 1440 28" preserveAspectRatio="none"><path d={d} fill={fill} /></svg>
+</span>

@@ -1,0 +1,142 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const d = post.data;
+const fmt = (x: Date) => x.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: d.title,
+  description: d.description,
+  datePublished: d.date.toISOString(),
+  dateModified: (d.updated ?? d.date).toISOString(),
+  author: { '@type': 'Person', name: 'Faith Ogundimu', url: 'https://faith-ogun.github.io/#about' },
+  keywords: d.tags.join(', '),
+  mainEntityOfPage: new URL(`/blog/${post.id}/`, Astro.site).href,
+};
+const toc = headings.filter((h) => h.depth === 2);
+---
+<BaseLayout title={`${d.title} — Faith Ogundimu`} description={d.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <article class="post">
+    <header class="post-header">
+      <div class="container-narrow">
+        <a href="/blog/" class="post-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Journal Club
+        </a>
+        <p class="eyebrow">{d.heroKicker ?? 'Journal Club'}</p>
+        <h1 class="post-title display">{d.title}</h1>
+        <p class="post-desc lead">{d.description}</p>
+        <div class="post-meta">
+          <span>{fmt(d.date)}</span>
+          {d.readingTime && <span>· {d.readingTime}</span>}
+          <span>· {d.papers.length} paper{d.papers.length === 1 ? '' : 's'}</span>
+        </div>
+        <div class="post-tags">
+          {d.tags.map((t) => <span class="post-tag">{t}</span>)}
+        </div>
+      </div>
+    </header>
+
+    <div class="post-body container-narrow">
+      {toc.length > 2 && (
+        <nav class="post-toc" aria-label="Contents">
+          <p class="toc-label">In this post</p>
+          <ol>
+            {toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
+          </ol>
+        </nav>
+      )}
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      {d.papers.length > 0 && (
+        <section class="papers">
+          <h2>Papers discussed</h2>
+          <ul class="paper-list">
+            {d.papers.map((p) => (
+              <li class="paper">
+                <span class="paper-title">{p.url ? <a href={p.url} target="_blank" rel="noopener">{p.title}</a> : p.title}</span>
+                <span class="paper-meta">
+                  {[p.authors, p.venue, p.year].filter(Boolean).join(' · ')}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <div class="post-cta">
+        <p>Working on something at the intersection of regulatory genomics and machine learning?</p>
+        <a href="mailto:faithogundimu25@rcsi.ie" class="btn btn-indigo">Get in touch</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post-header { padding-top: clamp(7.5rem, 14vh, 10rem); padding-bottom: 2rem; }
+  .post-back { display: inline-flex; align-items: center; gap: 0.45rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 1.6rem; }
+  .post-back svg { width: 15px; height: 15px; }
+  .post-back:hover { color: var(--accent); }
+  .post-title { font-size: clamp(2.2rem, 5.2vw, 3.6rem); font-weight: 700; line-height: 1.08; color: var(--ink); margin: 1rem 0 1.1rem; }
+  .post-desc { max-width: 60ch; margin-bottom: 1.4rem; }
+  .post-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 1rem; }
+  .post-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .post-tag { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--blue-primary); background: var(--blue-pale); border-radius: 999px; padding: 0.3rem 0.7rem; }
+
+  .post-body { padding-bottom: clamp(4rem, 9vh, 7rem); }
+  .post-toc { border-left: 2px solid var(--blue-pale); padding: 0.4rem 0 0.4rem 1.4rem; margin: 2rem 0 2.5rem; }
+  .toc-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+  .post-toc ol { list-style: none; counter-reset: toc; display: flex; flex-direction: column; gap: 0.4rem; }
+  .post-toc li { counter-increment: toc; font-size: 0.95rem; }
+  .post-toc li::before { content: counter(toc, decimal-leading-zero) "  "; font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3); }
+  .post-toc a { color: var(--ink-2); }
+  .post-toc a:hover { color: var(--blue-primary); }
+
+  /* ---------- PROSE ---------- */
+  .prose { font-size: 1.07rem; line-height: 1.8; color: var(--ink); }
+  .prose :global(h2) { font-family: var(--font-display); font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 600; line-height: 1.2; margin: 2.8rem 0 1rem; scroll-margin-top: 6rem; }
+  .prose :global(h3) { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; margin: 2rem 0 0.8rem; scroll-margin-top: 6rem; }
+  .prose :global(p) { margin-bottom: 1.3rem; }
+  .prose :global(a) { color: var(--blue-primary); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(59,76,202,0.35); }
+  .prose :global(a:hover) { color: var(--accent); text-decoration-color: var(--accent); }
+  .prose :global(strong) { font-weight: 600; }
+  .prose :global(em) { font-style: italic; }
+  .prose :global(ul), .prose :global(ol) { margin: 0 0 1.3rem 1.3rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .prose :global(li) { line-height: 1.7; }
+  .prose :global(blockquote) { border-left: 3px solid var(--accent); padding: 0.4rem 0 0.4rem 1.4rem; margin: 1.8rem 0; font-family: var(--font-display); font-style: italic; font-size: 1.2rem; color: var(--ink-2); }
+  .prose :global(code) { font-family: var(--font-mono); font-size: 0.86em; background: var(--paper-2); padding: 0.12em 0.4em; border-radius: 4px; }
+  .prose :global(hr) { border: 0; height: 1px; background: var(--hairline); margin: 2.5rem 0; }
+  .prose :global(figure) { margin: 2.2rem 0; }
+  .prose :global(figure video), .prose :global(figure img) { width: 100%; border-radius: 14px; border: 1px solid var(--hairline); display: block; background: var(--night); }
+  .prose :global(figcaption) { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.03em; color: var(--ink-3); margin-top: 0.7rem; text-align: center; }
+  /* callout / key-point box */
+  .prose :global(.keypoint) { background: var(--blue-pale); border: 1px solid rgba(59,76,202,0.2); border-radius: 14px; padding: 1.3rem 1.5rem; margin: 1.8rem 0; }
+  .prose :global(.keypoint p:last-child) { margin-bottom: 0; }
+  .prose :global(.keypoint strong) { color: var(--blue-dark); }
+
+  .papers { margin-top: 3rem; border-top: 1px solid var(--hairline); padding-top: 2rem; }
+  .papers h2 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; margin-bottom: 1.2rem; }
+  .paper-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .paper { display: flex; flex-direction: column; gap: 0.25rem; padding-left: 1rem; border-left: 2px solid var(--accent); }
+  .paper-title { font-weight: 600; }
+  .paper-title a { color: var(--blue-primary); }
+  .paper-meta { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-3); }
+
+  .post-cta { margin-top: 3rem; padding: 2rem; background: var(--paper-2); border-radius: 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+  .post-cta p { font-family: var(--font-display); font-size: 1.25rem; color: var(--ink); max-width: 36ch; }
+</style>

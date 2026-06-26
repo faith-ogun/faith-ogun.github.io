@@ -1,0 +1,51 @@
+---
+/* Closing CTA band over the editorial science artwork. Same treatment as the
+   home page; pass buttons. (No map embed here — that lives only on home.) */
+export interface Props {
+  eyebrow?: string;
+  title?: string;
+  text?: string;
+  buttons?: { href: string; label: string; variant?: 'accent' | 'outline'; external?: boolean }[];
+}
+const {
+  eyebrow = "Let's talk",
+  title = "Let's decode something",
+  text = 'Collaborations, questions, or just curious about the non-coding genome? My inbox is open.',
+  buttons = [
+    { href: 'mailto:faithogundimu25@rcsi.ie', label: 'Get in touch', variant: 'accent' },
+    { href: '/blog/', label: 'Read the journal club', variant: 'outline' },
+  ],
+} = Astro.props;
+---
+<section class="bcta">
+  <img class="bcta-bg" src="/assets/illus/bottom-cta-image.jpg" alt="" aria-hidden="true" />
+  <div class="container-narrow bcta-inner reveal">
+    <p class="eyebrow center on-indigo">{eyebrow}</p>
+    <h2 class="bcta-title display">{title}<span class="tcoral">.</span></h2>
+    <p class="bcta-text">{text}</p>
+    <div class="bcta-buttons">
+      {buttons.map((b) => (
+        <a
+          href={b.href}
+          target={b.external ? '_blank' : undefined}
+          rel={b.external ? 'noopener' : undefined}
+          class:list={['btn', b.variant === 'outline' ? 'btn-outline-light' : 'btn-accent']}
+        >{b.label}</a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .bcta { position: relative; background: var(--night); color: #fff; text-align: center; overflow: hidden; padding-block: clamp(5rem, 11vh, 9rem); }
+  .bcta-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0; }
+  .bcta::after { content: ""; position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse at center, rgba(13,16,46,0.55) 0%, rgba(13,16,46,0.15) 55%, transparent 100%); }
+  .bcta-inner { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; position: relative; z-index: 2; }
+  .eyebrow.on-indigo { color: rgba(255,255,255,0.85); }
+  .eyebrow.on-indigo::before { background: rgba(255,255,255,0.85); }
+  .bcta-title { font-size: clamp(2.2rem, 5.5vw, 3.4rem); font-weight: 700; color: #fff; }
+  .bcta-text { color: rgba(255,255,255,0.85); max-width: 48ch; font-size: 1.05rem; }
+  .bcta-buttons { display: flex; gap: 0.9rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+  .btn-outline-light { background: transparent; color: #fff; border-color: rgba(255,255,255,0.6); }
+  .btn-outline-light:hover { background: #fff; color: var(--blue-primary); }
+</style>

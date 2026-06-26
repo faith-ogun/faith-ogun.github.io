@@ -1,0 +1,39 @@
+---
+/* Image slot. If `src` is given it renders the image; otherwise a branded
+   placeholder with a label, so real images can be dropped in later. */
+export interface Props {
+  src?: string;
+  alt?: string;
+  label?: string;
+  ratio?: string;   // e.g. "16/10", "1/1", "4/3"
+  class?: string;
+  rounded?: string; // border-radius
+}
+const { src, alt = '', label = 'Image', ratio = '16/10', class: cls = '', rounded = '14px' } = Astro.props;
+---
+{src ? (
+  <div class:list={['imgslot', cls]} style={`aspect-ratio:${ratio};border-radius:${rounded}`}>
+    <img src={src} alt={alt} loading="lazy" />
+  </div>
+) : (
+  <div class:list={['imgslot', 'is-placeholder', cls]} style={`aspect-ratio:${ratio};border-radius:${rounded}`} role="img" aria-label={`${label} placeholder`}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.6" /><path d="m21 15-5-5L5 21" />
+    </svg>
+    <span>{label}</span>
+  </div>
+)}
+
+<style>
+  .imgslot { overflow: hidden; position: relative; background: var(--paper-2); }
+  .imgslot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s var(--ease); }
+  .imgslot.is-placeholder {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem;
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 11px, rgba(59,76,202,0.04) 11px, rgba(59,76,202,0.04) 22px),
+      var(--blue-pale);
+    border: 1.5px dashed rgba(59,76,202,0.3); color: var(--blue-primary);
+  }
+  .imgslot.is-placeholder svg { width: 30px; height: 30px; opacity: 0.7; }
+  .imgslot.is-placeholder span { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; }
+</style>
