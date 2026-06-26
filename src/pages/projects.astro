@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ImgSlot from '../components/ImgSlot.astro';
+
+const featured = {
+  name: 'RegulonForge', youtubeId: '3CVm8JKtU0s',
+  tagline: 'Top 50 of 4,097 — Google DeepMind Vibe Code Hackathon',
+  desc: 'An AI system that simulates the regulatory consequences of non-coding mutations in real time, combining sequence, chromatin, motif logic and TF networks with step-by-step rationale. Built on Gemini 3 Pro to make the 98% "dark genome" interpretable.',
+  tech: ['Gemini 3 Pro', 'Non-coding genome', 'Chromatin', 'TF networks', 'AI Studio'],
+  links: [
+    { href: 'https://www.kaggle.com/competitions/gemini-3/writeups/regulonforge', label: 'Writeup', primary: true },
+    { href: 'https://youtu.be/3CVm8JKtU0s', label: 'Demo video' },
+    { href: 'https://ai.studio/apps/drive/1QhTfvzqrIJF-bQifbaSLqF6Qx4xmuj-k?fullscreenApplet=true', label: 'Try it' },
+  ],
+};
+
+// badged projects first, then the rest newest-to-oldest
+const archive = [
+  { name: 'Homeward', img: '/assets/homeward-image.png', badges: ['Top 9% · 28 of 313', "CEO's Favourite"],
+    desc: 'Post-surgical recovery agent that tracks patients against procedure-specific timelines and screens post-op medications for drug–gene interactions, distinguishing surgical complications from pharmacogenomic mismatches via CPIC guidelines and ClinVar over an A2A protocol.',
+    links: [{ href: 'https://github.com/faith-ogun/Homeward', label: 'GitHub' }, { href: 'https://app.promptopinion.ai/marketplace/agent/019e0fb7-d3ca-7b51-9fe4-5ed324ce8b24', label: 'Live Agent' }, { href: 'https://youtu.be/dp52AMb6-Ls', label: 'Demo' }] },
+  { name: 'CareSignal', img: '/assets/caresignal-image.png', badges: ['125 of 2,000+ Applicants'],
+    desc: 'Ambient AI care scribe for UK domiciliary care. Structures carer-patient conversations into CQC-compliant notes with 10 structured fields in under 60 seconds, across 9 languages.',
+    links: [{ href: 'https://github.com/faith-ogun/CareSignal', label: 'GitHub' }, { href: 'https://caresignal-hsil.web.app/', label: 'Live Demo' }, { href: '/assets/CareSignal_Branded.pdf', label: 'Slides' }] },
+  { name: 'Relay', img: '/assets/relay-image.png', badges: ['Honourable Mention · 11,885'],
+    desc: 'Real-time multimodal lab assistant for learning electronics. Uses the Gemini Live API with voice + vision to watch your breadboard and guide builds step-by-step, with a 3D digital-twin sandbox.',
+    links: [{ href: 'https://devpost.com/software/relay-real-time-voice-vision-lab-tutor-for-electronics', label: 'Devpost' }, { href: 'https://youtu.be/lTwos-2TW_A', label: 'Demo' }, { href: 'https://relay-gemini.web.app', label: 'Live Demo' }] },
+  { name: 'HealthCallPilot', img: '/assets/healthcallpilot-image.png', badges: ['4th Place Finalist'],
+    desc: 'Agentic voice-AI appointment orchestration with Twilio calling, FastAPI tool-calling, Google Calendar integration and real-time WebSocket dashboards.',
+    links: [{ href: 'https://github.com/faith-ogun/HealthCallPilot', label: 'GitHub' }, { href: 'https://gen-lang-client-0765479704.web.app/', label: 'Live Demo' }] },
+  { name: 'Glüten', img: '/assets/gluten-image.png', badges: [],
+    desc: 'Clinician-facing digital twin for coeliac disease. Converts symptoms into calibrated probability scores and projects personalised trajectories across six biological layers, with fine-tuned Gemma models for Marsh-grade histology and equity-aware confidence.',
+    links: [{ href: 'https://github.com/faith-ogun/Gluten', label: 'GitHub' }, { href: 'https://gluten--gluten-gemma4.europe-west4.hosted.app/app', label: 'Live Demo' }, { href: 'https://youtu.be/-NLvoOBD6O8', label: 'Demo' }] },
+  { name: 'Voxelomics', img: '/assets/voxelomics-image.png', badges: [],
+    desc: 'Offline-first clinical MDT copilot integrating Path Foundation whole-slide embeddings, MedGemma clinical reasoning and MedASR transcription for low-connectivity environments.',
+    links: [{ href: 'https://github.com/faith-ogun/Voxelomics-offline', label: 'GitHub' }, { href: 'https://youtu.be/XvYmUYs7iOk', label: 'Demo' }] },
+  { name: 'Oncydra', img: '/assets/oncydra-image.png', badges: [],
+    desc: 'Voice-first AI oncology platform with 7 Cloud Run microservices and 26+ Google ADK agents for symptom tracking, scheduling and clinical workflow support.',
+    links: [{ href: 'https://github.com/faith-ogun/Oncydra', label: 'GitHub' }, { href: 'https://oncydra.web.app/', label: 'Live Demo' }] },
+  { name: 'AlphaMimic', img: '/assets/alphamimic-image.png', badges: [],
+    desc: 'AI biomimicry research platform with 10 agents and 5 services that converts biological papers into engineering-grade biomimicry packets with provenance-aware design outputs.',
+    links: [{ href: 'https://github.com/faith-ogun/AlphaMimic', label: 'GitHub' }, { href: 'https://gen-lang-client-0564840114.web.app/', label: 'Live Demo' }] },
+  { name: 'OncoSynth', img: '/assets/oncosynth-image.png', badges: [],
+    desc: 'Multi-agent system using CrewAI to automate synthetic-lethality research: literature mining, druggability scoring and clinical-trial linkage.',
+    links: [{ href: 'https://github.com/faith-ogun/oncosynth', label: 'GitHub' }] },
+  { name: 'C.O.R.E.', img: '/assets/core-image.png', badges: [],
+    desc: 'Coordinated Oncology Readiness Engine: a 9-agent system automating cancer MDT case preparation, with a 95% reduction in genomic analysis time.',
+    links: [{ href: 'https://github.com/faith-ogun/CORE-adk-capstone', label: 'GitHub' }, { href: 'https://youtu.be/n4clCxxFzyU', label: 'Demo' }] },
+];
+---
+<BaseLayout
+  title="Projects — Faith Ogundimu"
+  description="Award-winning AI and genomics projects by Faith Ogundimu: RegulonForge, Homeward, CareSignal, Relay and more."
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Projects</p>
+      <h1 class="page-title display">Things I've <span class="nc squiggle">built</span>.</h1>
+      <p class="page-lead lead">Award-winning AI for medicine and the bench, end to end — from non-coding genome simulators to ambient clinical scribes and voice-first oncology agents.</p>
+    </div>
+  </section>
+
+  <!-- FEATURED -->
+  <section class="pfeatured">
+    <div class="container pfeat-grid">
+      <div class="pfeat-visual reveal-scale">
+        <div class="pfeat-video">
+          <iframe
+            src={`https://www.youtube.com/embed/${featured.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${featured.youtubeId}&playsinline=1&rel=0`}
+            title="RegulonForge demo"
+            loading="lazy"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+      <div class="pfeat-body reveal">
+        <p class="eyebrow">Featured project</p>
+        <h2 class="pfeat-name display">{featured.name}</h2>
+        <p class="pfeat-tagline">{featured.tagline}</p>
+        <p class="pfeat-desc">{featured.desc}</p>
+        <div class="pfeat-tech">{featured.tech.map((t) => <span class="tech-tag">{t}</span>)}</div>
+        <div class="pfeat-links">
+          {featured.links.map((l) => (
+            <a href={l.href} target="_blank" rel="noopener" class:list={['btn', l.primary ? 'btn-indigo' : 'btn-ghost']}>{l.label}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHIVE -->
+  <section class="parchive bg-paper-2">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="eyebrow">The archive</p>
+        <h2 class="section-title">Everything <span class="squiggle">else</span>.</h2>
+      </div>
+      <div class="parchive-grid" id="parchive-grid">
+        {archive.map((p, i) => (
+          <article class="pcard reveal" data-i={i}>
+            <ImgSlot src={p.img} alt={p.name} label="Project" ratio="16/10" />
+            <div class="pcard-body">
+              {p.badges.length > 0 && <div class="pcard-badges">{p.badges.map((b) => <span class="pcard-badge">{b}</span>)}</div>}
+              <h3 class="pcard-title">{p.name}</h3>
+              <p class="pcard-desc">{p.desc}</p>
+              <div class="pcard-links">
+                {p.links.map((l) => (
+                  <a href={l.href} target="_blank" rel="noopener" class="pcard-link">{l.label}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="pager" id="proj-pager" hidden>
+        <button class="pager-btn" data-dir="-1" type="button" aria-label="Previous projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="pager-indicator" id="proj-pager-ind">1 / 1</span>
+        <button class="pager-btn" data-dir="1" type="button" aria-label="Next projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const grid = document.getElementById('parchive-grid');
+    const pager = document.getElementById('proj-pager');
+    if (grid && pager) {
+      const cards = Array.from(grid.querySelectorAll('.pcard')) as HTMLElement[];
+      const perPage = 6;
+      const pages = Math.ceil(cards.length / perPage);
+      const ind = document.getElementById('proj-pager-ind')!;
+      const prev = pager.querySelector('[data-dir="-1"]') as HTMLButtonElement;
+      const next = pager.querySelector('[data-dir="1"]') as HTMLButtonElement;
+      let page = 0;
+      const render = () => {
+        const start = page * perPage;
+        cards.forEach((c, i) => {
+          const on = i >= start && i < start + perPage;
+          c.style.display = on ? '' : 'none';
+          if (on) c.classList.add('in');
+        });
+        ind.textContent = `${page + 1} / ${pages}`;
+        prev.disabled = page === 0;
+        next.disabled = page === pages - 1;
+      };
+      if (pages > 1) {
+        pager.hidden = false;
+        prev.addEventListener('click', () => { if (page > 0) { page--; render(); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); } });
+        next.addEventListener('click', () => { if (page < pages - 1) { page++; render(); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); } });
+        render();
+      }
+    }
+  </script>
+</BaseLayout>
+
+<style>
+  .page-hero { padding-top: clamp(8rem, 16vh, 11rem); padding-bottom: clamp(1.5rem, 4vh, 3rem); }
+  .page-title { font-size: clamp(2.6rem, 6.5vw, 4.6rem); font-weight: 700; color: var(--ink); margin: 1.1rem 0 1.1rem; }
+  .page-title .nc { color: var(--blue-primary); font-style: italic; }
+  .page-lead { max-width: 58ch; }
+  .sec-head { margin-bottom: 2.6rem; }
+  .sec-head .section-title { margin-top: 0.7rem; }
+
+  /* FEATURED */
+  .pfeatured { padding-top: 1.5rem; }
+  .pfeat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .pfeat-video { position: relative; aspect-ratio: 16/9; border-radius: 18px; overflow: hidden; background: #000; border: 2px solid var(--blue-primary); box-shadow: 0 24px 50px rgba(27,27,42,0.18); }
+  .pfeat-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .pfeat-name { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 800; color: var(--blue-primary); line-height: 1; margin: 0.8rem 0 0.5rem; }
+  .pfeat-tagline { font-family: var(--font-display); font-style: italic; font-size: 1.1rem; color: var(--ink-2); margin-bottom: 1.2rem; }
+  .pfeat-desc { font-size: 1.04rem; line-height: 1.75; color: var(--ink-2); margin-bottom: 1.4rem; }
+  .pfeat-tech { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.8rem; }
+  .tech-tag { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.04em; padding: 0.45rem 0.9rem; background: var(--blue-pale); border-radius: 6px; color: var(--blue-primary); }
+  .pfeat-links { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+  /* ARCHIVE */
+  .parchive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1.6rem; }
+  .pcard { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--hairline); border-radius: 16px; overflow: hidden; transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease); }
+  .pcard:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(27,27,42,0.08); border-color: rgba(59,76,202,0.2); }
+  .pcard-body { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+  .pcard-badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.7rem; }
+  .pcard-badge { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.03em; font-weight: 600; padding: 0.3rem 0.6rem; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #78350f; border-radius: 999px; }
+  .pcard-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+  .pcard-desc { font-size: 0.92rem; color: var(--ink-2); line-height: 1.6; flex: 1; margin-bottom: 1rem; }
+  .pcard-links { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .pcard-link { display: inline-flex; align-items: center; gap: 0.3rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--blue-primary); }
+  .pcard-link svg { width: 12px; height: 12px; transition: transform 0.3s var(--ease); }
+  .pcard-link:hover { color: var(--accent); }
+  .pcard-link:hover svg { transform: translate(2px, -2px); }
+
+  @media (max-width: 820px) {
+    .pfeat-grid { grid-template-columns: 1fr; }
+    .pfeat-visual { max-width: 460px; }
+  }
+</style>

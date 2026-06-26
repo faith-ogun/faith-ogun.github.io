@@ -1,0 +1,260 @@
+/* =================================================================
+   FAITH OGUNDIMU — EDITORIAL DESIGN SYSTEM
+   Nature/Science cover energy · indigo brand · coral "alive" accent
+   on warm cream paper, engraving-ink tones.
+   ================================================================= */
+
+:root {
+  /* --- Paper / surfaces (white base, cool light panels) --- */
+  --paper: #FFFFFF;          /* white page */
+  --paper-2: #F3F6FB;        /* cool light panels / alt sections */
+  --paper-3: #E6EBF4;        /* light card edge */
+  --paper-ink: #1B1B2A;      /* near-black ink */
+
+  /* --- Brand indigo (kept) --- */
+  --blue-primary: #3B4CCA;
+  --blue-dark: #2A3A99;
+  --blue-light: #6B7CFF;
+  --blue-pale: #E3E2F5;
+
+  /* --- Coral accent — the "alive" colour --- */
+  --accent: #E2553D;
+  --accent-dark: #C23E29;
+  --accent-soft: #F4D9D1;
+
+  /* --- Secondary editorial tone --- */
+  --teal: #2E6E6A;
+
+  /* --- Ink scale --- */
+  --ink: #1B1B2A;
+  --ink-2: #4A4A5C;          /* secondary text */
+  --ink-3: #7C7A85;          /* muted */
+  --hairline: rgba(27, 27, 42, 0.16);
+  --hairline-strong: rgba(27, 27, 42, 0.32);
+
+  /* --- Dark surface (for inverted sections) --- */
+  --night: #16161F;
+  --night-2: #20202C;
+
+  /* --- Type --- */
+  --font-display: 'Playfair Display', Georgia, serif;   /* cover headlines */
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* --- Rhythm --- */
+  --container: 1240px;
+  --container-narrow: 880px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --section-pad: clamp(72px, 11vh, 132px);
+  --radius: 4px;             /* crisp, print-like — minimal rounding */
+  --radius-lg: 8px;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ----------------------------- Reset ----------------------------- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-body);
+  background-color: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg, video { max-width: 100%; display: block; }
+img { height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+::selection { background: var(--accent); color: #fff; }
+
+/* --- Paper grain: subtle tooth for the editorial / print feel --- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+}
+/* keep real content above the grain */
+body > * { position: relative; z-index: 2; }
+
+/* ------------------------- Layout helpers ------------------------ */
+.container { max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.container-narrow { max-width: var(--container-narrow); margin-inline: auto; padding-inline: var(--gutter); }
+section { padding-block: var(--section-pad); position: relative; }
+.bg-paper-2 { background: var(--paper-2); }
+.bg-night { background: var(--night); color: var(--paper); }
+
+/* Editorial hairline rules */
+.rule { height: 1px; background: var(--hairline); border: 0; }
+.rule-ink { height: 2px; background: var(--ink); border: 0; }
+
+/* ------------------------- Typography ---------------------------- */
+.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px; height: 2px;
+  background: var(--blue-primary);
+}
+.eyebrow.center { justify-content: center; }
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.section-title .it { font-style: italic; color: var(--blue-primary); }
+.section-title .indigo { font-style: italic; color: var(--blue-primary); }
+.section-title .coral { font-style: italic; color: var(--accent); }
+.tindigo { color: var(--blue-primary); }
+.tcoral { color: var(--accent); }
+
+.lead {
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+/* ----------------------------- Buttons --------------------------- */
+.btn {
+  --bg: var(--ink);
+  --fg: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.95rem 1.7rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bg);
+  color: var(--fg);
+  border: 1.5px solid var(--bg);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease), color 0.3s var(--ease);
+}
+.btn svg { width: 15px; height: 15px; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(27,27,42,0.18); }
+.btn-accent { --bg: var(--accent); --fg: #fff; }
+.btn-accent:hover { --bg: var(--accent-dark); box-shadow: 0 10px 24px rgba(226,85,61,0.32); }
+.btn-indigo { --bg: var(--blue-primary); --fg: #fff; }
+.btn-indigo:hover { --bg: var(--accent); box-shadow: 0 10px 24px rgba(226,85,61,0.35); }
+.btn-ghost {
+  background: transparent; color: var(--ink); border-color: var(--ink);
+}
+.btn-ghost:hover { background: var(--ink); color: var(--paper); }
+.btn-paper { --bg: var(--paper); --fg: var(--ink); }
+.btn-paper:hover { box-shadow: 0 10px 24px rgba(0,0,0,0.28); }
+
+/* Coral animated underline link */
+.ulink {
+  position: relative;
+  color: var(--ink);
+  font-weight: 600;
+  display: inline-block;
+}
+.ulink::after {
+  content: ""; position: absolute; left: 0; bottom: -2px;
+  width: 100%; height: 2px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+.ulink:hover { color: var(--accent); }
+.ulink:hover::after { transform: scaleX(1); }
+
+/* --------------------- Scroll-reveal choreography ---------------- */
+.reveal { opacity: 0; transform: translateY(34px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal-left.in { opacity: 1; transform: none; }
+.reveal-scale { opacity: 0; transform: scale(0.94); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.reveal-scale.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .reveal, .reveal-left, .reveal-scale { opacity: 1 !important; transform: none !important; }
+}
+
+/* ------------------------- Accessibility ------------------------- */
+.skip-link {
+  position: absolute; left: -999px; top: 0; z-index: 9999;
+  background: var(--ink); color: var(--paper); padding: 0.75rem 1.25rem;
+  font-family: var(--font-mono); font-size: 0.8rem; border-radius: 0 0 var(--radius) 0;
+}
+.skip-link:focus { left: 0; }
+:focus-visible { outline: 2.5px solid var(--accent); outline-offset: 3px; }
+
+/* =================================================================
+   COLLAGE / CABINET-OF-CURIOSITIES HELPERS  (vintage soul)
+   ================================================================= */
+
+/* Scattered engraved line-art in the margins */
+.illo { position: absolute; color: var(--ink); opacity: 0.16; pointer-events: none; z-index: 0; }
+.illo.accent { color: var(--accent); opacity: 0.28; }
+.illo.indigo { color: var(--blue-primary); opacity: 0.22; }
+.illo.float { animation: illo-float 9s var(--ease-soft) infinite; }
+.illo.float.slow { animation-duration: 13s; }
+@keyframes illo-float { 0%,100% { transform: translateY(0) rotate(var(--rot,0deg)); } 50% { transform: translateY(-14px) rotate(calc(var(--rot,0deg) + 2deg)); } }
+.has-illos { position: relative; overflow: hidden; }
+.has-illos > .container, .has-illos > .container-narrow { position: relative; z-index: 1; }
+
+/* Circular specimen images (Bhamla-style project roundels) */
+.roundel { aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 2px solid currentColor; position: relative; }
+.roundel img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+.roundel:hover img { transform: scale(1.06); }
+
+/* Hand-drawn underline accent on a single word */
+.squiggle { position: relative; white-space: nowrap; }
+.squiggle::after {
+  content: ""; position: absolute; left: -2%; right: -2%; bottom: -0.18em; height: 0.32em;
+  background: no-repeat center/100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='12' viewBox='0 0 120 12'%3E%3Cpath d='M2 7 C20 2, 38 11, 58 6 S96 1, 118 6' fill='none' stroke='%23E2553D' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* Outlined "specimen card" (news / index entries) */
+.spec-card {
+  border: 1.5px solid var(--hairline-strong); border-radius: 14px; background: var(--paper);
+  padding: 1.5rem 1.6rem; transition: border-color 0.35s var(--ease), transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.spec-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 16px 34px rgba(27,27,42,0.1); }
+
+/* Torn-paper divider strip */
+.tear { display: block; width: 100%; height: 28px; }
+.tear svg { display: block; width: 100%; height: 100%; }
+
+/* =================================================================
+   PAGER (arrow pagination — blog & projects)
+   ================================================================= */
+.pager { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 3rem; }
+.pager-btn { width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid var(--hairline-strong); background: var(--paper); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s var(--ease); }
+.pager-btn svg { width: 18px; height: 18px; }
+.pager-btn:hover:not(:disabled) { background: var(--blue-primary); border-color: var(--blue-primary); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59,76,202,0.25); }
+.pager-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.pager-indicator { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.08em; color: var(--ink-2); min-width: 3rem; text-align: center; }

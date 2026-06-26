@@ -1,0 +1,215 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import ImgSlot from '../components/ImgSlot.astro';
+import BottomCTA from '../components/BottomCTA.astro';
+
+const themes = [
+  { icon: 'genome', n: '01', title: 'Non-Coding Driver Mutations', img: '/assets/themes/non-coding-driver-mutations.jpg', desc: 'Investigating the 98% non-coding genome to find regulatory mutations that drive breast cancer progression, using more than 5,000 whole genomes from TCGA and ICGC.' },
+  { icon: 'network', n: '02', title: 'Deep Learning for Genomics', img: '/assets/themes/deep-learning-for-genomics.jpg', desc: 'Developing CNNs, GNNs, MLPs and Hidden Markov Models to predict chromatin accessibility and prioritise candidate driver mutations from multi-omics data.' },
+  { icon: 'map3d', n: '03', title: '3D Regulatory Mapping', img: '/assets/themes/3d-regulatory-mapping.png', desc: 'Building breast tissue-specific regulatory maps by integrating single-cell ATAC-seq, spatial transcriptomics and ENCODE regulatory elements.' },
+  { icon: 'robotics', n: '04', title: 'Surgical Robotics & Embedded AI', img: '/assets/themes/surgical-robotics.jpg', desc: 'Exploring Arduino and ESP32 prototyping as a practical bridge from machine learning research into surgical robotics and autonomy workflows.', status: 'Currently exploring' },
+];
+
+const pubs = [
+  {
+    year: '2026', img: '/assets/lit-review-image.png',
+    title: 'Deciphering the Non-coding Cancer Genome through Deep Learning and Multiomic Integration',
+    authors: 'Faith Ogundimu, Simon J. Furney', venue: 'Submitted to npj Genomic Medicine',
+    badges: ['📝 Under review'],
+    links: [{ href: 'https://www.nature.com/collections/cajbhbfeee', label: 'Collection' }],
+  },
+  {
+    year: '2025', img: '/assets/bioslate-image.png',
+    title: 'BioSLATE: Biomarker Selection and Synthetic Lethality Analysis for Therapeutic Exploration in HGSOC',
+    authors: 'Faith Ogundimu, Metin Yazar, Colm J. Ryan', venue: 'Breakthrough Cancer Research Summer Student Scholarship',
+    badges: ['🏅 Best Lay Presentation', '🏅 30/30 Poster'],
+    links: [
+      { href: '/assets/bioslate.pdf', label: 'Paper' },
+      { href: 'https://github.com/faith-ogun/bioslate-hgsoc-core', label: 'Code' },
+      { href: 'https://bioslate.streamlit.app/', label: 'Website' },
+    ],
+  },
+  {
+    year: '2025', img: '/assets/final-year-image.png',
+    title: 'Using Neural Networks and Foundation Models to Understand Gene Regulation in the MCF-7 Breast Cancer Cell Line',
+    authors: 'Faith Ogundimu, Simon J. Furney', venue: 'Final Year Dissertation, Dublin City University',
+    badges: ['🎓 98% Model Accuracy'],
+    links: [
+      { href: '/assets/final-year.pdf', label: 'Paper' },
+      { href: 'https://github.com/faith-ogun/BIO1018-Chromatin-Accessibility-ML', label: 'Code' },
+    ],
+  },
+];
+---
+<BaseLayout
+  title="Research — Faith Ogundimu"
+  description="Research themes and publications: non-coding driver mutations, deep learning for genomics, and 3D regulatory mapping in breast cancer."
+>
+  <!-- PARALLAX HERO -->
+  <section class="rhero parallax" style="--bg: url('/assets/research-parallax-1.jpg');">
+    <div class="rhero-veil"></div>
+    <div class="container rhero-inner">
+      <p class="eyebrow on-dark">Research</p>
+      <h1 class="rhero-title display">Seeing cancer in the genome's <span class="coral">dark matter</span>.</h1>
+      <p class="rhero-lead">I build the computational tools to read the 98% of the genome that doesn't code for proteins, hunting the non-coding driver mutations behind breast cancer.</p>
+    </div>
+  </section>
+
+  <!-- TOPICS on patterned dark background, alternating roundel rows -->
+  <section class="rtopics" style="--pattern: url('/assets/research-pattern.jpg');">
+    <div class="rtopics-veil"></div>
+    <div class="container rtopics-inner">
+      <div class="topics-head reveal">
+        <p class="eyebrow center on-dark">Research focus</p>
+        <h2 class="topics-title display">Threads I'm <span class="coral">pulling</span>.</h2>
+        <p class="topics-sub">Where the epigenome, machine learning and a little curiosity meet cancer medicine.</p>
+      </div>
+
+      <div class="topic-rows">
+        {themes.map((t, i) => (
+          <article class:list={['topic-row', 'reveal', i % 2 === 1 ? 'flip' : '']}>
+            <div class="topic-roundel">
+              <ImgSlot src={t.img} label="Image" ratio="1/1" rounded="50%" class="roundel-img" />
+            </div>
+            <div class="topic-content">
+              <h3 class="topic-title">
+                <span class="topic-icon"><Icon name={t.icon as any} /></span>
+                {t.title}
+              </h3>
+              <p class="topic-desc">{t.desc}</p>
+              {t.status && <span class="topic-status">{t.status}</span>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECOND PARALLAX — why this work matters -->
+  <section class="rwhy parallax" style="--bg: url('/assets/research-parallax-2.jpg');">
+    <div class="rwhy-veil"></div>
+    <div class="container-narrow rwhy-inner reveal">
+      <p class="eyebrow center on-dark">Why this work matters</p>
+      <h2 class="rwhy-title display">Most disease variants hide in the <span class="coral">non-coding</span> genome.</h2>
+      <p class="rwhy-text">Almost every common cancer-risk variant lives in the 98% we used to call junk. If we can finally read it, we can find the mutations that rewire a healthy cell into a tumour, and the vulnerabilities that could treat it. That's the bet my whole PhD is built on.</p>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section class="rpubs">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Publications</p>
+        <h2 class="section-title">Research &amp; <span class="squiggle">publications</span>.</h2>
+      </div>
+      <div class="pub-list">
+        {pubs.map((p, i) => (
+          <article class="pub reveal" style={`transition-delay:${i * 0.06}s`}>
+            <ImgSlot src={p.img} alt={p.title} label="Figure" ratio="4/3" class="pub-img" />
+            <div class="pub-body">
+              <p class="pub-year">{p.year}</p>
+              <h3 class="pub-title">{p.title}</h3>
+              <p class="pub-authors">{p.authors}</p>
+              <p class="pub-venue">{p.venue}</p>
+              <div class="pub-badges">{p.badges.map((b) => <span class="pub-badge">{b}</span>)}</div>
+              <div class="pub-links">
+                {p.links.map((l) => (
+                  <a href={l.href} target="_blank" rel="noopener" class="pub-link">{l.label}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <BottomCTA
+    eyebrow="Let's talk"
+    title="Let's decode something"
+    text="Collaborations, questions, or just curious about the non-coding genome? My inbox is open."
+  />
+</BaseLayout>
+
+<style>
+  /* ---------- shared parallax ---------- */
+  .parallax { position: relative; background-image: var(--bg); background-size: cover; background-position: center; background-attachment: fixed; }
+  @media (hover: none) { .parallax { background-attachment: scroll; } }
+
+  /* ---------- PARALLAX HERO ---------- */
+  .rhero { min-height: clamp(540px, 86vh, 800px); display: flex; align-items: flex-end; overflow: hidden; }
+  .rhero-veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,12,34,0.6) 0%, rgba(10,12,34,0.45) 40%, rgba(10,12,34,0.96) 100%); }
+  .rhero-inner { position: relative; z-index: 2; padding-bottom: clamp(3rem, 8vh, 6rem); padding-top: 10rem; }
+  .eyebrow.on-dark { color: #fff; }
+  .eyebrow.on-dark::before { background: #fff; }
+  .rhero-title { font-size: clamp(2.4rem, 6vw, 4.6rem); font-weight: 700; line-height: 1.05; color: #fff; margin: 1rem 0 1.1rem; max-width: 18ch; text-shadow: 0 2px 30px rgba(0,0,0,0.5); }
+  .rhero-title .coral { color: var(--accent); font-style: italic; }
+  .rhero-lead { font-size: 1.08rem; color: rgba(255,255,255,0.9); max-width: 56ch; line-height: 1.7; text-shadow: 0 1px 16px rgba(0,0,0,0.5); }
+
+  /* ---------- TOPICS (dark patterned bg, alternating roundel rows) ---------- */
+  .rtopics { position: relative; background: var(--night); background-image: var(--pattern); background-size: 760px auto; background-position: center; }
+  .rtopics-veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,16,46,0.82), rgba(13,16,46,0.9)); }
+  .rtopics-inner { position: relative; z-index: 2; }
+  .topics-head { text-align: center; margin-bottom: clamp(2.5rem, 6vh, 4.5rem); }
+  .topics-title { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; color: #fff; margin-top: 0.7rem; }
+  .topics-title .coral { color: var(--accent); font-style: italic; }
+  .topics-sub { font-size: 1.05rem; color: rgba(255,255,255,0.7); max-width: 52ch; margin: 0.9rem auto 0; }
+
+  .topic-rows { display: flex; flex-direction: column; gap: clamp(2rem, 5vh, 4rem); max-width: 980px; margin-inline: auto; }
+  /* roundel sits on the OUTER edge, text fills the inner side; alternate sides.
+     grid-row:1 on both keeps them on the SAME row (default flow would push the
+     reordered item to the next row). */
+  .topic-row { display: grid; grid-template-columns: 300px 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .topic-row .topic-roundel { grid-column: 1; grid-row: 1; }
+  .topic-row .topic-content { grid-column: 2; grid-row: 1; }
+  .topic-row.flip { grid-template-columns: 1fr 300px; }
+  .topic-row.flip .topic-roundel { grid-column: 2; grid-row: 1; }
+  .topic-row.flip .topic-content { grid-column: 1; grid-row: 1; }
+  .topic-roundel { width: 300px; }
+  .roundel-img { width: 100%; border: 2px solid rgba(255,255,255,0.18); box-shadow: 0 18px 40px rgba(0,0,0,0.35); }
+  :global(.roundel-img.is-placeholder) { background: rgba(255,255,255,0.04) !important; border-color: rgba(107,124,255,0.5) !important; color: var(--blue-light) !important; }
+  .topic-title { display: flex; align-items: center; gap: 0.7rem; font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 600; color: #fff; margin-bottom: 0.8rem; line-height: 1.2; }
+  .topic-icon { flex: none; width: 42px; height: 42px; display: grid; place-items: center; border-radius: 11px; background: rgba(107,124,255,0.16); color: var(--blue-light); }
+  .topic-icon :global(svg) { width: 23px; height: 23px; }
+  .topic-desc { font-size: 1.02rem; line-height: 1.7; color: rgba(255,255,255,0.78); }
+  .topic-status { display: inline-block; margin-top: 1rem; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(226,85,61,0.15); border: 1px solid rgba(226,85,61,0.4); border-radius: 999px; padding: 0.35rem 0.8rem; }
+
+  /* ---------- SECOND PARALLAX / WHY ---------- */
+  .rwhy { padding-block: clamp(6rem, 14vh, 11rem); text-align: center; }
+  .rwhy-veil { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(13,16,46,0.8) 0%, rgba(13,16,46,0.66) 55%, rgba(13,16,46,0.86) 100%); }
+  .rwhy-inner { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+  .rwhy-title { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 700; line-height: 1.1; color: #fff; max-width: 20ch; }
+  .rwhy-title .coral { color: var(--accent); font-style: italic; }
+  .rwhy-text { font-size: 1.08rem; line-height: 1.75; color: rgba(255,255,255,0.85); max-width: 56ch; }
+
+  /* ---------- PUBLICATIONS ---------- */
+  .sec-head { margin-bottom: 2.6rem; }
+  .sec-head .section-title { margin-top: 0.7rem; }
+  .pub-list { display: flex; flex-direction: column; gap: 1.6rem; }
+  .pub { display: grid; grid-template-columns: 300px 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; background: var(--paper); border: 1px solid var(--hairline); border-radius: 16px; padding: 1.4rem; transition: border-color 0.35s var(--ease), box-shadow 0.35s var(--ease), transform 0.35s var(--ease); }
+  .pub:hover { border-color: var(--accent); box-shadow: 0 18px 40px rgba(226,85,61,0.12); transform: translateY(-3px); }
+  .pub-img { width: 100%; }
+  .pub-year { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.16em; color: var(--blue-primary); margin-bottom: 0.5rem; }
+  .pub-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; line-height: 1.3; color: var(--ink); margin-bottom: 0.5rem; }
+  .pub-authors { font-size: 0.95rem; color: var(--ink-2); margin-bottom: 0.2rem; }
+  .pub-venue { font-family: var(--font-display); font-style: italic; font-size: 0.92rem; color: var(--ink-3); margin-bottom: 0.9rem; }
+  .pub-badges { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1rem; }
+  .pub-badge { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.03em; padding: 0.35rem 0.7rem; background: var(--blue-pale); border-radius: 999px; color: var(--blue-primary); }
+  .pub-links { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+  .pub-link { display: inline-flex; align-items: center; gap: 0.35rem; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--blue-primary); }
+  .pub-link svg { width: 12px; height: 12px; transition: transform 0.3s var(--ease); }
+  .pub-link:hover { color: var(--accent); }
+  .pub-link:hover svg { transform: translate(2px, -2px); }
+
+  @media (max-width: 820px) {
+    .topic-row, .topic-row.flip { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .topic-row .topic-roundel, .topic-row.flip .topic-roundel { grid-column: 1; grid-row: 1; justify-self: center; }
+    .topic-row .topic-content, .topic-row.flip .topic-content { grid-column: 1; justify-self: center; }
+    .topic-roundel { width: 200px; }
+    .topic-title { justify-content: center; }
+    .pub { grid-template-columns: 1fr; }
+    .pub-img { max-width: 320px; }
+  }
+</style>
