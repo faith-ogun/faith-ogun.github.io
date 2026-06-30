@@ -55,6 +55,11 @@ constraint), then filter out low-mappability and hypermutated regions. The deliv
 ranking of candidate driver regions, coding and non-coding together. This is, essentially, the
 ancestor of the hotspot-calling I do in my Objective 2.
 
+<figure>
+  <video src="/assets/video/early-scans.mp4" autoplay loop muted playsinline></video>
+  <figcaption>The first scans tiled the genome into 50 bp windows, scoring each on recurrence and conservation to rank candidate driver regions.</figcaption>
+</figure>
+
 ## 2018–2021, the pan-cancer verdict, and a hard truth
 
 Then came scale: **PCAWG / Rheinbay et al. (2020)** searched 2,658 whole genomes, integrating **13
@@ -63,7 +68,14 @@ aggressively (discarding 46% of significant hits as artefacts of APOBEC/UV/AID m
 
 The verdict was sobering: beyond **TERT**, non-coding point-mutation drivers were "surprisingly
 limited", an estimated 96 promoter driver mutations (73 of them TERT) versus >1,475 in coding
-sequence. But the honest reading, which Elliott & Larsson's review captures, is that **paucity is
+sequence.
+
+<figure>
+  <video src="/assets/video/pcawg-paucity.mp4" autoplay loop muted playsinline></video>
+  <figcaption>Across 2,658 genomes, aggressive filtering of mutational-process artefacts left almost nothing standing beyond the TERT promoter, the field's sobering "paucity" verdict.</figcaption>
+</figure>
+
+But the honest reading, which Elliott & Larsson's review captures, is that **paucity is
 entangled with detectability**:
 
 - **GC bias.** Promoters are GC-rich, GC-rich regions get poor WGS coverage, so real drivers get
@@ -91,6 +103,11 @@ an **epigenomic** comparison (more mutations than the histone-ChIP signal predic
 **inter-tumour** comparison (cancer-type-specific accumulation as a proxy for missing epigenomic
 data), and **positional clustering**. It's the clearest statement that you detect non-coding drivers
 by *integrating* mutation patterns with regulatory context, not by recurrence alone.
+
+<figure>
+  <video src="/assets/video/dietlein-genomewide.mp4" autoplay loop muted playsinline></video>
+  <figcaption>Dietlein integrates three signals, epigenomic, inter-tumour and positional clustering, into a single genome-wide driver call.</figcaption>
+</figure>
 
 ## 2025, the functional-validation era
 
