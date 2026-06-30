@@ -50,6 +50,11 @@ of positive selection. Six ncUCE driver candidates emerged (FDR < 0.05), includi
 BCL6, the promoter of PAX5, and splice sites of FBXO11/ARHGAP15/EBF1, several already COSMIC cancer
 genes.
 
+<figure>
+  <video src="/assets/video/ultraconserved-elements.mp4" autoplay loop muted playsinline></video>
+  <figcaption>An ultraconserved element is identical across mammals; a somatic mutation that pushes its burden past a context-matched null marks it as a non-coding driver candidate.</figcaption>
+</figure>
+
 <div class="keypoint">
 <p><strong>Method I took away:</strong> the burden-plus-simulation framework with context-matched
 nulls is exactly the kind of conservative, well-calibrated test I want for breast-specific hotspot

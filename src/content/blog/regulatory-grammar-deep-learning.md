@@ -36,6 +36,11 @@ can do that, but they ignore sequence context and rare variants.
 swapping the output head to predict scalar gene expression and adding a cross-individual pairwise
 loss term. About 30 min per gene on one GPU.
 
+<figure>
+  <video src="/assets/video/variformer.mp4" autoplay loop muted playsinline></video>
+  <figcaption>Fine-tuning Enformer on personal genomes lifts variant-direction agreement from 60% to 97%, but it still fails to generalise to genes it never saw in training.</figcaption>
+</figure>
+
 The results are a clean two-sided story:
 
 - **On genes it was trained on, evaluated on unseen people, it works**, matching elastic nets and

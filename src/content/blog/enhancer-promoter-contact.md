@@ -77,6 +77,11 @@ target gene (81% recall vs 56% for nearest-gene), including the classic rs127403
 Where Fulco is the principle, Yost is the template, contact data in actual tumours, including breast,
 with the copy-number correction and pipeline I'll use at Curie.
 
+<figure>
+  <video src="/assets/video/yost-3d-genome.mp4" autoplay loop muted playsinline></video>
+  <figcaption>A Hi-C–style contact map from a primary tumour: bright off-diagonal blocks mark DNA regions that physically touch, resolving the TADs and enhancer–gene loops that wiring depends on.</figcaption>
+</figure>
+
 They built an enhancer connectome with **H3K27ac HiChIP** (which measures activity and 3D contact at
 once) across **69 primary tumours, 15 cancer types, 665,000 enhancer-anchored loops**. The breast
 cohort is the deepest, 14 samples, ≥3 per molecular subtype (basal, HER2, luminal A/B), each with
@@ -109,6 +114,11 @@ This is the paper that turns the first two into something I can actually run. Fu
 matters; Yost gave me the tumour contact data. But my atlas is **single-cell, scATAC-seq only**, and
 neither paper tells me how to put a contact prior *inside* a single-cell enhancer-gene method.
 SCEG-HiC does exactly that, and it was published this year.
+
+<figure>
+  <video src="/assets/video/sceg-hic.mp4" autoplay loop muted playsinline></video>
+  <figcaption>SCEG-HiC adds a prior Hi-C contact map to noisy single-cell ATAC + RNA correlation, turning a guess into a contact-supported enhancer–gene link.</figcaption>
+</figure>
 
 The gap it fills is precise. My peak-to-gene links come from accessibility co-varying between an
 enhancer and a promoter across cells. That single-cell correlation is noisy, full of **indirect

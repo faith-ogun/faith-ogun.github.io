@@ -72,6 +72,11 @@ The Johnson lab analysed **12,631 whole tumour genomes** from the 100,000 Genome
 tumours carry at least one**. Earlier efforts like PCAWG had fewer than 3,000 genomes and were
 underpowered; here, 13 cancer types are powered to detect lncRNAs mutated 5% above background.
 
+<figure>
+  <video src="/assets/video/lncrna-drivers.mp4" autoplay loop muted playsinline></video>
+  <figcaption>Across thousands of tumour genomes, mutations recurring at the <em>same</em> lncRNA position signal positive selection; many disrupt an RNA-binding-protein site and release the oncogenic lncRNA.</figcaption>
+</figure>
+
 The method matters for me because I want to reuse it. They test for two signatures of positive
 selection, excess mutational burden and functional impact in lncRNA exons, correcting for local
 trinucleotide mutation rate, gene length and mutational signatures. The novelty is engineering: a
