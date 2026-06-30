@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const features = [
+  { img: '/assets/ohmlet/personalized.png', title: 'A tutor that watches your bench', text: 'Point a camera at your breadboard and talk. Ohmlet catches the reversed LED or wrong resistor before you power on, then helps you write and debug the Arduino code.' },
+  { img: '/assets/ohmlet/own-pace.png', title: 'Build at your own pace', text: 'A Duolingo-style path with XP, streaks and leagues. Every finished build is minted as a shareable 3D digital twin, so progress feels like a game, not a lecture.' },
+  { img: '/assets/ohmlet/backed-by-science.png', title: 'Learn by doing, not watching', text: 'Not a video library or a chatbot with a text box. A live, multimodal bench partner that can genuinely see and correct your real circuit in real time.' },
+];
+---
+<BaseLayout
+  title="Ohmlet — Startup Corner — Faith Ogundimu"
+  description="Ohmlet: a live voice + vision AI tutor that teaches electronics by watching you build. The consumer startup I'm building, born from my Gemini Live Agent Challenge project Relay."
+>
+  <!-- ========== OHMLET branded pocket ========== -->
+  <div class="ohm">
+    <!-- hero -->
+    <section class="ohm-hero">
+      <div class="container">
+        <a href="/startup" class="ohm-back">← Startup Corner</a>
+      </div>
+      <div class="container ohm-hero-grid">
+        <div class="ohm-hero-copy">
+          <img class="ohm-logo" src="/assets/ohmlet/logo.png" alt="Ohmlet" />
+          <span class="ohm-status"><span class="ohm-dot"></span> In construction · Waitlist opening soon</span>
+          <h2 class="ohm-h1">Learn electronics by <em>building</em>, with a tutor that watches your bench.</h2>
+          <p class="ohm-sub">A live, voice + vision AI tutor for electronics, mechatronics and robotics. It's Duolingo for hands-on hardware, with a mascot, a streak, and a tutor that can actually see your breadboard.</p>
+          <div class="ohm-cta">
+            <a href="#waitlist" class="ohm-btn ohm-btn-primary">Join the waitlist</a>
+            <a href="/projects" class="ohm-btn ohm-btn-ghost">See where it came from</a>
+          </div>
+        </div>
+        <div class="ohm-hero-art">
+          <img src="/assets/ohmlet/hero.png" alt="The Ohmlet robot mascot surrounded by electronics components" />
+        </div>
+      </div>
+    </section>
+
+    <!-- features -->
+    <section class="ohm-features">
+      <div class="container">
+        <div class="ohm-feat-head">
+          <h3 class="ohm-h2">What makes Ohmlet different</h3>
+          <p class="ohm-feat-sub">Everyone learning electronics today is stuck between passive YouTube tutorials that can't see your mistakes and expensive classes that don't scale. Ohmlet is the first that watches your actual circuit and corrects you in real time, at a consumer price.</p>
+        </div>
+        <div class="ohm-feat-grid">
+          {features.map((f) => (
+            <article class="ohm-card">
+              <div class="ohm-card-img"><img src={f.img} alt="" /></div>
+              <h4 class="ohm-card-title">{f.title}</h4>
+              <p class="ohm-card-text">{f.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- lineage / credibility -->
+    <section class="ohm-lineage">
+      <div class="container ohm-lineage-grid">
+        <div class="ohm-mascot"><img src="/assets/ohmlet/mascot.png" alt="Ohmlet mascot" /></div>
+        <div class="ohm-lineage-body">
+          <p class="ohm-kicker">The lineage</p>
+          <h3 class="ohm-h2">Born from a hackathon win.</h3>
+          <p class="ohm-lineage-text">Ohmlet is the commercial evolution of <strong>Relay</strong>, my real-time voice + vision lab tutor that earned an <strong>Honourable Mention in the Google &amp; Devpost Gemini Live Agent Challenge</strong> out of nearly <strong>12,000 entries</strong>. The hackathon proved the magic was real; Ohmlet is the work of turning that magic into a product people can keep.</p>
+          <div class="ohm-stats">
+            <div class="ohm-stat"><span class="ohm-stat-n">11,885</span><span class="ohm-stat-l">Entries</span></div>
+            <div class="ohm-stat"><span class="ohm-stat-n">Top</span><span class="ohm-stat-l">Honourable Mention</span></div>
+            <div class="ohm-stat"><span class="ohm-stat-n">1</span><span class="ohm-stat-l">Founder, building in public</span></div>
+          </div>
+          <a href="https://devpost.com/software/relay-real-time-voice-vision-lab-tutor-for-electronics" target="_blank" rel="noopener" class="ohm-link">See Relay on Devpost →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- waitlist CTA -->
+    <section class="ohm-waitlist" id="waitlist">
+      <div class="container ohm-waitlist-grid">
+        <div class="ohm-waitlist-art"><img src="/assets/ohmlet/cta.png" alt="The Ohmlet mascot with an electronics toolkit" /></div>
+        <div class="ohm-waitlist-inner">
+          <p class="ohm-kicker">Waitlist</p>
+          <h3 class="ohm-waitlist-title">Be first on the bench.</h3>
+          <p class="ohm-waitlist-text">Ohmlet is in active construction. The waitlist opens soon, early builders get founder pricing and first access. Want in?</p>
+          <form class="ohm-form" onsubmit="return false;">
+            <input type="email" class="ohm-input" placeholder="you@email.com" aria-label="Email address" />
+            <button type="submit" class="ohm-btn ohm-btn-primary">Notify me</button>
+          </form>
+          <p class="ohm-form-note">No spam, just one email when the doors open.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- events (empty state) -->
+    <section class="ohm-events">
+      <div class="container-narrow ohm-events-inner">
+        <p class="ohm-kicker center">Events</p>
+        <p class="ohm-events-empty">No events scheduled right now. When Ohmlet hits the road, talks, demos and maker fairs will show up here.</p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  /* ===================================================================
+     OHMLET — scoped brand world (yellow / black / red, playful, chunky)
+     =================================================================== */
+  .ohm {
+    --ohm-yellow: #FFD21E;
+    --ohm-yellow-deep: #FFC400;
+    --ohm-ink: #1B1B1B;
+    --ohm-red: #EA3C2D;
+    --ohm-paper: #FFFBEF;
+    font-family: var(--font-body);
+  }
+  .ohm .ohm-h1 { font-family: var(--font-body); font-weight: 800; letter-spacing: -0.02em; }
+  .ohm em { font-style: normal; color: var(--ohm-red); }
+
+  /* hero */
+  .ohm-hero { background: var(--ohm-ink); color: #fff; padding-top: clamp(6.5rem, 13vh, 9rem); padding-bottom: clamp(3.5rem, 8vh, 6rem); position: relative; }
+  .ohm-back { display: inline-block; font-family: var(--font-body); font-weight: 700; font-size: 0.85rem; color: var(--ohm-yellow); margin-bottom: 1.6rem; transition: transform 0.2s var(--ease); }
+  .ohm-back:hover { transform: translateX(-3px); }
+  .ohm-hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .ohm-logo { height: 56px; width: auto; margin-bottom: 1.4rem; background: #fff; padding: 0.5rem 0.9rem 0.5rem 0.6rem; border-radius: 16px; }
+  .ohm-status { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em; color: var(--ohm-ink); background: var(--ohm-yellow); padding: 0.45rem 0.9rem; border-radius: 999px; margin-bottom: 1.3rem; }
+  .ohm-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ohm-red); box-shadow: 0 0 0 3px rgba(234,60,45,0.3); animation: ohm-pulse 1.6s ease-in-out infinite; }
+  @keyframes ohm-pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.25); opacity: 0.7; } }
+  .ohm-h1 { font-size: clamp(1.9rem, 4.2vw, 3.1rem); line-height: 1.1; color: #fff; margin-bottom: 1.1rem; max-width: 18ch; }
+  .ohm-sub { font-size: 1.05rem; line-height: 1.7; color: rgba(255,255,255,0.8); max-width: 50ch; margin-bottom: 1.8rem; }
+  .ohm-cta { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .ohm-btn { font-family: var(--font-body); font-weight: 800; font-size: 0.92rem; padding: 0.9rem 1.6rem; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; border: 3px solid var(--ohm-ink); transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease); }
+  .ohm-btn-primary { background: var(--ohm-yellow); color: var(--ohm-ink); box-shadow: 0 5px 0 var(--ohm-yellow-deep); }
+  .ohm-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--ohm-yellow-deep); }
+  .ohm-btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); box-shadow: none; }
+  .ohm-btn-ghost:hover { background: #fff; color: var(--ohm-ink); border-color: #fff; }
+  .ohm-hero-art { background: #fff; border-radius: 26px; padding: 14px; box-shadow: 0 16px 44px rgba(0,0,0,0.35); }
+  .ohm-hero-art img { width: 100%; border-radius: 16px; display: block; }
+
+  /* features */
+  .ohm-features { background: var(--ohm-paper); padding-block: clamp(3.5rem, 8vh, 6rem); }
+  .ohm-feat-head { text-align: center; max-width: 60ch; margin: 0 auto clamp(2.5rem, 5vh, 4rem); }
+  .ohm-h2 { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -0.02em; color: var(--ohm-ink); line-height: 1.1; }
+  .ohm-feat-sub { font-size: 1.02rem; line-height: 1.65; color: #555; margin-top: 1rem; }
+  .ohm-feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
+  .ohm-card { background: #fff; border: 3px solid var(--ohm-ink); border-radius: 22px; padding: 1.4rem; box-shadow: 0 6px 0 var(--ohm-ink); transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease); }
+  .ohm-card:hover { transform: translateY(-4px); box-shadow: 0 10px 0 var(--ohm-ink); }
+  .ohm-card-img { background: #fff; border-radius: 14px; aspect-ratio: 1; display: grid; place-items: center; margin-bottom: 1.1rem; overflow: hidden; }
+  .ohm-card-img img { width: 78%; height: auto; }
+  .ohm-card-title { font-family: var(--font-body); font-weight: 800; font-size: 1.2rem; color: var(--ohm-ink); margin-bottom: 0.5rem; }
+  .ohm-card-text { font-size: 0.94rem; line-height: 1.6; color: #555; }
+
+  /* lineage */
+  .ohm-lineage { background: var(--ohm-yellow); padding-block: clamp(3.5rem, 8vh, 6rem); }
+  .ohm-lineage-grid { display: grid; grid-template-columns: 280px 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .ohm-mascot img { width: 100%; max-width: 280px; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.2)); animation: ohm-bob 4s ease-in-out infinite; }
+  @keyframes ohm-bob { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-12px) rotate(1deg); } }
+  .ohm-kicker { font-family: var(--font-mono); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ohm-red); margin-bottom: 0.6rem; }
+  .ohm-kicker.center { text-align: center; }
+  .ohm-lineage .ohm-h2 { margin-bottom: 1rem; }
+  .ohm-lineage-text { font-size: 1.05rem; line-height: 1.7; color: var(--ohm-ink); max-width: 56ch; margin-bottom: 1.6rem; }
+  .ohm-lineage-text strong { font-weight: 800; }
+  .ohm-stats { display: flex; flex-wrap: wrap; gap: 2.2rem; margin-bottom: 1.6rem; }
+  .ohm-stat { display: flex; flex-direction: column; }
+  .ohm-stat-n { font-family: var(--font-body); font-weight: 800; font-size: 1.9rem; color: var(--ohm-ink); line-height: 1; }
+  .ohm-stat-l { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: rgba(27,27,27,0.6); margin-top: 0.3rem; }
+  .ohm-link { font-weight: 800; color: var(--ohm-ink); border-bottom: 3px solid var(--ohm-red); padding-bottom: 1px; }
+  .ohm-link:hover { color: var(--ohm-red); }
+
+  /* waitlist (light, dark text, image in a white card) */
+  .ohm-waitlist { background: var(--ohm-paper); padding-block: clamp(4rem, 9vh, 7rem); }
+  .ohm-waitlist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .ohm-waitlist-art { background: #fff; border: 3px solid var(--ohm-ink); border-radius: 24px; padding: 12px; box-shadow: 0 8px 0 var(--ohm-ink); }
+  .ohm-waitlist-art img { width: 100%; border-radius: 14px; display: block; }
+  .ohm-waitlist-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .ohm-waitlist-title { font-family: var(--font-body); font-weight: 800; font-size: clamp(2rem, 5vw, 3.2rem); color: var(--ohm-ink); letter-spacing: -0.02em; line-height: 1.05; }
+  .ohm-waitlist-text { font-size: 1.05rem; line-height: 1.65; color: #555; max-width: 50ch; }
+  .ohm-form { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.4rem; width: 100%; max-width: 460px; }
+  .ohm-input { flex: 1; min-width: 200px; font-family: var(--font-body); font-size: 1rem; padding: 0.9rem 1.2rem; border-radius: 14px; border: 3px solid var(--ohm-ink); background: #fff; color: var(--ohm-ink); }
+  .ohm-input:focus { outline: none; border-color: var(--ohm-yellow); }
+  .ohm-form-note { font-size: 0.8rem; color: #888; margin-top: 0.2rem; }
+
+  /* events empty state */
+  .ohm-events { background: var(--ohm-paper); padding-block: clamp(3rem, 6vh, 4.5rem); }
+  .ohm-events-inner { text-align: center; }
+  .ohm-events-empty { font-size: 1rem; color: #777; max-width: 46ch; margin: 0.6rem auto 0; }
+
+  @media (max-width: 860px) {
+    .ohm-hero-grid { grid-template-columns: 1fr; }
+    .ohm-hero-art { order: -1; max-width: 460px; }
+    .ohm-feat-grid { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; }
+    .ohm-lineage-grid { grid-template-columns: 1fr; text-align: center; }
+    .ohm-mascot { max-width: 220px; margin-inline: auto; }
+    .ohm-lineage-text { margin-inline: auto; }
+    .ohm-stats { justify-content: center; }
+    .ohm-waitlist-grid { grid-template-columns: 1fr; }
+    .ohm-waitlist-art { order: -1; max-width: 460px; }
+  }
+</style>

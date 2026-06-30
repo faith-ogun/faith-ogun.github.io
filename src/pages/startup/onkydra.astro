@@ -1,0 +1,296 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const steps = [
+  { n: '01', title: 'Drop in a target', text: 'Name a drug target and a rare cancer (DMG at launch). Onkydra picks the right synthetic-cohort library, cell-line panel and molecular signatures for you. No specialised syntax, no nine separate tools.' },
+  { n: '02', title: 'It simulates, not searches', text: 'A virtual patient cohort is drawn from real molecular data. Response is predicted per molecular subgroup, the top resistance pathways are ranked, and where the models disagree is surfaced as an honesty signal.' },
+  { n: '03', title: 'It keeps working after you log off', text: 'When ClinVar reclassifies a variant, a new CRISPR screen lands or a Phase 1 result publishes, Onkydra re-runs your target and flags what changed. Your board memo regenerates on demand.' },
+];
+
+const features = [
+  { title: 'Simulate, don’t search', text: 'Most tools tell you what is already published. Onkydra predicts what would happen if you perturbed a target, so you can rank candidates before spending a cent in the wet lab.' },
+  { title: 'Honest about its limits', text: 'When a simpler model beats the fancy one, Onkydra says so and ships the honest predictor. Where two models disagree becomes a signal you can act on, not something to hide.' },
+  { title: 'Always live', text: 'Each target sits in your workspace as a living simulation that re-runs itself as the evidence moves. Come back weekly to see how your thesis is holding up.' },
+];
+---
+<BaseLayout
+  title="Onkydra — Startup Corner — Faith Ogundimu"
+  description="Onkydra: the agentic in-silico oncology lab. It simulates rare cancers to predict drug response, rank resistance pathways and speed up rare-cancer drug discovery, starting with DMG. Built for the Gemini XPRIZE."
+>
+  <div class="onk">
+    <!-- HERO -->
+    <section class="onk-hero">
+      <div class="onk-dots" aria-hidden="true"></div>
+      <div class="container">
+        <a href="/startup" class="onk-back">← Startup Corner</a>
+      </div>
+      <div class="container onk-hero-grid">
+        <div class="onk-hero-copy">
+          <img class="onk-lockup" src="/assets/onkydra/lockup-ink.png" alt="Onkydra — AI for regenerative biology" />
+          <span class="onk-status"><span class="onk-pulse"></span> In construction · Private beta soon</span>
+          <h1 class="onk-h1">The agentic in-silico <span class="onk-grad">oncology lab</span>.</h1>
+          <p class="onk-lede">Onkydra simulates rare cancers in-silico. Drop in a drug target and it runs a virtual patient cohort, predicts who responds, and ranks what drives resistance, before any wet-lab spend.</p>
+          <div class="onk-cta">
+            <a href="#access" class="onk-btn onk-btn-primary">Request early access</a>
+            <a href="#how" class="onk-btn onk-btn-ghost">How it works</a>
+          </div>
+        </div>
+
+        <!-- workspace mock -->
+        <div class="onk-hero-art reveal">
+          <div class="ws">
+            <div class="ws-bar">
+              <div class="ws-dots"><span></span><span></span><span></span></div>
+              <span class="ws-url mono">app.onkydra.com/workspace</span>
+              <span class="ws-live mono"><span class="ws-livedot"></span>live</span>
+            </div>
+            <div class="ws-body">
+              <div class="ws-target">
+                <span class="ws-target-name mono">CDK7 inhibitor · H3 K27M DMG</span>
+                <span class="ws-meta mono">Last simulation 2h ago · 1,000 posterior draws · n=49 cohort</span>
+              </div>
+              <div class="ws-tiles">
+                <div class="ws-tile">
+                  <span class="ws-tile-l mono">Predicted responder fraction</span>
+                  <span class="ws-tile-n">28%</span>
+                  <span class="ws-tile-s mono">95% CI 11–49% · H3.3 / TP53-mut</span>
+                </div>
+                <div class="ws-tile">
+                  <span class="ws-tile-l mono">Top resistance pathway</span>
+                  <span class="ws-tile-n sm">CDK2 bypass</span>
+                  <span class="ws-tile-s mono">LINCS reversal · concordance 0.74</span>
+                </div>
+                <div class="ws-tile">
+                  <span class="ws-tile-l mono">Ensemble agreement</span>
+                  <span class="ws-tile-n">0.81</span>
+                  <span class="ws-tile-s mono">ridge vs foundation model</span>
+                </div>
+              </div>
+              <div class="ws-activity">
+                <span class="ws-act-dot"></span>
+                <p class="mono">New paper PMID 41234567 on CDK7-driven DMG. Re-ran automatically — predicted responder fraction up 4 points.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS (dark) -->
+    <section class="onk-how" id="how">
+      <div class="container">
+        <p class="onk-label">How it works</p>
+        <h2 class="onk-h2 on-dark">Three steps. The verb is <span class="onk-amber">simulate</span>, not search.</h2>
+        <div class="onk-steps">
+          {steps.map((s) => (
+            <article class="onk-step">
+              <span class="onk-step-n mono">{s.n}</span>
+              <h3 class="onk-step-title">{s.title}</h3>
+              <p class="onk-step-text">{s.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY DIFFERENT (cream) -->
+    <section class="onk-why">
+      <div class="container">
+        <p class="onk-label">Why it's different</p>
+        <h2 class="onk-h2">A workspace that thinks like a sceptical colleague.</h2>
+        <div class="onk-feat-grid">
+          {features.map((f) => (
+            <article class="onk-card">
+              <span class="onk-card-mark"></span>
+              <h3 class="onk-card-title">{f.title}</h3>
+              <p class="onk-card-text">{f.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- DMG FOCUS (dark, amber) -->
+    <section class="onk-dmg">
+      <div class="container">
+        <p class="onk-label amber">The first indication</p>
+        <h2 class="onk-h2 on-dark">Starting with <span class="onk-amber">DMG</span>.</h2>
+        <p class="onk-dmg-text">Diffuse midline glioma is a rare childhood brain cancer that is almost always fatal, with survival that has barely moved in decades. The first targeted therapy was only FDA-approved in 2025, on a pooled cohort of roughly fifty patients. When real patients are that scarce, every simulated cohort matters. Onkydra draws a thousand synthetic cohorts from that hard-won data to stretch the evidence and prioritise what to test next.</p>
+        <div class="onk-dmg-stats">
+          <div class="onk-dmg-stat"><span class="onk-dmg-n">≈50</span><span class="onk-dmg-l">Real patients behind the first approval</span></div>
+          <div class="onk-dmg-stat"><span class="onk-dmg-n">1,000</span><span class="onk-dmg-l">Synthetic cohorts drawn from it</span></div>
+          <div class="onk-dmg-stat"><span class="onk-dmg-n">Decades</span><span class="onk-dmg-l">Of flat survival we want to move</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINEAGE (cream) -->
+    <section class="onk-lineage">
+      <div class="container onk-lineage-grid">
+        <div class="onk-lineage-mark"><img src="/assets/onkydra/mark.png" alt="Onkydra mark" /></div>
+        <div class="onk-lineage-body">
+          <p class="onk-label">Lineage</p>
+          <h2 class="onk-h2">Built for the Gemini XPRIZE.</h2>
+          <p class="onk-lineage-text">Onkydra grows directly out of my rare-cancer genomics research, and is being built on Google's Gemini models for the Build with Gemini XPRIZE. It is the most ambitious thing I'm making: turning the messy reality of rare-cancer data into something a researcher can actually simulate against.</p>
+          <p class="onk-tagline mono">AI for regenerative biology</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EARLY ACCESS (dark) -->
+    <section class="onk-access" id="access">
+      <div class="onk-dots" aria-hidden="true"></div>
+      <div class="container-narrow onk-access-inner">
+        <img class="onk-access-mark" src="/assets/onkydra/mark-white.png" alt="" aria-hidden="true" />
+        <h2 class="onk-h2 on-dark center">Request early access.</h2>
+        <p class="onk-access-text">Onkydra is in active construction, starting private and close to the science. If you're a rare-cancer researcher, clinician or builder who wants in early, leave your email.</p>
+        <form class="onk-form" onsubmit="return false;">
+          <input type="email" class="onk-input" placeholder="you@institution.org" aria-label="Email address" />
+          <button type="submit" class="onk-btn onk-btn-primary">Request access</button>
+        </form>
+        <p class="onk-form-note mono">For researchers and partners. One email when the beta opens.</p>
+      </div>
+    </section>
+
+    <!-- EVENTS empty -->
+    <section class="onk-events">
+      <div class="container-narrow onk-events-inner">
+        <p class="onk-label center">Events</p>
+        <p class="onk-events-empty">No events scheduled right now. XPRIZE milestones, demos and talks will appear here as Onkydra moves.</p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .onk {
+    --ink: #0e0f23; --ink-2: #16172f; --cream: #f6f4ef; --cream-2: #ebe7dd;
+    --blue: #0600f9; --amber: #eab308; --slate: #3d4152; --slate-dim: #6b6f80;
+    font-family: 'Figtree', var(--font-body);
+    color: var(--ink);
+  }
+  .onk-h1, .onk-h2, .onk-h3, .onk-step-title, .onk-card-title { font-family: 'Comfortaa', var(--font-body); }
+  .onk .mono { font-family: var(--font-mono); }
+
+  /* shared bits */
+  .onk-label { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; color: var(--blue); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.1rem; }
+  .onk-label.amber { color: var(--amber); }
+  .onk-label.center { text-align: center; }
+  .onk-h2 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; color: var(--ink); }
+  .onk-h2.on-dark { color: var(--cream); }
+  .onk-h2.center { text-align: center; }
+  .onk-amber { color: var(--amber); }
+
+  .onk-btn { font-family: var(--font-mono); font-size: 0.76rem; font-weight: 500; letter-spacing: 0.04em; padding: 0.95rem 1.6rem; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid transparent; transition: all 0.35s cubic-bezier(.25,.46,.45,.94); }
+  .onk-btn-primary { background: var(--blue); color: #fff; }
+  .onk-btn-primary:hover { background: var(--ink); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(6,0,249,0.3); }
+  .onk-btn-ghost { background: transparent; color: var(--ink); border-color: rgba(14,15,35,0.25); }
+  .onk-btn-ghost:hover { background: var(--ink); color: var(--cream); }
+
+  .onk-dots { position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
+    background-image: radial-gradient(circle, rgba(6,0,249,0.12) 1px, transparent 1.4px);
+    background-size: 26px 26px; -webkit-mask-image: radial-gradient(ellipse 70% 80% at 85% 10%, #000, transparent 70%); mask-image: radial-gradient(ellipse 70% 80% at 85% 10%, #000, transparent 70%); }
+
+  /* HERO */
+  .onk-hero { position: relative; background: var(--cream); padding-top: clamp(6.5rem, 13vh, 9rem); padding-bottom: clamp(3.5rem, 8vh, 6rem); overflow: hidden; }
+  .onk-back { display: inline-block; position: relative; z-index: 2; font-family: var(--font-mono); font-size: 0.78rem; color: var(--blue); margin-bottom: 1.8rem; transition: transform 0.2s ease; }
+  .onk-back:hover { transform: translateX(-3px); }
+  .onk-hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .onk-lockup { height: 46px; width: auto; margin-bottom: 1.6rem; }
+  .onk-status { display: inline-flex; align-items: center; gap: 0.55rem; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; color: var(--blue); background: rgba(6,0,249,0.07); padding: 0.5rem 0.95rem; border-radius: 999px; letter-spacing: 0.03em; margin-bottom: 1.5rem; }
+  .onk-pulse { width: 8px; height: 8px; background: var(--blue); border-radius: 50%; animation: onk-pulse 2s cubic-bezier(.25,.46,.45,.94) infinite; }
+  @keyframes onk-pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.25); } }
+  .onk-h1 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); font-weight: 700; line-height: 1.06; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 1.2rem; max-width: 16ch; }
+  .onk-grad { background: linear-gradient(90deg, var(--blue), var(--amber), var(--blue)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: onk-flow 8s linear infinite; }
+  @keyframes onk-flow { to { background-position: 200% center; } }
+  .onk-lede { font-size: 1.08rem; line-height: 1.6; color: var(--slate); max-width: 50ch; margin-bottom: 1.8rem; }
+  .onk-cta { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+  /* workspace mock */
+  .ws { background: #fff; border-radius: 18px; border: 1px solid rgba(14,15,35,0.1); overflow: hidden; box-shadow: 0 24px 60px rgba(14,15,35,0.16); }
+  .ws-bar { display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem 1.1rem; background: var(--cream-2); border-bottom: 1px solid rgba(14,15,35,0.08); }
+  .ws-dots { display: flex; gap: 6px; }
+  .ws-dots span { width: 10px; height: 10px; border-radius: 50%; background: rgba(14,15,35,0.16); }
+  .ws-url { font-size: 0.68rem; color: var(--slate-dim); flex: 1; }
+  .ws-live { font-size: 0.66rem; color: var(--blue); display: inline-flex; align-items: center; gap: 0.35rem; }
+  .ws-livedot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); animation: onk-pulse 2s infinite; }
+  .ws-body { padding: 1.2rem; }
+  .ws-target { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 1rem; }
+  .ws-target-name { font-size: 0.82rem; font-weight: 500; color: var(--ink); }
+  .ws-meta { font-size: 0.64rem; color: var(--slate-dim); }
+  .ws-tiles { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.7rem; margin-bottom: 1rem; }
+  .ws-tile { background: var(--cream); border: 1px solid rgba(14,15,35,0.07); border-radius: 12px; padding: 0.8rem; display: flex; flex-direction: column; gap: 0.25rem; }
+  .ws-tile-l { font-size: 0.56rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--slate-dim); line-height: 1.3; }
+  .ws-tile-n { font-family: 'Comfortaa', var(--font-body); font-size: 1.7rem; font-weight: 700; color: var(--blue); line-height: 1; }
+  .ws-tile-n.sm { font-size: 1.05rem; color: var(--ink); }
+  .ws-tile-s { font-size: 0.54rem; color: var(--slate-dim); line-height: 1.3; }
+  .ws-activity { display: flex; gap: 0.6rem; align-items: flex-start; background: rgba(6,0,249,0.05); border: 1px solid rgba(6,0,249,0.12); border-radius: 12px; padding: 0.8rem; }
+  .ws-act-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); margin-top: 4px; flex: none; }
+  .ws-activity p { font-size: 0.64rem; line-height: 1.5; color: var(--slate); }
+
+  /* HOW (dark) */
+  .onk-how { background: var(--ink); padding-block: clamp(4rem, 9vh, 7rem); position: relative; }
+  .onk-how .onk-label { color: #8b95ff; }
+  .onk-how .onk-h2 { margin-bottom: clamp(2.2rem, 5vh, 3.5rem); max-width: 22ch; }
+  .onk-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+  .onk-step { background: var(--ink-2); border: 1px solid rgba(246,244,239,0.1); border-radius: 18px; padding: 1.6rem; }
+  .onk-step-n { font-size: 0.8rem; color: #8b95ff; font-weight: 500; }
+  .onk-step-title { font-size: 1.2rem; font-weight: 600; color: var(--cream); margin: 0.7rem 0 0.6rem; letter-spacing: -0.01em; }
+  .onk-step-text { font-size: 0.92rem; line-height: 1.65; color: rgba(246,244,239,0.72); }
+
+  /* WHY (cream) */
+  .onk-why { background: var(--cream); padding-block: clamp(4rem, 9vh, 7rem); }
+  .onk-why .onk-h2 { margin-bottom: clamp(2.2rem, 5vh, 3.5rem); max-width: 20ch; }
+  .onk-feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+  .onk-card { background: #fff; border: 1px solid rgba(14,15,35,0.08); border-radius: 18px; padding: 1.7rem; transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); }
+  .onk-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(14,15,35,0.1); }
+  .onk-card-mark { display: block; width: 34px; height: 34px; border-radius: 10px; margin-bottom: 1rem; background: linear-gradient(135deg, var(--blue), #4b46ff); position: relative; }
+  .onk-card-mark::after { content: ""; position: absolute; inset: 9px; border: 2px solid #fff; border-radius: 50% 50% 50% 0; transform: rotate(45deg); }
+  .onk-card-title { font-size: 1.2rem; font-weight: 600; color: var(--ink); margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+  .onk-card-text { font-size: 0.94rem; line-height: 1.65; color: var(--slate); }
+
+  /* DMG (dark amber) */
+  .onk-dmg { background: var(--ink); padding-block: clamp(4rem, 9vh, 7rem); position: relative; }
+  .onk-dmg::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 100% 0%, rgba(234,179,8,0.12), transparent 70%); pointer-events: none; }
+  .onk-dmg > .container { position: relative; z-index: 1; }
+  .onk-dmg .onk-h2 { margin-bottom: 1.4rem; }
+  .onk-dmg-text { font-size: 1.08rem; line-height: 1.7; color: rgba(246,244,239,0.82); max-width: 62ch; margin-bottom: 2.4rem; }
+  .onk-dmg-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; max-width: 760px; }
+  .onk-dmg-stat { border-top: 2px solid rgba(234,179,8,0.5); padding-top: 1rem; }
+  .onk-dmg-n { display: block; font-family: 'Comfortaa', var(--font-body); font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; color: var(--amber); line-height: 1; margin-bottom: 0.5rem; }
+  .onk-dmg-l { font-size: 0.82rem; color: rgba(246,244,239,0.7); line-height: 1.4; }
+
+  /* LINEAGE (cream) */
+  .onk-lineage { background: var(--cream); padding-block: clamp(4rem, 9vh, 7rem); }
+  .onk-lineage-grid { display: grid; grid-template-columns: 220px 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .onk-lineage-mark img { width: 100%; max-width: 220px; filter: drop-shadow(0 16px 30px rgba(6,0,249,0.25)); }
+  .onk-lineage-text { font-size: 1.06rem; line-height: 1.7; color: var(--slate); max-width: 56ch; margin-bottom: 1.4rem; }
+  .onk-tagline { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); }
+
+  /* ACCESS (dark) */
+  .onk-access { position: relative; background: var(--ink); padding-block: clamp(4.5rem, 10vh, 7.5rem); overflow: hidden; }
+  .onk-access-inner { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.1rem; }
+  .onk-access-mark { width: 64px; height: auto; opacity: 0.9; margin-bottom: 0.4rem; }
+  .onk-access-text { font-size: 1.05rem; line-height: 1.65; color: rgba(246,244,239,0.78); max-width: 52ch; }
+  .onk-form { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-top: 0.6rem; width: 100%; max-width: 480px; }
+  .onk-input { flex: 1; min-width: 220px; font-family: 'Figtree', var(--font-body); font-size: 1rem; padding: 0.95rem 1.2rem; border-radius: 999px; border: 1.5px solid rgba(246,244,239,0.2); background: rgba(246,244,239,0.06); color: var(--cream); }
+  .onk-input::placeholder { color: rgba(246,244,239,0.45); }
+  .onk-input:focus { outline: none; border-color: var(--blue); background: rgba(6,0,249,0.1); }
+  .onk-form-note { font-size: 0.7rem; color: rgba(246,244,239,0.5); margin-top: 0.4rem; letter-spacing: 0.03em; }
+
+  /* EVENTS */
+  .onk-events { background: var(--cream); padding-block: clamp(3rem, 6vh, 4.5rem); }
+  .onk-events-inner { text-align: center; }
+  .onk-events-empty { font-size: 1rem; color: var(--slate-dim); max-width: 50ch; margin: 0.6rem auto 0; }
+
+  @media (max-width: 880px) {
+    .onk-hero-grid { grid-template-columns: 1fr; }
+    .onk-hero-art { order: 2; }
+    .onk-steps, .onk-feat-grid, .onk-dmg-stats { grid-template-columns: 1fr; }
+    .onk-dmg-stats { max-width: 420px; }
+    .ws-tiles { grid-template-columns: 1fr; }
+    .onk-lineage-grid { grid-template-columns: 1fr; text-align: center; }
+    .onk-lineage-mark { max-width: 170px; margin-inline: auto; }
+    .onk-lineage-text { margin-inline: auto; }
+  }
+</style>
