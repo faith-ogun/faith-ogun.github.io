@@ -31,11 +31,10 @@ const themes = [
   { icon: 'robotics', title: 'Surgical Robotics & Embedded AI', desc: 'Exploring Arduino and ESP32 prototyping as a practical bridge from machine learning research into surgical robotics and autonomy workflows.', status: 'Currently exploring' },
 ];
 
-const news = [
-  { date: 'May 2026', title: 'Presented at the AICC Annual Symposium', venue: 'Neural networks and foundation models for gene regulation in MCF-7.' },
-  { date: 'Apr 2026', title: 'Honourable Mention, 11,885 participants', venue: 'Google Gemini Live Agent Challenge, project Relay.' },
-  { date: 'Apr 2026', title: 'France Excellence Research Residency', venue: 'Nine laureates nationally, one month at Institut Curie.' },
-];
+// Auto-populated from the shared News data: the featured item + the next two
+// most recent. Update src/data/news.ts and this strip follows automatically.
+import { recentDispatches } from '../data/news';
+const news = recentDispatches;
 ---
 <BaseLayout>
   <!-- ===================== HERO ===================== -->
@@ -231,7 +230,7 @@ const news = [
         <div class="news-list">
           {news.map((n, i) => (
             <div class="news-card spec-card reveal" style={`transition-delay:${i * 0.07}s`}>
-              <span class="news-date">{n.date}</span>
+              <span class="news-date">{n.display}</span>
               <span class="news-title">{n.title}</span>
               <span class="news-venue">{n.venue}</span>
             </div>
