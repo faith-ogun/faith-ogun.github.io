@@ -3,19 +3,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ImgSlot from '../components/ImgSlot.astro';
 
 const featured = {
-  name: 'RegulonForge', youtubeId: '3CVm8JKtU0s',
-  tagline: 'Top 50 of 4,097 — Google DeepMind Vibe Code Hackathon',
-  desc: 'An AI system that simulates the regulatory consequences of non-coding mutations in real time, combining sequence, chromatin, motif logic and TF networks with step-by-step rationale. Built on Gemini 3 Pro to make the 98% "dark genome" interpretable.',
-  tech: ['Gemini 3 Pro', 'Non-coding genome', 'Chromatin', 'TF networks', 'AI Studio'],
+  name: 'NCypher', youtubeId: '0EQfVwYXFG8',
+  tagline: '1st place · Built with Claude: Life Sciences (Researcher track)',
+  desc: 'An honest triage engine for non-coding cancer variants. For any variant it returns a regulatory-activity score, the mechanism it breaks — which motif, which base — and a calibrated confidence flag, promoting a variant only when independent lines of evidence agree. Delivered as an MCP tool for Claude with analyses run in Claude Science; beachhead is H3 K27M diffuse midline glioma. One of 299 projects submitted.',
+  tech: ['Claude · MCP', 'Agent Skill', 'Non-coding variants', 'Regulatory map', 'DMG · H3 K27M'],
   links: [
-    { href: 'https://www.kaggle.com/competitions/gemini-3/writeups/regulonforge', label: 'Writeup', primary: true },
-    { href: 'https://youtu.be/3CVm8JKtU0s', label: 'Demo video' },
-    { href: 'https://ai.studio/apps/drive/1QhTfvzqrIJF-bQifbaSLqF6Qx4xmuj-k?fullscreenApplet=true', label: 'Try it' },
+    { href: 'https://github.com/faith-ogun/ncypher', label: 'GitHub', primary: true },
+    { href: 'https://www.youtube.com/watch?v=0EQfVwYXFG8', label: 'Demo video' },
+    { href: 'https://cerebralvalley.ai/e/built-with-claude-life-sciences', label: 'The event' },
   ],
 };
 
 // badged projects first, then the rest newest-to-oldest
 const archive = [
+  { name: 'Unravel', img: '/assets/unravel-image.png', badges: ['1st Place · Fivetran track'],
+    desc: "A five-agent system on Gemini 3.1 and Google's Agent Development Kit that watches the shared variant record — ClinVar, gnomAD, AlphaMissense. When a variant of uncertain significance is reclassified as dangerous, it recomputes a calibrated ACMG probability of pathogenicity and drafts patient recontact and family cascade-testing outreach. Draft only, clinician in the loop, nothing auto-sends.",
+    links: [{ href: 'https://github.com/faith-ogun/unravel', label: 'GitHub' }, { href: 'https://youtu.be/xJBBBiFeQWk', label: 'Demo' }, { href: 'https://devpost.com/software/unravel-7ak8lf', label: 'Devpost' }] },
+  { name: 'RegulonForge', img: '/assets/regulonforge-image.png', badges: ['Top 50 · 4,097 submissions'],
+    desc: 'An AI system that simulates the regulatory consequences of non-coding mutations in real time, combining sequence, chromatin, motif logic and TF networks with step-by-step rationale. Built on Gemini 3 Pro to make the 98% "dark genome" interpretable.',
+    links: [{ href: 'https://www.kaggle.com/competitions/gemini-3/writeups/regulonforge', label: 'Writeup' }, { href: 'https://youtu.be/3CVm8JKtU0s', label: 'Demo' }, { href: 'https://ai.studio/apps/drive/1QhTfvzqrIJF-bQifbaSLqF6Qx4xmuj-k?fullscreenApplet=true', label: 'Try it' }] },
   { name: 'Homeward', img: '/assets/homeward-image.png', badges: ['Top 9% · 28 of 313', "CEO's Favourite"],
     desc: 'Post-surgical recovery agent that tracks patients against procedure-specific timelines and screens post-op medications for drug–gene interactions, distinguishing surgical complications from pharmacogenomic mismatches via CPIC guidelines and ClinVar over an A2A protocol.',
     links: [{ href: 'https://github.com/faith-ogun/Homeward', label: 'GitHub' }, { href: 'https://app.promptopinion.ai/marketplace/agent/019e0fb7-d3ca-7b51-9fe4-5ed324ce8b24', label: 'Live Agent' }, { href: 'https://youtu.be/dp52AMb6-Ls', label: 'Demo' }] },
@@ -50,7 +56,7 @@ const archive = [
 ---
 <BaseLayout
   title="Projects — Faith Ogundimu"
-  description="Award-winning AI and genomics projects by Faith Ogundimu: RegulonForge, Homeward, CareSignal, Relay and more."
+  description="Award-winning AI and genomics projects by Faith Ogundimu: NCypher, Unravel, RegulonForge, Homeward, CareSignal and more."
 >
   <section class="page-hero">
     <div class="container">
@@ -67,7 +73,7 @@ const archive = [
         <div class="pfeat-video">
           <iframe
             src={`https://www.youtube.com/embed/${featured.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${featured.youtubeId}&playsinline=1&rel=0`}
-            title="RegulonForge demo"
+            title="NCypher demo"
             loading="lazy"
             allow="autoplay; encrypted-media; picture-in-picture"
             allowfullscreen
