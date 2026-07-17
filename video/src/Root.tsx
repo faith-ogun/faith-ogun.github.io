@@ -16,6 +16,9 @@ import { UltraconservedElements } from './compositions/UltraconservedElements';
 import { EarlyScans } from './compositions/EarlyScans';
 import { PcawgPaucity } from './compositions/PcawgPaucity';
 import { DietleinGenomewide } from './compositions/DietleinGenomewide';
+import { EnhancerNetworks } from './compositions/EnhancerNetworks';
+import { Af3TfBinding } from './compositions/Af3TfBinding';
+import { FlarePrioritization } from './compositions/FlarePrioritization';
 
 const base = { fps: VIDEO.fps, width: VIDEO.width, height: VIDEO.height };
 
@@ -37,6 +40,9 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="early-scans" component={EarlyScans} durationInFrames={150} {...base} />
       <Composition id="pcawg-paucity" component={PcawgPaucity} durationInFrames={150} {...base} />
       <Composition id="dietlein-genomewide" component={DietleinGenomewide} durationInFrames={150} {...base} />
+      <Composition id="enhancer-networks" component={EnhancerNetworks} durationInFrames={150} {...base} />
+      <Composition id="af3-tf-binding" component={Af3TfBinding} durationInFrames={160} {...base} />
+      <Composition id="flare-prioritization" component={FlarePrioritization} durationInFrames={160} {...base} />
     </>
   );
 };
