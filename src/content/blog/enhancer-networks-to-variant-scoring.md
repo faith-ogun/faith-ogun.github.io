@@ -1,7 +1,7 @@
 ---
 title: "From enhancer networks to base-resolution variant scoring"
 description: "A mini journal club on three papers about non-coding regulatory variants: Wang & Hon's single-cell CRISPRi enhancer-to-gene network in breast cancer, Gerasimavicius' AlphaFold 3 structural scoring of transcription-factor binding, and Marderstein & Montgomery's FLARE, which prioritises variants across 132 cell types using chromatin deep learning plus evolutionary constraint."
-date: 2026-07-10
+date: 2026-07-17
 heroKicker: "Mini Journal Club · Non-coding variants"
 readingTime: "13 min read"
 tags: ["Enhancers", "CRISPRi", "Perturb-seq", "AlphaFold 3", "ChromBPNet", "Evolutionary constraint", "Breast cancer", "Non-coding variants"]
