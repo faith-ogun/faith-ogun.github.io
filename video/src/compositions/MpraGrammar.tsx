@@ -40,7 +40,7 @@ export const MpraGrammar: React.FC = () => {
       </svg>
 
       <Reveal from={70} style={{ textAlign: 'center', color: C.muted, fontSize: 15, fontFamily: FONT_MONO, marginTop: -4 }}>
-        causal, not correlative — a CNN learns the grammar from the labels
+        causal, not correlative: a CNN learns the grammar from the labels
       </Reveal>
     </Bg>
   );

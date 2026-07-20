@@ -65,7 +65,7 @@ export const EnhancerNetworks: React.FC = () => {
       </svg>
 
       <Reveal from={104} style={{ textAlign: 'center', marginTop: 2, color: C.muted, fontSize: 15, fontFamily: FONT_MONO }}>
-        three enhancers · three chromosomes · one gene — not the nearest one
+        three enhancers · three chromosomes · one gene, not the nearest one
       </Reveal>
     </Bg>
   );

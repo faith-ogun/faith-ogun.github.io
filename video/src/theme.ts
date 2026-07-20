@@ -1,4 +1,4 @@
-// Shared brand tokens for the explainer videos — matched to the site.
+// Shared brand tokens for the explainer videos, matched to the site.
 export const C = {
   navy: '#0D1030',
   navy2: '#161A40',
