@@ -5,7 +5,7 @@ import ImgSlot from '../components/ImgSlot.astro';
 const featured = {
   name: 'NCypher', youtubeId: '0EQfVwYXFG8',
   tagline: '1st place · Built with Claude: Life Sciences (Researcher track)',
-  desc: 'An honest triage engine for non-coding cancer variants. For any variant it returns a regulatory-activity score, the mechanism it breaks — which motif, which base — and a calibrated confidence flag, promoting a variant only when independent lines of evidence agree. Delivered as an MCP tool for Claude with analyses run in Claude Science; beachhead is H3 K27M diffuse midline glioma. One of 299 projects submitted.',
+  desc: 'An honest triage engine for non-coding cancer variants. For any variant it returns a regulatory-activity score, the mechanism it breaks (which motif, which base) and a calibrated confidence flag, promoting a variant only when independent lines of evidence agree. Delivered as an MCP tool for Claude with analyses run in Claude Science; beachhead is H3 K27M diffuse midline glioma. One of 299 projects submitted.',
   tech: ['Claude · MCP', 'Agent Skill', 'Non-coding variants', 'Regulatory map', 'DMG · H3 K27M'],
   links: [
     { href: 'https://github.com/faith-ogun/ncypher', label: 'GitHub', primary: true },
@@ -17,7 +17,7 @@ const featured = {
 // badged projects first, then the rest newest-to-oldest
 const archive = [
   { name: 'Unravel', img: '/assets/unravel-image.png', badges: ['1st Place · Fivetran track'],
-    desc: "A five-agent system on Gemini 3.1 and Google's Agent Development Kit that watches the shared variant record — ClinVar, gnomAD, AlphaMissense. When a variant of uncertain significance is reclassified as dangerous, it recomputes a calibrated ACMG probability of pathogenicity and drafts patient recontact and family cascade-testing outreach. Draft only, clinician in the loop, nothing auto-sends.",
+    desc: "A five-agent system on Gemini 3.1 and Google's Agent Development Kit that watches the shared variant record: ClinVar, gnomAD, AlphaMissense. When a variant of uncertain significance is reclassified as dangerous, it recomputes a calibrated ACMG probability of pathogenicity and drafts patient recontact and family cascade-testing outreach. Draft only, clinician in the loop, nothing auto-sends.",
     links: [{ href: 'https://github.com/faith-ogun/unravel', label: 'GitHub' }, { href: 'https://youtu.be/xJBBBiFeQWk', label: 'Demo' }, { href: 'https://devpost.com/software/unravel-7ak8lf', label: 'Devpost' }] },
   { name: 'RegulonForge', img: '/assets/regulonforge-image.png', badges: ['Top 50 · 4,097 submissions'],
     desc: 'An AI system that simulates the regulatory consequences of non-coding mutations in real time, combining sequence, chromatin, motif logic and TF networks with step-by-step rationale. Built on Gemini 3 Pro to make the 98% "dark genome" interpretable.',
@@ -55,14 +55,14 @@ const archive = [
 ];
 ---
 <BaseLayout
-  title="Projects — Faith Ogundimu"
+  title="Projects · Faith Ogundimu"
   description="Award-winning AI and genomics projects by Faith Ogundimu: NCypher, Unravel, RegulonForge, Homeward, CareSignal and more."
 >
   <section class="page-hero">
     <div class="container">
       <p class="eyebrow">Projects</p>
       <h1 class="page-title display">Things I've <span class="nc squiggle">built</span>.</h1>
-      <p class="page-lead lead">Award-winning AI for medicine and the bench, end to end — from non-coding genome simulators to ambient clinical scribes and voice-first oncology agents.</p>
+      <p class="page-lead lead">Award-winning AI for medicine and the bench, end to end, from non-coding genome simulators to ambient clinical scribes and voice-first oncology agents.</p>
     </div>
   </section>
 

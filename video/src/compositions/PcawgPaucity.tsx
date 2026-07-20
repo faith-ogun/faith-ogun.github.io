@@ -48,7 +48,7 @@ export const PcawgPaucity: React.FC = () => {
         </Reveal>
       </svg>
       <Reveal from={114} style={{ textAlign: 'center', color: C.muted, fontSize: 15, fontFamily: FONT_MONO }}>
-        ~96 promoter drivers, 73 of them TERT — "surprisingly limited"
+        ~96 promoter drivers, 73 of them TERT, "surprisingly limited"
       </Reveal>
     </Bg>
   );

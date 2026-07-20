@@ -1,5 +1,5 @@
 /* =================================================================
-   FAITH OGUNDIMU — EDITORIAL DESIGN SYSTEM
+   FAITH OGUNDIMU: EDITORIAL DESIGN SYSTEM
    Nature/Science cover energy · indigo brand · coral "alive" accent
    on warm cream paper, engraving-ink tones.
    ================================================================= */
@@ -17,7 +17,7 @@
   --blue-light: #6B7CFF;
   --blue-pale: #E3E2F5;
 
-  /* --- Coral accent — the "alive" colour --- */
+  /* --- Coral accent: the "alive" colour --- */
   --accent: #E2553D;
   --accent-dark: #C23E29;
   --accent-soft: #F4D9D1;
@@ -46,7 +46,7 @@
   --container-narrow: 880px;
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --section-pad: clamp(72px, 11vh, 132px);
-  --radius: 4px;             /* crisp, print-like — minimal rounding */
+  --radius: 4px;             /* crisp, print-like, minimal rounding */
   --radius-lg: 8px;
 
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -250,7 +250,7 @@ section { padding-block: var(--section-pad); position: relative; }
 .tear svg { display: block; width: 100%; height: 100%; }
 
 /* =================================================================
-   PAGER (arrow pagination — blog & projects)
+   PAGER (arrow pagination, blog & projects)
    ================================================================= */
 .pager { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 3rem; }
 .pager-btn { width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid var(--hairline-strong); background: var(--paper); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s var(--ease); }
