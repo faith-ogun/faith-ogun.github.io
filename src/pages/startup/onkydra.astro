@@ -27,11 +27,11 @@ const features = [
       <div class="container onk-hero-grid">
         <div class="onk-hero-copy">
           <img class="onk-lockup" src="/assets/onkydra/lockup-ink.png" alt="Onkydra: AI for regenerative biology" />
-          <span class="onk-status"><span class="onk-pulse"></span> In construction · Private beta soon</span>
+          <span class="onk-status"><span class="onk-pulse"></span> In construction · Closed alpha round 2 soon</span>
           <h1 class="onk-h1">The agentic in-silico <span class="onk-grad">oncology lab</span>.</h1>
           <p class="onk-lede">Onkydra simulates rare cancers in-silico. Drop in a drug target and it runs a virtual patient cohort, predicts who responds, and ranks what drives resistance, before any wet-lab spend.</p>
           <div class="onk-cta">
-            <a href="#access" class="onk-btn onk-btn-primary">Request early access</a>
+            <a href="https://onkydra.com" target="_blank" rel="noopener" class="onk-btn onk-btn-primary">Visit onkydra.com</a>
             <a href="#how" class="onk-btn onk-btn-ghost">How it works</a>
           </div>
         </div>
@@ -137,18 +137,15 @@ const features = [
       </div>
     </section>
 
-    <!-- EARLY ACCESS (dark) -->
+    <!-- LIVE SITE (dark) -->
     <section class="onk-access" id="access">
       <div class="onk-dots" aria-hidden="true"></div>
       <div class="container-narrow onk-access-inner">
         <img class="onk-access-mark" src="/assets/onkydra/mark-white.png" alt="" aria-hidden="true" />
-        <h2 class="onk-h2 on-dark center">Request early access.</h2>
-        <p class="onk-access-text">Onkydra is in active construction, starting private and close to the science. If you're a rare-cancer researcher, clinician or builder who wants in early, leave your email.</p>
-        <form class="onk-form" onsubmit="return false;">
-          <input type="email" class="onk-input" placeholder="you@institution.org" aria-label="Email address" />
-          <button type="submit" class="onk-btn onk-btn-primary">Request access</button>
-        </form>
-        <p class="onk-form-note mono">For researchers and partners. One email when the beta opens.</p>
+        <h2 class="onk-h2 on-dark center">See it at onkydra.com.</h2>
+        <p class="onk-access-text">Onkydra is in active construction and stays close to the science. Closed alpha round 2 opens soon. The site is where it lives in the meantime: the platform, the beachhead in H3 K27M diffuse midline glioma, and how to reach me.</p>
+        <a href="https://onkydra.com" target="_blank" rel="noopener" class="onk-btn onk-btn-primary">Visit onkydra.com</a>
+        <p class="onk-form-note mono">For rare-cancer researchers, clinicians and partners.</p>
       </div>
     </section>
 
@@ -272,10 +269,6 @@ const features = [
   .onk-access-inner { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.1rem; }
   .onk-access-mark { width: 64px; height: auto; opacity: 0.9; margin-bottom: 0.4rem; }
   .onk-access-text { font-size: 1.05rem; line-height: 1.65; color: rgba(246,244,239,0.78); max-width: 52ch; }
-  .onk-form { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-top: 0.6rem; width: 100%; max-width: 480px; }
-  .onk-input { flex: 1; min-width: 220px; font-family: 'Figtree', var(--font-body); font-size: 1rem; padding: 0.95rem 1.2rem; border-radius: 999px; border: 1.5px solid rgba(246,244,239,0.2); background: rgba(246,244,239,0.06); color: var(--cream); }
-  .onk-input::placeholder { color: rgba(246,244,239,0.45); }
-  .onk-input:focus { outline: none; border-color: var(--blue); background: rgba(6,0,249,0.1); }
   .onk-form-note { font-size: 0.7rem; color: rgba(246,244,239,0.5); margin-top: 0.4rem; letter-spacing: 0.03em; }
 
   /* EVENTS */
