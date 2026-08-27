@@ -7,6 +7,9 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
+    // 'journal-club' = a read of the literature. 'workbench' = something I built
+    // (agents, harnesses, tooling). The category drives the card colour and chip.
+    category: z.enum(['journal-club', 'workbench']).default('journal-club'),
     updated: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
     papers: z
