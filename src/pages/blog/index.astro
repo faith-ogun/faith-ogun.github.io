@@ -7,47 +7,75 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 );
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+// The kicker already carries both the kind of post and its topic, e.g.
+// "Mini Journal Club · 3D genome". Split it so the kind becomes a coloured chip
+// (blue for a read of the literature, ink for something I built) and only the
+// topic is left on the kicker line.
+const CAT_LABEL: Record<string, string> = {
+  'journal-club': 'Journal Club',
+  workbench: 'Workbench',
+};
+const split = (data: { heroKicker?: string; category: string }) => {
+  const parts = (data.heroKicker ?? '').split('·').map((s) => s.trim()).filter(Boolean);
+  return { chip: parts[0] ?? CAT_LABEL[data.category], topic: parts.slice(1).join(' · ') };
+};
+
 const featured = posts[0];
-const rest = posts.slice(1);
+const feat = featured ? split(featured.data) : null;
+const rest = posts.slice(1).map((p) => ({ p, ...split(p.data) }));
 ---
 <BaseLayout
-  title="Journal Club · Faith Ogundimu"
-  description="Critical reads of landmark papers in non-coding cancer genomics, deep learning and gene regulation, connecting the literature to my PhD work, with animated explainers."
+  title="Journal Club & Workbench · Faith Ogundimu"
+  description="Critical reads of landmark papers in non-coding cancer genomics and deep learning, plus build notes on the agents and harnesses I use to do the research faster."
 >
   <section class="blog-hero">
     <div class="container">
-      <p class="eyebrow">Journal Club</p>
-      <h1 class="blog-title display">Reading the literature, <span class="nc squiggle">out loud</span>.</h1>
+      <p class="eyebrow">Journal Club &amp; Workbench</p>
+      <h1 class="blog-title display">Reading and building, <span class="nc squiggle">out loud</span>.</h1>
       <p class="blog-lead lead">
-        Deep, critical reads of the papers shaping non-coding cancer genomics, regulatory deep
-        learning and 3D genome biology, each one tied back to what I'm building in my PhD, with
-        animated explainers for the hard bits.
+        Two kinds of post. <strong>Journal Club</strong> is the literature: deep, critical reads of
+        the papers shaping non-coding cancer genomics, regulatory deep learning and 3D genome
+        biology, each tied back to what I'm building in my PhD, with animated explainers for the
+        hard bits. <strong>Workbench</strong> is the other half: the agents, harnesses and tooling
+        I build to make the research go faster, and what I learned building them.
       </p>
     </div>
   </section>
 
   <section class="blog-list-sec">
     <div class="container">
-      {featured && (
-        <a href={`/blog/${featured.id}/`} class="feature-card reveal">
+      {featured && feat && (
+        <a href={`/blog/${featured.id}/`} class:list={['feature-card', 'reveal', `is-${featured.data.category}`]}>
           <div class="feature-body">
-            <p class="feature-kicker">{featured.data.heroKicker ?? 'Latest'}</p>
+            <div class="card-top">
+              <span class="cat">{feat.chip}</span>
+              {feat.topic && <span class="feature-kicker">{feat.topic}</span>}
+            </div>
             <h2 class="feature-title display">{featured.data.title}</h2>
             <p class="feature-desc">{featured.data.description}</p>
             <div class="post-meta">
               <span>{fmt(featured.data.date)}</span>
               {featured.data.readingTime && <span>· {featured.data.readingTime}</span>}
-              <span>· {featured.data.papers.length} paper{featured.data.papers.length === 1 ? '' : 's'}</span>
+              {featured.data.papers.length > 0 && (
+                <span>· {featured.data.papers.length} paper{featured.data.papers.length === 1 ? '' : 's'}</span>
+              )}
             </div>
-            <span class="feature-go">Read the analysis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            <span class="feature-go">
+              {featured.data.category === 'workbench' ? 'Read the build' : 'Read the analysis'}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
           </div>
         </a>
       )}
 
       <div class="post-grid" id="post-grid">
-        {rest.map((p, i) => (
-          <a href={`/blog/${p.id}/`} class="post-card spec-card reveal" data-i={i}>
-            <p class="post-kicker">{p.data.heroKicker ?? 'Journal Club'}</p>
+        {rest.map(({ p, chip, topic }, i) => (
+          <a href={`/blog/${p.id}/`} class:list={['post-card', 'spec-card', 'reveal', `is-${p.data.category}`]} data-i={i}>
+            <div class="card-top">
+              <span class="cat">{chip}</span>
+              {topic && <span class="post-kicker">{topic}</span>}
+            </div>
             <h3 class="post-card-title">{p.data.title}</h3>
             <p class="post-card-desc">{p.data.description}</p>
             <div class="post-meta">
@@ -107,25 +135,47 @@ const rest = posts.slice(1);
 
 <style>
   .blog-hero { padding-top: clamp(8rem, 16vh, 11rem); padding-bottom: clamp(2rem, 5vh, 3.5rem); }
-  .blog-title { font-size: clamp(2.6rem, 6.5vw, 4.6rem); font-weight: 700; color: var(--ink); margin: 1.1rem 0 1.2rem; max-width: 16ch; }
+  .blog-title { font-size: clamp(2.6rem, 6.5vw, 4.6rem); font-weight: 700; color: var(--ink); margin: 1.1rem 0 1.2rem; max-width: 18ch; }
   .blog-title .nc { color: var(--blue-primary); font-style: italic; }
-  .blog-lead { max-width: 60ch; }
+  .blog-lead { max-width: 64ch; }
+  .blog-lead strong { font-weight: 600; color: var(--ink); }
+
+  /* ---- category chip: which kind of post this is ---- */
+  .card-top { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+  .cat {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.3rem 0.62rem; border-radius: 999px; white-space: nowrap;
+  }
+  .is-journal-club .cat { color: var(--blue-primary); background: var(--blue-pale); }
+  .is-workbench .cat { color: #fff; background: var(--ink); }
 
   .blog-list-sec { padding-top: 1rem; }
   .feature-card { display: block; background: var(--blue-primary); color: #fff; border-radius: 20px; padding: clamp(2rem, 5vw, 3.5rem); margin-bottom: 2.5rem; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); }
   .feature-card:hover { transform: translateY(-4px); box-shadow: 0 28px 60px rgba(59,76,202,0.3); }
-  .feature-kicker { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 0.8rem; }
+  .feature-card .card-top { margin-bottom: 1rem; }
+  .feature-card .cat { background: rgba(255,255,255,0.18); color: #fff; }
+  .feature-kicker { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
   .feature-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.1; margin-bottom: 1rem; max-width: 22ch; }
   .feature-desc { color: rgba(255,255,255,0.85); font-size: 1.05rem; line-height: 1.6; max-width: 60ch; margin-bottom: 1.2rem; }
   .feature-go { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; }
   .feature-go svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease); }
   .feature-card:hover .feature-go svg { transform: translateX(4px); }
 
+  /* a build post leads on ink with a coral pop, so it reads as a sibling of the
+     indigo journal-club card rather than a different site */
+  .feature-card.is-workbench { background: var(--night); }
+  .feature-card.is-workbench:hover { box-shadow: 0 28px 60px rgba(27,27,42,0.38); }
+  .feature-card.is-workbench .cat { background: var(--accent); color: #fff; }
+  .feature-card.is-workbench .feature-kicker { color: rgba(255,255,255,0.72); }
+  .feature-card.is-workbench .feature-go { color: var(--accent); }
+
   .post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.4rem; }
   .post-card { display: flex; flex-direction: column; gap: 0.6rem; }
+  .post-card .card-top { margin-bottom: 0; }
   .post-kicker { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
   .post-card-title { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; line-height: 1.25; color: var(--ink); }
   .post-card:hover .post-card-title { color: var(--blue-primary); }
+  .post-card.is-workbench:hover .post-card-title { color: var(--accent); }
   .post-card-desc { font-size: 0.92rem; color: var(--ink-2); line-height: 1.55; flex: 1; }
 
   .post-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); }

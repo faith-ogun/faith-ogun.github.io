@@ -24,6 +24,17 @@ const jsonLd = {
   mainEntityOfPage: new URL(`/blog/${post.id}/`, Astro.site).href,
 };
 const toc = headings.filter((h) => h.depth === 2);
+
+// Same convention as the blog index: the kicker's first segment names the kind of
+// post and becomes a coloured chip, the rest stays as the topic line.
+const CAT_LABEL: Record<string, string> = {
+  'journal-club': 'Journal Club',
+  workbench: 'Workbench',
+};
+const kickerParts = (d.heroKicker ?? '').split('\u00b7').map((x) => x.trim()).filter(Boolean);
+const chip = kickerParts[0] ?? CAT_LABEL[d.category];
+const topic = kickerParts.slice(1).join(' \u00b7 ');
+const isBuild = d.category === 'workbench';
 ---
 <BaseLayout title={`${d.title} · Faith Ogundimu`} description={d.description}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
@@ -33,15 +44,18 @@ const toc = headings.filter((h) => h.depth === 2);
       <div class="container-narrow">
         <a href="/blog/" class="post-back">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          Journal Club
+          {CAT_LABEL[d.category]}
         </a>
-        <p class="eyebrow">{d.heroKicker ?? 'Journal Club'}</p>
+        <div class:list={['card-top', `is-${d.category}`]}>
+          <span class="cat">{chip}</span>
+          {topic && <span class="eyebrow">{topic}</span>}
+        </div>
         <h1 class="post-title display">{d.title}</h1>
         <p class="post-desc lead">{d.description}</p>
         <div class="post-meta">
           <span>{fmt(d.date)}</span>
           {d.readingTime && <span>· {d.readingTime}</span>}
-          <span>· {d.papers.length} paper{d.papers.length === 1 ? '' : 's'}</span>
+          {d.papers.length > 0 && <span>· {d.papers.length} paper{d.papers.length === 1 ? '' : 's'}</span>}
         </div>
         <div class="post-tags">
           {d.tags.map((t) => <span class="post-tag">{t}</span>)}
@@ -80,7 +94,9 @@ const toc = headings.filter((h) => h.depth === 2);
       )}
 
       <div class="post-cta">
-        <p>Working on something at the intersection of regulatory genomics and machine learning?</p>
+        <p>{isBuild
+          ? 'Building your own harness, or want to argue with how I set mine up?'
+          : 'Working on something at the intersection of regulatory genomics and machine learning?'}</p>
         <a href="mailto:faithogundimu25@rcsi.ie" class="btn btn-indigo">Get in touch</a>
       </div>
     </div>
@@ -89,6 +105,13 @@ const toc = headings.filter((h) => h.depth === 2);
 
 <style>
   .post-header { padding-top: clamp(7.5rem, 14vh, 10rem); padding-bottom: 2rem; }
+  .card-top { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
+  .cat {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.3rem 0.62rem; border-radius: 999px; white-space: nowrap;
+  }
+  .card-top.is-journal-club .cat { color: var(--blue-primary); background: var(--blue-pale); }
+  .card-top.is-workbench .cat { color: #fff; background: var(--ink); }
   .post-back { display: inline-flex; align-items: center; gap: 0.45rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 1.6rem; }
   .post-back svg { width: 15px; height: 15px; }
   .post-back:hover { color: var(--accent); }
@@ -124,6 +147,14 @@ const toc = headings.filter((h) => h.depth === 2);
   .prose :global(figure) { margin: 2.2rem 0; }
   .prose :global(figure video), .prose :global(figure img) { width: 100%; border-radius: 14px; border: 1px solid var(--hairline); display: block; background: var(--night); }
   .prose :global(figcaption) { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.03em; color: var(--ink-3); margin-top: 0.7rem; text-align: center; }
+  /* tables (the workbench posts use them; journal-club posts mostly don't) */
+  .prose :global(table) { width: 100%; border-collapse: collapse; margin: 1.9rem 0; font-size: 0.95rem; display: block; overflow-x: auto; }
+  .prose :global(th), .prose :global(td) { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+  .prose :global(th) { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); border-bottom-color: var(--hairline-strong); white-space: nowrap; }
+  .prose :global(tbody tr:last-child td) { border-bottom: 0; }
+  /* fenced code blocks (Shiki supplies its own background) */
+  .prose :global(pre) { padding: 1.15rem 1.3rem; border-radius: 12px; overflow-x: auto; margin: 1.7rem 0; font-size: 0.85rem; line-height: 1.65; }
+  .prose :global(pre code) { background: none; padding: 0; font-size: inherit; }
   /* callout / key-point box */
   .prose :global(.keypoint) { background: var(--blue-pale); border: 1px solid rgba(59,76,202,0.2); border-radius: 14px; padding: 1.3rem 1.5rem; margin: 1.8rem 0; }
   .prose :global(.keypoint p:last-child) { margin-bottom: 0; }
