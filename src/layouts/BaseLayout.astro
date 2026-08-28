@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { logoUrl } from '../data/site';
 
 export interface Props {
   title?: string;
@@ -12,7 +13,7 @@ export interface Props {
 const {
   title = 'Faith Ogundimu · Decoding the Non-Coding',
   description = 'PhD researcher decoding the non-coding cancer genome with deep learning, epigenomics and multi-omics. Government of Ireland Scholar at RCSI.',
-  image = '/assets/faith_logo.png',
+  image = logoUrl,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -23,7 +24,7 @@ const ogImage = new URL(image, Astro.site).href;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/assets/faith_logo.png" />
+    <link rel="icon" type="image/png" href={logoUrl} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />

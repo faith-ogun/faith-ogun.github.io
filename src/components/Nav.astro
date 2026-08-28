@@ -1,4 +1,6 @@
 ---
+import { logoUrl } from '../data/site';
+
 const links = [
   { href: '/research', label: 'Research' },
   { href: '/projects', label: 'Projects' },
@@ -11,7 +13,7 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 <header class="nav" id="site-nav">
   <div class="nav-inner container">
     <a href="/" class="brand" aria-label="Faith Ogundimu, home">
-      <img src="/assets/faith_logo.png" alt="" width="46" height="46" />
+      <img src={logoUrl} alt="" width="46" height="46" />
       <span class="brand-text">
         <span class="brand-name">Faith Ogundimu</span>
         <span class="brand-sub">Decoding the non-coding</span>
