@@ -334,7 +334,9 @@ const news = recentDispatches;
     mask-image: linear-gradient(to left, transparent 0, #000 22%), linear-gradient(to bottom, transparent 0, #000 20%, #000 80%, transparent 100%);
     mask-composite: intersect;
   }
-  .premise-grid { position: relative; z-index: 2; }
+  /* .premise is a flex row, so this needs min-width:0 or it refuses to shrink
+     below its min-content width and the section's overflow:hidden clips the copy. */
+  .premise-grid { position: relative; z-index: 2; width: 100%; min-width: 0; }
   .premise-copy { max-width: 38rem; margin-inline: auto; margin-top: clamp(2rem, 6vh, 5rem); text-align: center; }
   .premise-text { margin-inline: auto; }
   .premise-title { font-size: clamp(2rem, 4.6vw, 3.2rem); color: var(--ink); margin: 1rem 0 1.3rem; text-wrap: balance; line-height: 1.08; }
