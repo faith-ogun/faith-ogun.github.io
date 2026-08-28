@@ -200,7 +200,13 @@ section { padding-block: var(--section-pad); position: relative; }
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  .reveal, .reveal-left, .reveal-scale { opacity: 1 !important; transform: none !important; }
+  /* Anything whose VISIBILITY depends on an animation or on the reveal observer has
+     to be forced visible here. Killing the animation above otherwise strands it at
+     its opacity:0 start state forever. .hero-copy > * animates in via `rise`, so
+     without this the entire hero (name, tagline, CTA) never appears for anyone
+     browsing with Reduce Motion switched on. */
+  .reveal, .reveal-left, .reveal-scale,
+  .hero-copy > * { opacity: 1 !important; transform: none !important; }
 }
 
 /* ------------------------- Accessibility ------------------------- */
@@ -258,3 +264,45 @@ section { padding-block: var(--section-pad); position: relative; }
 .pager-btn:hover:not(:disabled) { background: var(--blue-primary); border-color: var(--blue-primary); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59,76,202,0.25); }
 .pager-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 .pager-indicator { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.08em; color: var(--ink-2); min-width: 3rem; text-align: center; }
+
+/* ===================================================================
+   MOBILE ERGONOMICS
+   The editorial design leans on very small mono labels and tight link
+   rows. Both read fine on a desktop and stop working on a phone: the
+   labels fall under ~11px, and several tap targets are 17-28px tall
+   against the ~44px a thumb needs.
+
+   These raise a floor on small screens only; desktop is untouched.
+   !important is deliberate and load-bearing here: every rule being
+   overridden lives in an Astro-scoped component style, which carries
+   an extra attribute selector and would otherwise always win.
+   =================================================================== */
+@media (max-width: 760px) {
+  .brand-sub, .stat-label, .roundel-cap, .news-date, .ci-label, .foot-base,
+  .pub-badge, .tech-tag, .pcard-badge, .news-tag, .cat, .feature-kicker,
+  .post-kicker, .post-tag, .toc-label, .door-tag, .ohm-kicker,
+  .news-link, .pcard-link, .pub-link, .post-back, .prose th,
+  /* these set the size on the container, so unclassed spans inherit it */
+  .news-card-meta, .post-meta,
+  /* the Onkydra workspace mock bottoms out at 8.6px */
+  .ws-url, .ws-meta, .ws-tile-l, .ws-tile-s, .ws-activity .mono {
+    font-size: 0.7rem !important;
+  }
+
+}
+
+/* Touch targets are keyed to 900px, not 760px, because that is exactly where the
+   nav collapses to the hamburger menu: any device getting that menu is being
+   driven by a thumb, iPads in portrait included. The type floor above stays at
+   760px, since a tablet has the physical size to carry the smaller labels. */
+@media (max-width: 900px) {
+  /* 28px rows in the collapsed menu are the worst offender on the site */
+  .nav-links .nav-link { padding-block: 0.75rem !important; }
+
+  /* card, footer and back-link actions */
+  .news-link, .pcard-link, .pub-link, .post-back,
+  .ohm-link, .onk-back, .ohm-back, .ulink { padding-block: 0.5rem; }
+  .ulink-light, .post-toc a { display: inline-block; padding-block: 0.4rem; }
+  /* inline links inside prose are deliberately left alone: padding them would
+     break up the line box and make body copy read worse, not better. */
+}
