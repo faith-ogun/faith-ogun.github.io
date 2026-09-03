@@ -7,7 +7,7 @@
 //
 // WHEN YOU REPLACE public/assets/Faith_Ogundimu_CV.pdf: bump the date below to
 // the day you swapped it in. Nothing else needs changing.
-export const CV_UPDATED = '2026-08-28';
+export const CV_UPDATED = '2026-09-03';
 export const cvUrl = `/assets/Faith_Ogundimu_CV.pdf?v=${CV_UPDATED}`;
 
 // Same story for the logo: it is the favicon, the nav brand mark and the default
