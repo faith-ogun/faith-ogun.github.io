@@ -19,6 +19,9 @@ import { DietleinGenomewide } from './compositions/DietleinGenomewide';
 import { EnhancerNetworks } from './compositions/EnhancerNetworks';
 import { Af3TfBinding } from './compositions/Af3TfBinding';
 import { FlarePrioritization } from './compositions/FlarePrioritization';
+import { PtcgArchitecture } from './compositions/PtcgArchitecture';
+import { PtcgTauAperture } from './compositions/PtcgTauAperture';
+import { PtcgLeaderboardNoise } from './compositions/PtcgLeaderboardNoise';
 
 const base = { fps: VIDEO.fps, width: VIDEO.width, height: VIDEO.height };
 
@@ -43,6 +46,9 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="enhancer-networks" component={EnhancerNetworks} durationInFrames={150} {...base} />
       <Composition id="af3-tf-binding" component={Af3TfBinding} durationInFrames={160} {...base} />
       <Composition id="flare-prioritization" component={FlarePrioritization} durationInFrames={160} {...base} />
+      <Composition id="ptcg-architecture" component={PtcgArchitecture} durationInFrames={300} {...base} />
+      <Composition id="ptcg-tau-aperture" component={PtcgTauAperture} durationInFrames={330} {...base} />
+      <Composition id="ptcg-leaderboard-noise" component={PtcgLeaderboardNoise} durationInFrames={270} {...base} />
     </>
   );
 };
